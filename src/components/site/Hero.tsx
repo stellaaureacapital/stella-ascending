@@ -1,65 +1,134 @@
-import heroBg from "@/assets/hero-bg.jpg";
 import logo from "@/assets/logo.png";
+import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-obsidian text-primary-foreground"
+      className="relative min-h-screen flex items-center bg-background overflow-hidden"
     >
-      <img
-        src={heroBg}
-        alt=""
-        width={1920}
-        height={1280}
-        className="absolute inset-0 w-full h-full object-cover opacity-60"
+      {/* Subtle decorative grid */}
+      <div
+        className="absolute inset-0 opacity-[0.04] pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+        }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-obsidian/80 via-obsidian/40 to-obsidian" />
+      {/* Soft gold glow */}
+      <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-gold/10 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-gold/5 blur-3xl pointer-events-none" />
 
-      <div className="relative container text-center py-32">
-        <div className="reveal flex justify-center mb-10">
-          <img
-            src={logo}
-            alt="Stella Aurea Capital logo"
-            className="h-24 w-24 object-contain float-star"
-          />
-        </div>
+      <div className="container relative pt-32 pb-20">
+        <div className="grid lg:grid-cols-12 gap-16 items-center">
+          {/* Left: copy */}
+          <div className="lg:col-span-7">
+            <div className="reveal flex items-center gap-4 mb-10">
+              <span className="block w-12 h-px bg-gold" />
+              <p className="text-[11px] tracking-luxury uppercase text-gold">
+                Stella Aurea Capital
+              </p>
+            </div>
 
-        <p className="reveal reveal-delay-1 text-[11px] tracking-luxury uppercase text-gold mb-8">
-          Educação Financeira · Estratégia · Visão de longo prazo
-        </p>
+            <h1 className="reveal reveal-delay-1 font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.02] tracking-tight">
+              A estrela que orienta
+              <br />
+              suas{" "}
+              <em className="text-gradient-gold not-italic">decisões</em>
+              <br />
+              financeiras.
+            </h1>
 
-        <h1 className="reveal reveal-delay-2 font-serif text-5xl sm:text-7xl lg:text-8xl leading-[1.05] max-w-5xl mx-auto">
-          A estrela que orienta suas{" "}
-          <span className="shimmer-gold italic">decisões financeiras</span>
-        </h1>
+            <p className="reveal reveal-delay-2 mt-10 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed font-light">
+              Educação financeira séria, estratégica e acessível. Conteúdo construído
+              sobre dados, análise e visão de longo prazo — para investidores que
+              buscam clareza.
+            </p>
 
-        <div className="reveal reveal-delay-3 hairline w-32 mx-auto my-10" />
+            <div className="reveal reveal-delay-3 mt-12 flex flex-col sm:flex-row gap-4">
+              <a
+                href="#produtos"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-foreground text-background text-xs uppercase tracking-luxury hover:bg-gradient-gold hover:text-accent-foreground transition-all duration-500"
+              >
+                Conheça nossos produtos
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+              <a
+                href="#sobre"
+                className="inline-flex items-center justify-center px-8 py-4 text-xs uppercase tracking-luxury text-foreground/80 hover:text-gold transition-colors"
+              >
+                Nossa filosofia →
+              </a>
+            </div>
 
-        <p className="reveal reveal-delay-3 max-w-2xl mx-auto text-base sm:text-lg text-primary-foreground/75 font-light leading-relaxed">
-          Conteúdo sério, estratégico e acessível para investidores que buscam clareza,
-          análise sólida e uma visão de longo prazo no mercado financeiro.
-        </p>
+            <div className="reveal reveal-delay-4 mt-20 grid grid-cols-3 gap-8 max-w-lg">
+              {[
+                { k: "100%", v: "Conteúdo gratuito" },
+                { k: "LP", v: "Visão de longo prazo" },
+                { k: "+5k", v: "Leitores ativos" },
+              ].map((s) => (
+                <div key={s.v} className="border-t border-border pt-4">
+                  <p className="font-serif text-2xl text-gradient-gold">{s.k}</p>
+                  <p className="text-[10px] uppercase tracking-luxury text-muted-foreground mt-2">
+                    {s.v}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
 
-        <div className="reveal reveal-delay-4 mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="#produtos"
-            className="inline-flex items-center justify-center px-10 py-4 bg-gradient-gold text-accent-foreground text-xs uppercase tracking-luxury hover:shadow-gold transition-all duration-500"
-          >
-            Conheça nossos produtos
-          </a>
-          <a
-            href="#sobre"
-            className="inline-flex items-center justify-center px-10 py-4 border border-primary-foreground/40 text-xs uppercase tracking-luxury hover:border-gold hover:text-gold transition-all duration-500"
-          >
-            Nossa filosofia
-          </a>
+          {/* Right: logo composition */}
+          <div className="lg:col-span-5 reveal reveal-delay-2">
+            <div className="relative aspect-square max-w-md mx-auto">
+              {/* concentric rings */}
+              <div className="absolute inset-0 rounded-full border border-gold/20" />
+              <div className="absolute inset-8 rounded-full border border-gold/15" />
+              <div className="absolute inset-16 rounded-full border border-gold/10" />
+
+              {/* corner ticks */}
+              {[
+                "top-0 left-0",
+                "top-0 right-0",
+                "bottom-0 left-0",
+                "bottom-0 right-0",
+              ].map((pos) => (
+                <span
+                  key={pos}
+                  className={`absolute ${pos} w-4 h-4 border-gold`}
+                  style={{
+                    borderTopWidth: pos.includes("top") ? 1 : 0,
+                    borderBottomWidth: pos.includes("bottom") ? 1 : 0,
+                    borderLeftWidth: pos.includes("left") ? 1 : 0,
+                    borderRightWidth: pos.includes("right") ? 1 : 0,
+                  }}
+                />
+              ))}
+
+              <div className="absolute inset-0 flex items-center justify-center">
+                <img
+                  src={logo}
+                  alt="Stella Aurea Capital"
+                  className="w-2/3 h-2/3 object-contain float-star"
+                />
+              </div>
+
+              <p className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] tracking-luxury uppercase text-muted-foreground whitespace-nowrap">
+                Estrela Dourada · Est. 2024
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-primary-foreground/60">
-        <span className="text-[10px] tracking-luxury uppercase">Explorar</span>
-        <span className="block w-px h-12 bg-gradient-to-b from-gold to-transparent" />
+      {/* bottom marquee */}
+      <div className="absolute bottom-0 inset-x-0 border-t border-border bg-background/80 backdrop-blur">
+        <div className="container flex items-center justify-between py-4 text-[10px] tracking-luxury uppercase text-muted-foreground">
+          <span>Educação Financeira</span>
+          <span className="hidden sm:inline">Análise Estratégica</span>
+          <span className="hidden md:inline">Visão de Longo Prazo</span>
+          <span>Stella Aurea Capital</span>
+        </div>
       </div>
     </section>
   );
