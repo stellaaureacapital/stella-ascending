@@ -92,6 +92,10 @@
 
 @layer base {
   * { @apply border-border; }
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
