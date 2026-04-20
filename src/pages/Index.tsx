@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/site/Navbar";
 import Hero from "@/components/site/Hero";
 import About from "@/components/site/About";
@@ -9,6 +10,8 @@ import Contact from "@/components/site/Contact";
 import Footer from "@/components/site/Footer";
 
 const Index = () => {
+  const location = useLocation();
+
   useEffect(() => {
     document.title = "Stella Aurea Capital · Educação Financeira Estratégica";
     const desc =
@@ -29,6 +32,17 @@ const Index = () => {
     }
     canonical.setAttribute("href", window.location.origin + "/");
   }, []);
+
+  // Scroll to hash anchor when navigating to /#anchor (e.g. from a service page)
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.slice(1);
+      requestAnimationFrame(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  }, [location]);
 
   return (
     <main className="min-h-screen bg-background text-foreground">
