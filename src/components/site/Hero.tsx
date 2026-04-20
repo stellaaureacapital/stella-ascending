@@ -31,16 +31,13 @@ const Hero = () => {
               </p>
             </div>
 
-            <h1 className="reveal reveal-delay-1 font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.02] tracking-tight">
-              A estrela que orienta
-              <br />
-              suas{" "}
-              <em className="text-gradient-gold not-italic">decisões</em>
-              <br />
+            <h1 className="reveal reveal-delay-1 font-serif text-4xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.05] tracking-tight">
+              A estrela que orienta suas{" "}
+              <em className="text-gradient-gold not-italic">decisões</em>{" "}
               financeiras.
             </h1>
 
-            <p className="reveal reveal-delay-2 mt-10 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed font-light">
+            <p className="reveal reveal-delay-2 mt-8 sm:mt-10 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed font-light">
               Educação financeira séria, estratégica e acessível. Conteúdo construído
               sobre dados, análise e visão de longo prazo — para investidores que
               buscam clareza.
@@ -62,15 +59,15 @@ const Hero = () => {
               </a>
             </div>
 
-            <div className="reveal reveal-delay-4 mt-20 grid grid-cols-3 gap-8 max-w-lg">
+            <div className="reveal reveal-delay-4 mt-16 sm:mt-20 grid grid-cols-3 gap-4 sm:gap-8 max-w-lg">
               {[
-                { k: "100%", v: "Conteúdo gratuito" },
-                { k: "LP", v: "Visão de longo prazo" },
-                { k: "+5k", v: "Leitores ativos" },
+                { k: "100%", v: "Gratuito" },
+                { k: "LP", v: "Longo prazo" },
+                { k: "+5k", v: "Leitores" },
               ].map((s) => (
                 <div key={s.v} className="border-t border-border pt-4">
                   <p className="font-serif text-2xl text-gradient-gold">{s.k}</p>
-                  <p className="text-[10px] uppercase tracking-luxury text-muted-foreground mt-2">
+                  <p className="text-[10px] uppercase tracking-[0.2em] sm:tracking-luxury text-muted-foreground mt-2">
                     {s.v}
                   </p>
                 </div>
@@ -79,12 +76,12 @@ const Hero = () => {
           </div>
 
           {/* Right: logo composition */}
-          <div className="lg:col-span-5 reveal reveal-delay-2">
-            <div className="relative aspect-square max-w-md mx-auto">
+          <div className="lg:col-span-5 reveal reveal-delay-2 order-first lg:order-last">
+            <div className="relative aspect-square max-w-[260px] sm:max-w-md mx-auto">
               {/* concentric rings */}
               <div className="absolute inset-0 rounded-full border border-gold/20" />
-              <div className="absolute inset-8 rounded-full border border-gold/15" />
-              <div className="absolute inset-16 rounded-full border border-gold/10" />
+              <div className="absolute inset-6 sm:inset-8 rounded-full border border-gold/15" />
+              <div className="absolute inset-12 sm:inset-16 rounded-full border border-gold/10" />
 
               {/* corner ticks */}
               {[
@@ -113,7 +110,7 @@ const Hero = () => {
                 />
               </div>
 
-              <p className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] tracking-luxury uppercase text-muted-foreground whitespace-nowrap">
+              <p className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-luxury uppercase text-muted-foreground whitespace-nowrap">
                 Estrela Dourada · Est. 2024
               </p>
             </div>
@@ -123,11 +120,11 @@ const Hero = () => {
 
       {/* bottom marquee */}
       <div className="absolute bottom-0 inset-x-0 border-t border-border bg-background/80 backdrop-blur">
-        <div className="container flex items-center justify-between py-4 text-[10px] tracking-luxury uppercase text-muted-foreground">
-          <span>Educação Financeira</span>
-          <span className="hidden sm:inline">Análise Estratégica</span>
-          <span className="hidden md:inline">Visão de Longo Prazo</span>
-          <span>Stella Aurea Capital</span>
+        <div className="container flex items-center justify-between gap-4 py-4 text-[9px] sm:text-[10px] tracking-[0.18em] sm:tracking-luxury uppercase text-muted-foreground whitespace-nowrap overflow-hidden">
+          <span>Educação</span>
+          <span className="hidden xs:inline">Análise</span>
+          <span className="hidden sm:inline">Estratégia</span>
+          <span>Longo prazo</span>
         </div>
       </div>
     </section>
