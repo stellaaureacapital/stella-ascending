@@ -395,7 +395,6 @@ export const services: ServiceDetail[] = [
     faq: [
       {
         q: "Como assinar?",
-        o: "",
         a: "Em breve abriremos novas vagas — preencha o formulário para entrar na lista.",
       },
       {
