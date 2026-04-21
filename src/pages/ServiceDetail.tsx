@@ -248,7 +248,7 @@ const ServiceDetail = () => {
       </section>
 
       {/* Other services */}
-      <section className="py-20 lg:py-28 bg-obsidian text-primary-foreground">
+      <section className="py-20 lg:py-28 bg-secondary/40">
         <div className="container">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-16">
             <div>
@@ -268,14 +268,14 @@ const ServiceDetail = () => {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-px bg-primary-foreground/10">
+          <div className="grid md:grid-cols-3 gap-px bg-border">
             {otherServices.map((s) => {
               const SIcon = s.icon;
               return (
                 <Link
                   key={s.slug}
                   to={`/servicos/${s.slug}`}
-                  className="bg-obsidian p-8 lg:p-10 hover:bg-primary-foreground/[0.03] transition-colors duration-700 group flex flex-col"
+                  className="bg-background p-8 lg:p-10 hover:bg-secondary/60 transition-colors duration-700 group flex flex-col"
                 >
                   <SIcon
                     className="h-7 w-7 text-gold mb-8 transition-transform duration-700 group-hover:scale-110"
@@ -284,7 +284,7 @@ const ServiceDetail = () => {
                   <h3 className="font-serif text-2xl mb-4 leading-tight">
                     {s.title}
                   </h3>
-                  <p className="text-sm text-primary-foreground/60 leading-relaxed mb-8">
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-8">
                     {s.shortDesc}
                   </p>
                   <span className="mt-auto inline-flex items-center gap-2 text-[11px] tracking-luxury uppercase text-gold">
