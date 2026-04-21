@@ -4,6 +4,7 @@ export type Stock = {
   price: number;
   changePct: number;
   currency: "BRL" | "USD";
+  domain?: string;
 };
 
 export type IndexQuote = {
@@ -26,56 +27,56 @@ export type NewsItem = {
 
 // ---------- BRASIL ----------
 export const brGainers: Stock[] = [
-  { ticker: "MGLU3", name: "Magazine Luiza", price: 12.84, changePct: 8.92, currency: "BRL" },
-  { ticker: "AZUL4", name: "Azul", price: 9.15, changePct: 7.41, currency: "BRL" },
-  { ticker: "PETR4", name: "Petrobras PN", price: 38.72, changePct: 5.83, currency: "BRL" },
-  { ticker: "VALE3", name: "Vale", price: 64.21, changePct: 5.12, currency: "BRL" },
-  { ticker: "BBDC4", name: "Bradesco PN", price: 14.07, changePct: 4.66, currency: "BRL" },
-  { ticker: "ITUB4", name: "Itaú Unibanco PN", price: 33.48, changePct: 4.21, currency: "BRL" },
-  { ticker: "WEGE3", name: "WEG", price: 51.93, changePct: 3.97, currency: "BRL" },
-  { ticker: "RENT3", name: "Localiza", price: 42.18, changePct: 3.55, currency: "BRL" },
-  { ticker: "SUZB3", name: "Suzano", price: 58.74, changePct: 3.21, currency: "BRL" },
-  { ticker: "EQTL3", name: "Equatorial", price: 31.62, changePct: 2.88, currency: "BRL" },
+  { ticker: "MGLU3", name: "Magazine Luiza", price: 12.84, changePct: 8.92, currency: "BRL", domain: "magazineluiza.com.br" },
+  { ticker: "AZUL4", name: "Azul", price: 9.15, changePct: 7.41, currency: "BRL", domain: "voeazul.com.br" },
+  { ticker: "PETR4", name: "Petrobras PN", price: 38.72, changePct: 5.83, currency: "BRL", domain: "petrobras.com.br" },
+  { ticker: "VALE3", name: "Vale", price: 64.21, changePct: 5.12, currency: "BRL", domain: "vale.com" },
+  { ticker: "BBDC4", name: "Bradesco PN", price: 14.07, changePct: 4.66, currency: "BRL", domain: "bradesco.com.br" },
+  { ticker: "ITUB4", name: "Itaú Unibanco PN", price: 33.48, changePct: 4.21, currency: "BRL", domain: "itau.com.br" },
+  { ticker: "WEGE3", name: "WEG", price: 51.93, changePct: 3.97, currency: "BRL", domain: "weg.net" },
+  { ticker: "RENT3", name: "Localiza", price: 42.18, changePct: 3.55, currency: "BRL", domain: "localiza.com" },
+  { ticker: "SUZB3", name: "Suzano", price: 58.74, changePct: 3.21, currency: "BRL", domain: "suzano.com.br" },
+  { ticker: "EQTL3", name: "Equatorial", price: 31.62, changePct: 2.88, currency: "BRL", domain: "equatorialenergia.com.br" },
 ];
 
 export const brLosers: Stock[] = [
-  { ticker: "AMER3", name: "Americanas", price: 0.78, changePct: -9.31, currency: "BRL" },
-  { ticker: "CVCB3", name: "CVC Brasil", price: 2.41, changePct: -7.62, currency: "BRL" },
-  { ticker: "GOLL4", name: "Gol", price: 1.23, changePct: -6.84, currency: "BRL" },
-  { ticker: "MRFG3", name: "Marfrig", price: 11.29, changePct: -5.47, currency: "BRL" },
-  { ticker: "BRFS3", name: "BRF", price: 18.74, changePct: -4.92, currency: "BRL" },
-  { ticker: "CIEL3", name: "Cielo", price: 5.18, changePct: -4.31, currency: "BRL" },
-  { ticker: "VIIA3", name: "Via", price: 1.84, changePct: -3.97, currency: "BRL" },
-  { ticker: "USIM5", name: "Usiminas PNA", price: 6.42, changePct: -3.55, currency: "BRL" },
-  { ticker: "CSNA3", name: "CSN", price: 13.81, changePct: -3.12, currency: "BRL" },
-  { ticker: "EMBR3", name: "Embraer", price: 28.94, changePct: -2.74, currency: "BRL" },
+  { ticker: "AMER3", name: "Americanas", price: 0.78, changePct: -9.31, currency: "BRL", domain: "americanas.com.br" },
+  { ticker: "CVCB3", name: "CVC Brasil", price: 2.41, changePct: -7.62, currency: "BRL", domain: "cvc.com.br" },
+  { ticker: "GOLL4", name: "Gol", price: 1.23, changePct: -6.84, currency: "BRL", domain: "voegol.com.br" },
+  { ticker: "MRFG3", name: "Marfrig", price: 11.29, changePct: -5.47, currency: "BRL", domain: "marfrig.com.br" },
+  { ticker: "BRFS3", name: "BRF", price: 18.74, changePct: -4.92, currency: "BRL", domain: "brf-global.com" },
+  { ticker: "CIEL3", name: "Cielo", price: 5.18, changePct: -4.31, currency: "BRL", domain: "cielo.com.br" },
+  { ticker: "VIIA3", name: "Via", price: 1.84, changePct: -3.97, currency: "BRL", domain: "via.com.br" },
+  { ticker: "USIM5", name: "Usiminas PNA", price: 6.42, changePct: -3.55, currency: "BRL", domain: "usiminas.com" },
+  { ticker: "CSNA3", name: "CSN", price: 13.81, changePct: -3.12, currency: "BRL", domain: "csn.com.br" },
+  { ticker: "EMBR3", name: "Embraer", price: 28.94, changePct: -2.74, currency: "BRL", domain: "embraer.com" },
 ];
 
 // ---------- EUA ----------
 export const usGainers: Stock[] = [
-  { ticker: "NVDA", name: "NVIDIA", price: 928.41, changePct: 6.84, currency: "USD" },
-  { ticker: "TSLA", name: "Tesla", price: 248.92, changePct: 5.71, currency: "USD" },
-  { ticker: "AMD", name: "Advanced Micro Devices", price: 167.38, changePct: 4.92, currency: "USD" },
-  { ticker: "META", name: "Meta Platforms", price: 521.74, changePct: 4.18, currency: "USD" },
-  { ticker: "AAPL", name: "Apple", price: 192.83, changePct: 3.74, currency: "USD" },
-  { ticker: "MSFT", name: "Microsoft", price: 428.91, changePct: 3.21, currency: "USD" },
-  { ticker: "GOOGL", name: "Alphabet", price: 174.62, changePct: 2.97, currency: "USD" },
-  { ticker: "AMZN", name: "Amazon", price: 188.47, changePct: 2.64, currency: "USD" },
-  { ticker: "AVGO", name: "Broadcom", price: 1842.18, changePct: 2.31, currency: "USD" },
-  { ticker: "NFLX", name: "Netflix", price: 692.84, changePct: 2.08, currency: "USD" },
+  { ticker: "NVDA", name: "NVIDIA", price: 928.41, changePct: 6.84, currency: "USD", domain: "nvidia.com" },
+  { ticker: "TSLA", name: "Tesla", price: 248.92, changePct: 5.71, currency: "USD", domain: "tesla.com" },
+  { ticker: "AMD", name: "Advanced Micro Devices", price: 167.38, changePct: 4.92, currency: "USD", domain: "amd.com" },
+  { ticker: "META", name: "Meta Platforms", price: 521.74, changePct: 4.18, currency: "USD", domain: "meta.com" },
+  { ticker: "AAPL", name: "Apple", price: 192.83, changePct: 3.74, currency: "USD", domain: "apple.com" },
+  { ticker: "MSFT", name: "Microsoft", price: 428.91, changePct: 3.21, currency: "USD", domain: "microsoft.com" },
+  { ticker: "GOOGL", name: "Alphabet", price: 174.62, changePct: 2.97, currency: "USD", domain: "abc.xyz" },
+  { ticker: "AMZN", name: "Amazon", price: 188.47, changePct: 2.64, currency: "USD", domain: "amazon.com" },
+  { ticker: "AVGO", name: "Broadcom", price: 1842.18, changePct: 2.31, currency: "USD", domain: "broadcom.com" },
+  { ticker: "NFLX", name: "Netflix", price: 692.84, changePct: 2.08, currency: "USD", domain: "netflix.com" },
 ];
 
 export const usLosers: Stock[] = [
-  { ticker: "BA", name: "Boeing", price: 168.42, changePct: -7.21, currency: "USD" },
-  { ticker: "INTC", name: "Intel", price: 21.84, changePct: -6.48, currency: "USD" },
-  { ticker: "F", name: "Ford Motor", price: 10.27, changePct: -5.83, currency: "USD" },
-  { ticker: "PFE", name: "Pfizer", price: 28.91, changePct: -4.92, currency: "USD" },
-  { ticker: "WBA", name: "Walgreens Boots", price: 9.18, changePct: -4.37, currency: "USD" },
-  { ticker: "T", name: "AT&T", price: 17.42, changePct: -3.81, currency: "USD" },
-  { ticker: "KO", name: "Coca-Cola", price: 62.74, changePct: -3.18, currency: "USD" },
-  { ticker: "DIS", name: "Walt Disney", price: 91.83, changePct: -2.84, currency: "USD" },
-  { ticker: "NKE", name: "Nike", price: 74.62, changePct: -2.47, currency: "USD" },
-  { ticker: "MCD", name: "McDonald's", price: 268.91, changePct: -2.12, currency: "USD" },
+  { ticker: "BA", name: "Boeing", price: 168.42, changePct: -7.21, currency: "USD", domain: "boeing.com" },
+  { ticker: "INTC", name: "Intel", price: 21.84, changePct: -6.48, currency: "USD", domain: "intel.com" },
+  { ticker: "F", name: "Ford Motor", price: 10.27, changePct: -5.83, currency: "USD", domain: "ford.com" },
+  { ticker: "PFE", name: "Pfizer", price: 28.91, changePct: -4.92, currency: "USD", domain: "pfizer.com" },
+  { ticker: "WBA", name: "Walgreens Boots", price: 9.18, changePct: -4.37, currency: "USD", domain: "walgreensbootsalliance.com" },
+  { ticker: "T", name: "AT&T", price: 17.42, changePct: -3.81, currency: "USD", domain: "att.com" },
+  { ticker: "KO", name: "Coca-Cola", price: 62.74, changePct: -3.18, currency: "USD", domain: "coca-cola.com" },
+  { ticker: "DIS", name: "Walt Disney", price: 91.83, changePct: -2.84, currency: "USD", domain: "disney.com" },
+  { ticker: "NKE", name: "Nike", price: 74.62, changePct: -2.47, currency: "USD", domain: "nike.com" },
+  { ticker: "MCD", name: "McDonald's", price: 268.91, changePct: -2.12, currency: "USD", domain: "mcdonalds.com" },
 ];
 
 // ---------- ÍNDICES ----------
