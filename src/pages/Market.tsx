@@ -4,6 +4,7 @@ import { ArrowDownRight, ArrowLeft, ArrowUpRight, ExternalLink } from "lucide-re
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   brGainers,
   brLosers,
@@ -60,8 +61,24 @@ const StockTable = ({ rows, kind }: { rows: Stock[]; kind: "up" | "down" }) => {
             >
               <td className="py-4 px-4 text-muted-foreground font-mono text-xs">{i + 1}</td>
               <td className="py-4 px-4">
-                <div className="font-mono text-sm tracking-wide">{s.ticker}</div>
-                <div className="text-xs text-muted-foreground mt-0.5">{s.name}</div>
+                <div className="flex items-center gap-3">
+                  <Avatar className="h-9 w-9 rounded-sm border border-border/60 bg-background">
+                    {s.domain && (
+                      <AvatarImage
+                        src={`https://www.google.com/s2/favicons?domain=${s.domain}&sz=128`}
+                        alt={`${s.name} logo`}
+                        className="object-contain p-1"
+                      />
+                    )}
+                    <AvatarFallback className="rounded-sm bg-muted text-[10px] font-mono tracking-tight text-muted-foreground">
+                      {s.ticker.slice(0, 2)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <div className="font-mono text-sm tracking-wide">{s.ticker}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{s.name}</div>
+                  </div>
+                </div>
               </td>
               <td className="py-4 px-4 text-right font-mono">{fmtPrice(s.price, s.currency)}</td>
               <td className="py-4 px-4 text-right">
