@@ -2,7 +2,7 @@ import logo from "@/assets/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-obsidian text-primary-foreground py-20">
+    <footer className="bg-secondary/40 text-foreground py-20 border-t border-border">
       <div className="container grid md:grid-cols-4 gap-12">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3 mb-6">
@@ -12,7 +12,7 @@ const Footer = () => {
               <p className="text-[10px] tracking-luxury uppercase text-gold mt-1">Capital</p>
             </div>
           </div>
-          <p className="text-primary-foreground/60 max-w-md leading-relaxed text-sm">
+          <p className="text-muted-foreground max-w-md leading-relaxed text-sm">
             Educação financeira séria, estratégica e acessível. Um ponto de referência,
             orientação e valor no universo dos investimentos.
           </p>
@@ -20,7 +20,7 @@ const Footer = () => {
 
         <div>
           <p className="text-[10px] tracking-luxury uppercase text-gold mb-5">Navegação</p>
-          <ul className="space-y-3 text-sm text-primary-foreground/70">
+          <ul className="space-y-3 text-sm text-foreground/70">
             {["Sobre", "Produtos", "Serviços", "Blog", "Contato"].map((l) => (
               <li key={l}>
                 <a href={`#${l.toLowerCase()}`} className="hover:text-gold transition-colors">
@@ -33,14 +33,14 @@ const Footer = () => {
 
         <div>
           <p className="text-[10px] tracking-luxury uppercase text-gold mb-5">Contato</p>
-          <ul className="space-y-3 text-sm text-primary-foreground/70">
+          <ul className="space-y-3 text-sm text-foreground/70">
             <li>contato@stellaaureacapital.com.br</li>
             <li>São Paulo · Brasil</li>
           </ul>
         </div>
       </div>
 
-      <div className="container mt-16 pt-8 border-t border-primary-foreground/10 flex flex-col sm:flex-row justify-between gap-4 text-[10px] tracking-luxury uppercase text-primary-foreground/50">
+      <div className="container mt-16 pt-8 border-t border-border flex flex-col sm:flex-row justify-between gap-4 text-[10px] tracking-luxury uppercase text-muted-foreground">
         <p>© {new Date().getFullYear()} Stella Aurea Capital. Todos os direitos reservados.</p>
         <p>Feito com cuidado · Visão de longo prazo</p>
       </div>
