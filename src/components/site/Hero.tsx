@@ -106,7 +106,7 @@ const Hero = () => {
                 <img
                   src={logo}
                   alt="Stella Aurea Capital"
-                  className="w-2/3 h-2/3 object-contain float-star"
+                  className="w-1/2 h-1/2 object-contain"
                 />
               </div>
 
