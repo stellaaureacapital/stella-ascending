@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowDownRight, ArrowLeft, ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowDownRight, ArrowLeft, ArrowUpRight, ExternalLink, TrendingDown, TrendingUp } from "lucide-react";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import StockList from "@/components/market/StockList";
+import IndexTicker from "@/components/market/IndexTicker";
+import { fmtIndex, fmtPct, fmtTime } from "@/components/market/format";
 import {
   brGainers,
   brLosers,
@@ -14,95 +16,14 @@ import {
   usLosers,
   type IndexQuote,
   type NewsItem,
-  type Stock,
 } from "@/data/market";
 
 type Region = "BR" | "US";
 
-const fmtPrice = (v: number, currency: "BRL" | "USD") =>
-  new Intl.NumberFormat(currency === "BRL" ? "pt-BR" : "en-US", {
-    style: "currency",
-    currency,
-    maximumFractionDigits: 2,
-  }).format(v);
-
-const fmtPct = (v: number) => `${v > 0 ? "+" : ""}${v.toFixed(2)}%`;
-
-const fmtIndex = (v: number) =>
-  new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 2 }).format(v);
-
-const fmtTime = (iso: string) => {
-  const diffMs = Date.now() - new Date(iso).getTime();
-  const mins = Math.round(diffMs / 60000);
-  if (mins < 60) return `há ${mins} min`;
-  const hrs = Math.round(mins / 60);
-  if (hrs < 24) return `há ${hrs} h`;
-  return new Date(iso).toLocaleDateString("pt-BR");
-};
-
-const StockTable = ({ rows, kind }: { rows: Stock[]; kind: "up" | "down" }) => {
-  const positive = kind === "up";
-  return (
-    <div className="overflow-x-auto border border-border/60">
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="border-b border-border/60 text-[10px] uppercase tracking-luxury text-muted-foreground">
-            <th className="text-left font-normal py-3 px-4 w-10">#</th>
-            <th className="text-left font-normal py-3 px-4">Ativo</th>
-            <th className="text-right font-normal py-3 px-4">Preço</th>
-            <th className="text-right font-normal py-3 px-4">Variação</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((s, i) => (
-            <tr
-              key={s.ticker}
-              className="border-b border-border/40 last:border-0 hover:bg-foreground/[0.02] transition-colors"
-            >
-              <td className="py-4 px-4 text-muted-foreground font-mono text-xs">{i + 1}</td>
-              <td className="py-4 px-4">
-                <div className="flex items-center gap-3">
-                  <Avatar className="h-9 w-9 rounded-sm border border-border/60 bg-background">
-                    {s.domain && (
-                      <AvatarImage
-                        src={`https://www.google.com/s2/favicons?domain=${s.domain}&sz=128`}
-                        alt={`${s.name} logo`}
-                        className="object-contain p-1"
-                      />
-                    )}
-                    <AvatarFallback className="rounded-sm bg-muted text-[10px] font-mono tracking-tight text-muted-foreground">
-                      {s.ticker.slice(0, 2)}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <div className="font-mono text-sm tracking-wide">{s.ticker}</div>
-                    <div className="text-xs text-muted-foreground mt-0.5">{s.name}</div>
-                  </div>
-                </div>
-              </td>
-              <td className="py-4 px-4 text-right font-mono">{fmtPrice(s.price, s.currency)}</td>
-              <td className="py-4 px-4 text-right">
-                <span
-                  className={`inline-flex items-center gap-1 font-mono text-sm ${
-                    positive ? "text-emerald-500" : "text-red-500"
-                  }`}
-                >
-                  {positive ? <ArrowUpRight className="h-3.5 w-3.5" /> : <ArrowDownRight className="h-3.5 w-3.5" />}
-                  {fmtPct(s.changePct)}
-                </span>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
 const IndexCard = ({ q }: { q: IndexQuote }) => {
   const positive = q.changePct >= 0;
   return (
-    <div className="border border-border/60 p-6 hover:border-gold/40 transition-colors duration-500">
+    <div className="border border-border/60 p-6 hover:border-gold/40 transition-colors duration-500 group">
       <div className="flex items-start justify-between gap-4">
         <div>
           <div className="text-[10px] uppercase tracking-luxury text-muted-foreground">{q.symbol}</div>
@@ -117,7 +38,9 @@ const IndexCard = ({ q }: { q: IndexQuote }) => {
           {fmtPct(q.changePct)}
         </span>
       </div>
-      <div className="mt-6 font-mono text-2xl tracking-wide">{fmtIndex(q.value)}</div>
+      <div className="mt-6 font-mono text-2xl tracking-wide group-hover:text-gold transition-colors duration-500">
+        {fmtIndex(q.value)}
+      </div>
     </div>
   );
 };
@@ -144,6 +67,33 @@ const NewsCard = ({ n }: { n: NewsItem }) => (
   </a>
 );
 
+const SummaryStat = ({
+  label,
+  value,
+  change,
+  positive,
+}: {
+  label: string;
+  value: string;
+  change: string;
+  positive: boolean;
+}) => (
+  <div className="border border-border/60 p-5">
+    <div className="text-[10px] uppercase tracking-luxury text-muted-foreground">{label}</div>
+    <div className="mt-3 flex items-baseline justify-between gap-3">
+      <div className="font-mono text-xl">{value}</div>
+      <span
+        className={`inline-flex items-center gap-1 font-mono text-xs ${
+          positive ? "text-emerald-500" : "text-red-500"
+        }`}
+      >
+        {positive ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
+        {change}
+      </span>
+    </div>
+  </div>
+);
+
 const Market = () => {
   const [region, setRegion] = useState<Region>("BR");
 
@@ -168,11 +118,22 @@ const Market = () => {
     [region],
   );
 
+  const summary = useMemo(() => {
+    const topUp = gainers[0];
+    const topDown = losers[0];
+    const mainIndex = regionalIndices[0];
+    const advancers = gainers.length;
+    const decliners = losers.length;
+    return { topUp, topDown, mainIndex, advancers, decliners };
+  }, [gainers, losers, regionalIndices]);
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <section className="container pt-32 pb-12">
+      <IndexTicker items={indices} />
+
+      <section className="container pt-16 pb-10">
         <Link
           to="/#inicio"
           className="inline-flex items-center gap-2 text-[11px] uppercase tracking-luxury text-muted-foreground hover:text-gold transition-colors"
@@ -192,7 +153,7 @@ const Market = () => {
             </p>
           </div>
 
-          <div className="inline-flex border border-border/60">
+          <div className="inline-flex border border-border/60 self-start lg:self-end">
             {(["BR", "US"] as const).map((r) => (
               <button
                 key={r}
@@ -208,11 +169,45 @@ const Market = () => {
             ))}
           </div>
         </div>
+
+        {/* Summary stats */}
+        <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-3">
+          {summary.mainIndex && (
+            <SummaryStat
+              label={summary.mainIndex.name}
+              value={fmtIndex(summary.mainIndex.value)}
+              change={fmtPct(summary.mainIndex.changePct)}
+              positive={summary.mainIndex.changePct >= 0}
+            />
+          )}
+          {summary.topUp && (
+            <SummaryStat
+              label="Maior alta"
+              value={summary.topUp.ticker}
+              change={fmtPct(summary.topUp.changePct)}
+              positive
+            />
+          )}
+          {summary.topDown && (
+            <SummaryStat
+              label="Maior baixa"
+              value={summary.topDown.ticker}
+              change={fmtPct(summary.topDown.changePct)}
+              positive={false}
+            />
+          )}
+          <SummaryStat
+            label="Avanços · Quedas"
+            value={`${summary.advancers} · ${summary.decliners}`}
+            change={`${Math.round((summary.advancers / (summary.advancers + summary.decliners)) * 100)}%`}
+            positive={summary.advancers >= summary.decliners}
+          />
+        </div>
       </section>
 
       <section className="container pb-24">
         <Tabs defaultValue="gainers" className="w-full">
-          <TabsList className="bg-transparent p-0 h-auto border-b border-border/60 rounded-none w-full justify-start gap-8 overflow-x-auto">
+          <TabsList className="bg-transparent p-0 h-auto border-b border-border/60 rounded-none w-full justify-start gap-6 md:gap-8 overflow-x-auto">
             {[
               { v: "gainers", label: "Maiores altas" },
               { v: "losers", label: "Maiores baixas" },
@@ -222,22 +217,22 @@ const Market = () => {
               <TabsTrigger
                 key={t.v}
                 value={t.v}
-                className="rounded-none bg-transparent px-0 py-4 text-[11px] uppercase tracking-luxury text-muted-foreground border-b-2 border-transparent data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:border-gold data-[state=active]:shadow-none"
+                className="rounded-none bg-transparent px-0 py-4 text-[11px] uppercase tracking-luxury text-muted-foreground border-b-2 border-transparent data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:border-gold data-[state=active]:shadow-none whitespace-nowrap"
               >
                 {t.label}
               </TabsTrigger>
             ))}
           </TabsList>
 
-          <TabsContent value="gainers" className="mt-10">
-            <StockTable rows={gainers} kind="up" />
+          <TabsContent value="gainers" className="mt-8">
+            <StockList rows={gainers} kind="up" />
           </TabsContent>
 
-          <TabsContent value="losers" className="mt-10">
-            <StockTable rows={losers} kind="down" />
+          <TabsContent value="losers" className="mt-8">
+            <StockList rows={losers} kind="down" />
           </TabsContent>
 
-          <TabsContent value="indices" className="mt-10">
+          <TabsContent value="indices" className="mt-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {regionalIndices.map((q) => (
                 <IndexCard key={q.symbol} q={q} />
@@ -245,7 +240,7 @@ const Market = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="news" className="mt-10">
+          <TabsContent value="news" className="mt-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {filteredNews.map((n) => (
                 <NewsCard key={n.id} n={n} />
