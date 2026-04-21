@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const links = [
@@ -7,6 +8,7 @@ const links = [
   { label: "Sobre", href: "#sobre" },
   { label: "Produtos", href: "#produtos" },
   { label: "Serviços", href: "#servicos" },
+  { label: "Mercado", href: "/mercado", route: true },
   { label: "Blog", href: "#blog" },
   { label: "Contato", href: "#contato" },
 ];
@@ -42,12 +44,21 @@ const Navbar = () => {
         <ul className="hidden lg:flex items-center gap-10">
           {links.map((l) => (
             <li key={l.href}>
-              <a
-                href={l.href}
-                className="text-xs uppercase tracking-luxury text-foreground/80 hover:text-gold transition-colors duration-300 relative after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-px after:w-0 after:bg-gold after:transition-all after:duration-500 hover:after:w-full"
-              >
-                {l.label}
-              </a>
+              {l.route ? (
+                <Link
+                  to={l.href}
+                  className="text-xs uppercase tracking-luxury text-foreground/80 hover:text-gold transition-colors duration-300 relative after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-px after:w-0 after:bg-gold after:transition-all after:duration-500 hover:after:w-full"
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  href={l.href}
+                  className="text-xs uppercase tracking-luxury text-foreground/80 hover:text-gold transition-colors duration-300 relative after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-px after:w-0 after:bg-gold after:transition-all after:duration-500 hover:after:w-full"
+                >
+                  {l.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
@@ -73,13 +84,23 @@ const Navbar = () => {
           <ul className="container py-6 flex flex-col gap-5">
             {links.map((l) => (
               <li key={l.href}>
-                <a
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="block text-sm uppercase tracking-luxury py-1"
-                >
-                  {l.label}
-                </a>
+                {l.route ? (
+                  <Link
+                    to={l.href}
+                    onClick={() => setOpen(false)}
+                    className="block text-sm uppercase tracking-luxury py-1"
+                  >
+                    {l.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="block text-sm uppercase tracking-luxury py-1"
+                  >
+                    {l.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
