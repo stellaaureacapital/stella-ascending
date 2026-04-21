@@ -5,6 +5,12 @@ export type Stock = {
   changePct: number;
   currency: "BRL" | "USD";
   domain?: string;
+  sector?: string;
+  volume?: number; // shares traded (in millions)
+  dayHigh?: number;
+  dayLow?: number;
+  weekChangePct?: number;
+  spark?: number[]; // last ~20 points, normalized prices
 };
 
 export type IndexQuote = {
