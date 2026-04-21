@@ -77,40 +77,13 @@ const Hero = () => {
 
           {/* Right: logo composition */}
           <div className="lg:col-span-5 reveal reveal-delay-2 order-first lg:order-last">
-            <div className="relative aspect-square max-w-[260px] sm:max-w-md mx-auto">
-              {/* concentric rings */}
-              <div className="absolute inset-0 rounded-full border border-gold/20" />
-              <div className="absolute inset-6 sm:inset-8 rounded-full border border-gold/15" />
-              <div className="absolute inset-12 sm:inset-16 rounded-full border border-gold/10" />
-
-              {/* corner ticks */}
-              {[
-                "top-0 left-0",
-                "top-0 right-0",
-                "bottom-0 left-0",
-                "bottom-0 right-0",
-              ].map((pos) => (
-                <span
-                  key={pos}
-                  className={`absolute ${pos} w-4 h-4 border-gold`}
-                  style={{
-                    borderTopWidth: pos.includes("top") ? 1 : 0,
-                    borderBottomWidth: pos.includes("bottom") ? 1 : 0,
-                    borderLeftWidth: pos.includes("left") ? 1 : 0,
-                    borderRightWidth: pos.includes("right") ? 1 : 0,
-                  }}
-                />
-              ))}
-
-              <div className="absolute inset-0 flex items-center justify-center">
-                <img
-                  src={logo}
-                  alt="Stella Aurea Capital"
-                  className="w-1/2 h-1/2 object-contain"
-                />
-              </div>
-
-              <p className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-luxury uppercase text-muted-foreground whitespace-nowrap">
+            <div className="relative flex flex-col items-center justify-center max-w-[320px] sm:max-w-md mx-auto">
+              <img
+                src={logo}
+                alt="Stella Aurea Capital"
+                className="w-full h-auto object-contain"
+              />
+              <p className="mt-6 text-[10px] tracking-luxury uppercase text-muted-foreground whitespace-nowrap">
                 Estrela Dourada · Est. 2024
               </p>
             </div>
