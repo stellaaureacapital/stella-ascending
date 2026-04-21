@@ -6,13 +6,13 @@ const Services = () => {
   return (
     <section
       id="servicos"
-      className="py-32 bg-obsidian text-primary-foreground relative overflow-hidden"
+      className="py-32 bg-background relative overflow-hidden"
     >
       <div
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage:
-            "radial-gradient(hsl(42 70% 70%) 1px, transparent 1px)",
+            "radial-gradient(hsl(var(--foreground)) 1px, transparent 1px)",
           backgroundSize: "32px 32px",
         }}
       />
@@ -29,21 +29,21 @@ const Services = () => {
               financeira.
             </h2>
           </div>
-          <p className="lg:col-span-5 text-primary-foreground/70 leading-relaxed">
+          <p className="lg:col-span-5 text-muted-foreground leading-relaxed">
             Cada serviço é construído sobre os mesmos pilares: método, transparência,
             dados confiáveis e visão de longo prazo. Sem atalhos — apenas a estrela
             certa para se orientar.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-primary-foreground/10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
           {services.map(({ icon: Icon, title, shortDesc, slug, topics }, i) => (
             <Link
               key={slug}
               to={`/servicos/${slug}`}
-              className="group relative bg-obsidian p-8 lg:p-10 hover:bg-primary-foreground/[0.03] transition-colors duration-700 flex flex-col"
+              className="group relative bg-background p-8 lg:p-10 hover:bg-secondary/40 transition-colors duration-700 flex flex-col"
             >
-              <span className="absolute top-6 right-6 font-serif text-xs text-gold/50">
+              <span className="absolute top-6 right-6 font-serif text-xs text-gold/70">
                 {String(i + 1).padStart(2, "0")}
               </span>
 
@@ -53,15 +53,15 @@ const Services = () => {
               />
 
               <h3 className="font-serif text-2xl mb-4 leading-tight">{title}</h3>
-              <p className="text-sm text-primary-foreground/60 leading-relaxed mb-6">
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6">
                 {shortDesc}
               </p>
 
-              <ul className="space-y-2 pt-6 border-t border-primary-foreground/10">
+              <ul className="space-y-2 pt-6 border-t border-border">
                 {topics.slice(0, 4).map((it) => (
                   <li
                     key={it.title}
-                    className="flex items-start gap-3 text-xs text-primary-foreground/70"
+                    className="flex items-start gap-3 text-xs text-foreground/70"
                   >
                     <span className="mt-[7px] block w-1 h-1 rounded-full bg-gold shrink-0" />
                     {it.title}
@@ -78,7 +78,7 @@ const Services = () => {
         </div>
 
         {/* Pillars strip */}
-        <div className="mt-24 pt-16 border-t border-primary-foreground/15">
+        <div className="mt-24 pt-16 border-t border-border">
           <p className="text-[11px] tracking-luxury uppercase text-gold mb-10 text-center">
             Nossos quatro pilares
           </p>
@@ -90,9 +90,9 @@ const Services = () => {
               { n: "04", t: "Longo prazo", d: "Disciplina, método e a estrela certa para se orientar." },
             ].map((p) => (
               <div key={p.n} className="flex flex-col gap-3">
-                <span className="font-serif text-3xl text-gold/80">{p.n}</span>
+                <span className="font-serif text-3xl text-gold">{p.n}</span>
                 <h4 className="font-serif text-xl">{p.t}</h4>
-                <p className="text-sm text-primary-foreground/60 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {p.d}
                 </p>
               </div>
