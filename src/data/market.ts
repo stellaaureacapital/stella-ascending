@@ -18,7 +18,7 @@ export type IndexQuote = {
   name: string;
   value: number;
   changePct: number;
-  region: "BR" | "US" | "FX";
+  region: "BR" | "US" | "FX" | "PY";
 };
 
 export type NewsItem = {
@@ -27,7 +27,7 @@ export type NewsItem = {
   source: string;
   publishedAt: string; // ISO
   url: string;
-  region: "BR" | "US";
+  region: "BR" | "US" | "PY";
   summary: string;
 };
 
