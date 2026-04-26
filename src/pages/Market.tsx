@@ -14,11 +14,16 @@ import {
   news,
   usGainers,
   usLosers,
+  pyGainers,
+  pyLosers,
+  pyIndices,
+  pyNews,
   type IndexQuote,
   type NewsItem,
 } from "@/data/market";
+import { useLang } from "@/i18n/LanguageContext";
 
-type Region = "BR" | "US";
+type Region = "LOCAL" | "US";
 
 const IndexCard = ({ q }: { q: IndexQuote }) => {
   const positive = q.changePct >= 0;
@@ -45,7 +50,7 @@ const IndexCard = ({ q }: { q: IndexQuote }) => {
   );
 };
 
-const NewsCard = ({ n }: { n: NewsItem }) => (
+const NewsCard = ({ n, lang, label }: { n: NewsItem; lang: "pt" | "es"; label: string }) => (
   <a
     href={n.url}
     target="_blank"
@@ -55,14 +60,14 @@ const NewsCard = ({ n }: { n: NewsItem }) => (
     <div className="flex items-center gap-3 text-[10px] uppercase tracking-luxury text-muted-foreground">
       <span>{n.source}</span>
       <span className="h-px w-6 bg-border" />
-      <span>{fmtTime(n.publishedAt)}</span>
+      <span>{fmtTime(n.publishedAt, lang)}</span>
     </div>
     <h3 className="font-serif text-xl mt-3 leading-snug group-hover:text-gold transition-colors duration-500">
       {n.title}
     </h3>
     <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{n.summary}</p>
     <div className="mt-4 inline-flex items-center gap-2 text-[11px] uppercase tracking-luxury text-foreground/70 group-hover:text-gold transition-colors">
-      Ler matéria <ExternalLink className="h-3 w-3" />
+      {label} <ExternalLink className="h-3 w-3" />
     </div>
   </a>
 );
@@ -95,12 +100,17 @@ const SummaryStat = ({
 );
 
 const Market = () => {
-  const [region, setRegion] = useState<Region>("BR");
+  const { lang, t } = useLang();
+  const [region, setRegion] = useState<Region>("LOCAL");
+  const isPY = lang === "es";
+
+  const tickerIndices = isPY
+    ? [...pyIndices, ...indices.filter((i) => i.region === "US")]
+    : indices;
 
   useEffect(() => {
-    document.title = "Mercado · Stella Aurea Capital";
-    const desc =
-      "Acompanhe o mercado: top altas e baixas do dia, principais índices e últimas notícias do Brasil e dos EUA.";
+    document.title = t.meta.marketTitle;
+    const desc = t.meta.marketDesc;
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
       meta = document.createElement("meta");
@@ -108,15 +118,27 @@ const Market = () => {
       document.head.appendChild(meta);
     }
     meta.setAttribute("content", desc);
-  }, []);
+  }, [t]);
 
-  const gainers = region === "BR" ? brGainers : usGainers;
-  const losers = region === "BR" ? brLosers : usLosers;
-  const filteredNews = useMemo(() => news.filter((n) => n.region === region), [region]);
-  const regionalIndices = useMemo(
-    () => indices.filter((i) => (region === "BR" ? i.region !== "US" : i.region !== "BR")),
-    [region],
+  const localGainers = isPY ? pyGainers : brGainers;
+  const localLosers = isPY ? pyLosers : brLosers;
+  const gainers = region === "LOCAL" ? localGainers : usGainers;
+  const losers = region === "LOCAL" ? localLosers : usLosers;
+
+  const allNews = isPY ? [...pyNews, ...news.filter((n) => n.region === "US")] : news;
+  const filteredNews = useMemo(
+    () =>
+      allNews.filter((n) =>
+        region === "LOCAL" ? (isPY ? n.region === "PY" : n.region === "BR") : n.region === "US",
+      ),
+    [region, isPY, allNews],
   );
+  const regionalIndices = useMemo(() => {
+    if (region === "LOCAL") {
+      return isPY ? pyIndices : indices.filter((i) => i.region === "BR" || i.region === "FX");
+    }
+    return indices.filter((i) => i.region === "US" || i.region === "FX");
+  }, [region, isPY]);
 
   const summary = useMemo(() => {
     const topUp = gainers[0];
@@ -127,34 +149,36 @@ const Market = () => {
     return { topUp, topDown, mainIndex, advancers, decliners };
   }, [gainers, losers, regionalIndices]);
 
+  const tabs = [
+    { v: "gainers", label: t.market.tabGainers },
+    { v: "losers", label: t.market.tabLosers },
+    { v: "indices", label: t.market.tabIndices },
+    { v: "news", label: t.market.tabNews },
+  ];
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <IndexTicker items={indices} />
+      <IndexTicker items={tickerIndices} />
 
       <section className="container pt-16 pb-10">
         <Link
           to="/#inicio"
           className="inline-flex items-center gap-2 text-[11px] uppercase tracking-luxury text-muted-foreground hover:text-gold transition-colors"
         >
-          <ArrowLeft className="h-3.5 w-3.5" /> Voltar ao início
+          <ArrowLeft className="h-3.5 w-3.5" /> {t.market.backHome}
         </Link>
 
         <div className="mt-8 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
           <div>
-            <div className="text-[11px] uppercase tracking-luxury text-gold">Mercado</div>
-            <h1 className="font-serif text-4xl md:text-5xl mt-3 leading-tight">
-              Visão de mercado em tempo real
-            </h1>
-            <p className="text-muted-foreground mt-4 max-w-2xl leading-relaxed">
-              Maiores altas, maiores baixas, principais índices e as notícias que movem o mercado —
-              tudo em um só lugar.
-            </p>
+            <div className="text-[11px] uppercase tracking-luxury text-gold">{t.market.eyebrow}</div>
+            <h1 className="font-serif text-4xl md:text-5xl mt-3 leading-tight">{t.market.title}</h1>
+            <p className="text-muted-foreground mt-4 max-w-2xl leading-relaxed">{t.market.desc}</p>
           </div>
 
           <div className="inline-flex border border-border/60 self-start lg:self-end">
-            {(["BR", "US"] as const).map((r) => (
+            {(["LOCAL", "US"] as const).map((r) => (
               <button
                 key={r}
                 onClick={() => setRegion(r)}
@@ -164,13 +188,12 @@ const Market = () => {
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                {r === "BR" ? "Brasil" : "EUA"}
+                {r === "LOCAL" ? t.market.regionLocal : t.market.regionUS}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Summary stats */}
         <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-3">
           {summary.mainIndex && (
             <SummaryStat
@@ -182,7 +205,7 @@ const Market = () => {
           )}
           {summary.topUp && (
             <SummaryStat
-              label="Maior alta"
+              label={t.market.summaryTopUp}
               value={summary.topUp.ticker}
               change={fmtPct(summary.topUp.changePct)}
               positive
@@ -190,14 +213,14 @@ const Market = () => {
           )}
           {summary.topDown && (
             <SummaryStat
-              label="Maior baixa"
+              label={t.market.summaryTopDown}
               value={summary.topDown.ticker}
               change={fmtPct(summary.topDown.changePct)}
               positive={false}
             />
           )}
           <SummaryStat
-            label="Avanços · Quedas"
+            label={t.market.summaryBreadth}
             value={`${summary.advancers} · ${summary.decliners}`}
             change={`${Math.round((summary.advancers / (summary.advancers + summary.decliners)) * 100)}%`}
             positive={summary.advancers >= summary.decliners}
@@ -208,18 +231,13 @@ const Market = () => {
       <section className="container pb-24">
         <Tabs defaultValue="gainers" className="w-full">
           <TabsList className="bg-transparent p-0 h-auto border-b border-border/60 rounded-none w-full justify-start gap-6 md:gap-8 overflow-x-auto">
-            {[
-              { v: "gainers", label: "Maiores altas" },
-              { v: "losers", label: "Maiores baixas" },
-              { v: "indices", label: "Índices" },
-              { v: "news", label: "Notícias" },
-            ].map((t) => (
+            {tabs.map((tab) => (
               <TabsTrigger
-                key={t.v}
-                value={t.v}
+                key={tab.v}
+                value={tab.v}
                 className="rounded-none bg-transparent px-0 py-4 text-[11px] uppercase tracking-luxury text-muted-foreground border-b-2 border-transparent data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:border-gold data-[state=active]:shadow-none whitespace-nowrap"
               >
-                {t.label}
+                {tab.label}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -243,14 +261,14 @@ const Market = () => {
           <TabsContent value="news" className="mt-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {filteredNews.map((n) => (
-                <NewsCard key={n.id} n={n} />
+                <NewsCard key={n.id} n={n} lang={lang} label={t.market.readNews} />
               ))}
             </div>
           </TabsContent>
         </Tabs>
 
         <p className="text-[10px] uppercase tracking-luxury text-muted-foreground mt-12 text-center">
-          Dados ilustrativos · Em breve cotações em tempo real
+          {t.market.disclaimer}
         </p>
       </section>
 
