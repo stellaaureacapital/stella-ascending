@@ -3,7 +3,7 @@ export type Stock = {
   name: string;
   price: number;
   changePct: number;
-  currency: "BRL" | "USD";
+  currency: "BRL" | "USD" | "PYG";
   domain?: string;
   sector?: string;
   volume?: number; // shares traded (in millions)
@@ -18,7 +18,7 @@ export type IndexQuote = {
   name: string;
   value: number;
   changePct: number;
-  region: "BR" | "US" | "FX";
+  region: "BR" | "US" | "FX" | "PY";
 };
 
 export type NewsItem = {
@@ -27,7 +27,7 @@ export type NewsItem = {
   source: string;
   publishedAt: string; // ISO
   url: string;
-  region: "BR" | "US";
+  region: "BR" | "US" | "PY";
   summary: string;
 };
 
@@ -96,6 +96,109 @@ export const indices: IndexQuote[] = [
   { symbol: "USDBRL", name: "Dólar / Real", value: 5.78, changePct: -0.31, region: "FX" },
   { symbol: "EURBRL", name: "Euro / Real", value: 6.24, changePct: -0.18, region: "FX" },
   { symbol: "BTCUSD", name: "Bitcoin / Dólar", value: 94287.41, changePct: 2.84, region: "FX" },
+];
+
+// ---------- PARAGUAY (BVA) ----------
+export const pyGainers: Stock[] = [
+  { ticker: "ASUN24", name: "Banco Atlas - Bono Corporativo", price: 102450, changePct: 4.82, currency: "PYG", domain: "atlas.com.py", sector: "Banca", volume: 1.84, dayHigh: 102800, dayLow: 101200, weekChangePct: 6.21, spark: [100, 100.5, 101.1, 100.9, 101.6, 102.1, 102.4, 102.9, 103.1, 103.5, 103.2, 103.8, 104.1, 104.4, 104.2, 104.6, 104.8, 104.9, 105.1, 104.82] },
+  { ticker: "BNF25", name: "Banco Nacional de Fomento", price: 98750, changePct: 4.15, currency: "PYG", domain: "bnf.gov.py", sector: "Banca", volume: 0.92, dayHigh: 99100, dayLow: 97900, weekChangePct: 5.4, spark: [100, 100.4, 100.9, 101.3, 101.0, 101.7, 102.1, 102.5, 102.8, 103.1, 102.9, 103.4, 103.7, 103.9, 104.0, 104.1, 104.2, 104.0, 104.1, 104.15] },
+  { ticker: "ITAU-PY", name: "Banco Itaú Paraguay - Bono", price: 51200, changePct: 3.74, currency: "PYG", domain: "itau.com.py", sector: "Banca", volume: 2.31, dayHigh: 51500, dayLow: 50900, weekChangePct: 4.9, spark: [100, 100.6, 101.2, 100.8, 101.4, 101.9, 102.2, 102.6, 102.4, 102.9, 103.0, 103.2, 103.4, 103.5, 103.6, 103.7, 103.6, 103.7, 103.74, 103.74] },
+  { ticker: "RIEDR-PY", name: "Banco Rieder", price: 24800, changePct: 3.21, currency: "PYG", domain: "bancorieder.com.py", sector: "Banca", volume: 1.05, dayHigh: 24950, dayLow: 24600, weekChangePct: 4.1, spark: [100, 100.4, 100.8, 101.0, 101.3, 101.6, 101.9, 102.0, 102.2, 102.4, 102.6, 102.8, 102.9, 103.0, 103.1, 103.0, 103.1, 103.2, 103.21, 103.21] },
+  { ticker: "TIGO-PY", name: "Tigo Paraguay - Bono Corp.", price: 45600, changePct: 2.94, currency: "PYG", domain: "tigo.com.py", sector: "Telecom", volume: 0.78, dayHigh: 45900, dayLow: 45200, weekChangePct: 3.55, spark: [100, 100.3, 100.7, 100.9, 101.2, 101.4, 101.7, 102.0, 102.1, 102.3, 102.5, 102.6, 102.7, 102.8, 102.9, 102.9, 102.94, 102.94, 102.94, 102.94] },
+  { ticker: "COPACO", name: "COPACO S.A.", price: 18200, changePct: 2.61, currency: "PYG", domain: "copaco.com.py", sector: "Telecom", volume: 0.41, dayHigh: 18400, dayLow: 18050, weekChangePct: 3.12, spark: [100, 100.4, 100.8, 100.6, 101.1, 101.4, 101.6, 101.9, 102.0, 102.2, 102.3, 102.4, 102.5, 102.55, 102.6, 102.61, 102.61, 102.61, 102.61, 102.61] },
+  { ticker: "SUDA", name: "Banco Sudameris - Bono", price: 67300, changePct: 2.34, currency: "PYG", domain: "sudameris.com.py", sector: "Banca", volume: 1.62, dayHigh: 67600, dayLow: 67000, weekChangePct: 2.95, spark: [100, 100.3, 100.6, 100.9, 101.2, 101.5, 101.7, 101.9, 102.0, 102.1, 102.2, 102.25, 102.3, 102.32, 102.34, 102.34, 102.34, 102.34, 102.34, 102.34] },
+  { ticker: "ENERG-PY", name: "ENERGISA - Bono Corp.", price: 84500, changePct: 2.08, currency: "PYG", domain: "energisa.com.py", sector: "Energía", volume: 0.55, dayHigh: 84800, dayLow: 84200, weekChangePct: 2.7, spark: [100, 100.2, 100.5, 100.7, 101.0, 101.2, 101.4, 101.6, 101.8, 101.9, 102.0, 102.05, 102.08, 102.08, 102.08, 102.08, 102.08, 102.08, 102.08, 102.08] },
+  { ticker: "VISION", name: "Banco Visión", price: 32100, changePct: 1.84, currency: "PYG", domain: "visionbanco.com", sector: "Banca", volume: 0.88, dayHigh: 32300, dayLow: 31900, weekChangePct: 2.2, spark: [100, 100.3, 100.5, 100.7, 100.9, 101.1, 101.3, 101.5, 101.6, 101.7, 101.8, 101.82, 101.84, 101.84, 101.84, 101.84, 101.84, 101.84, 101.84, 101.84] },
+  { ticker: "CONTI-PY", name: "Banco Continental - Bono", price: 105800, changePct: 1.62, currency: "PYG", domain: "bancocontinental.com.py", sector: "Banca", volume: 1.41, dayHigh: 106100, dayLow: 105500, weekChangePct: 1.95, spark: [100, 100.2, 100.4, 100.6, 100.8, 101.0, 101.2, 101.3, 101.4, 101.5, 101.55, 101.6, 101.62, 101.62, 101.62, 101.62, 101.62, 101.62, 101.62, 101.62] },
+];
+
+export const pyLosers: Stock[] = [
+  { ticker: "AGRO-PY", name: "Agro Silo Santa Catalina", price: 41200, changePct: -3.85, currency: "PYG", domain: "agrosilo.com.py", sector: "Agro", volume: 0.62, dayHigh: 42500, dayLow: 41000, weekChangePct: -5.2, spark: [100, 99.7, 99.4, 99.1, 98.8, 98.5, 98.1, 97.8, 97.5, 97.2, 96.9, 96.7, 96.5, 96.4, 96.3, 96.2, 96.18, 96.16, 96.15, 96.15] },
+  { ticker: "FRIG-PY", name: "Frigorífico Concepción", price: 56400, changePct: -3.42, currency: "PYG", domain: "frigorifico-concepcion.com.py", sector: "Carne", volume: 1.18, dayHigh: 58200, dayLow: 56100, weekChangePct: -4.8, spark: [100, 99.6, 99.3, 99.0, 98.7, 98.3, 98.0, 97.7, 97.4, 97.2, 97.0, 96.85, 96.7, 96.65, 96.6, 96.58, 96.58, 96.58, 96.58, 96.58] },
+  { ticker: "CERVE-PY", name: "Cervepar S.A.", price: 78900, changePct: -2.91, currency: "PYG", domain: "cervepar.com.py", sector: "Bebidas", volume: 0.74, dayHigh: 81200, dayLow: 78600, weekChangePct: -3.7, spark: [100, 99.7, 99.4, 99.2, 98.9, 98.6, 98.4, 98.2, 98.0, 97.8, 97.6, 97.4, 97.25, 97.15, 97.1, 97.09, 97.09, 97.09, 97.09, 97.09] },
+  { ticker: "INC-PY", name: "Industria Nacional del Cemento", price: 92300, changePct: -2.56, currency: "PYG", domain: "inc.gov.py", sector: "Cemento", volume: 0.43, dayHigh: 94600, dayLow: 92000, weekChangePct: -3.4, spark: [100, 99.7, 99.4, 99.1, 98.9, 98.6, 98.4, 98.2, 98.0, 97.8, 97.7, 97.55, 97.5, 97.46, 97.44, 97.44, 97.44, 97.44, 97.44, 97.44] },
+  { ticker: "ARS-PY", name: "Aseguradora del Sur", price: 23800, changePct: -2.18, currency: "PYG", domain: "asegduradora.com.py", sector: "Seguros", volume: 0.31, dayHigh: 24400, dayLow: 23700, weekChangePct: -2.9, spark: [100, 99.8, 99.6, 99.4, 99.2, 99.0, 98.8, 98.6, 98.4, 98.2, 98.0, 97.95, 97.9, 97.85, 97.82, 97.82, 97.82, 97.82, 97.82, 97.82] },
+  { ticker: "PETRO-PY", name: "Petropar - Bono", price: 67500, changePct: -1.94, currency: "PYG", domain: "petropar.gov.py", sector: "Energía", volume: 0.58, dayHigh: 68900, dayLow: 67300, weekChangePct: -2.6, spark: [100, 99.8, 99.6, 99.4, 99.2, 99.0, 98.8, 98.6, 98.4, 98.3, 98.2, 98.1, 98.08, 98.06, 98.06, 98.06, 98.06, 98.06, 98.06, 98.06] },
+  { ticker: "PARMA", name: "Parmalat Paraguay", price: 19400, changePct: -1.71, currency: "PYG", domain: "parmalat.com.py", sector: "Lácteos", volume: 0.27, dayHigh: 19800, dayLow: 19350, weekChangePct: -2.3, spark: [100, 99.8, 99.6, 99.4, 99.2, 99.0, 98.85, 98.7, 98.55, 98.45, 98.35, 98.3, 98.29, 98.29, 98.29, 98.29, 98.29, 98.29, 98.29, 98.29] },
+  { ticker: "INDUS-PY", name: "Inversora Industrial", price: 34600, changePct: -1.48, currency: "PYG", domain: "inversoraindustrial.com.py", sector: "Industria", volume: 0.22, dayHigh: 35200, dayLow: 34500, weekChangePct: -1.9, spark: [100, 99.85, 99.7, 99.55, 99.4, 99.25, 99.1, 99.0, 98.9, 98.8, 98.7, 98.6, 98.55, 98.52, 98.52, 98.52, 98.52, 98.52, 98.52, 98.52] },
+  { ticker: "CHACO", name: "Bco. Regional Chaco - Bono", price: 88200, changePct: -1.27, currency: "PYG", domain: "bancoregional.com.py", sector: "Banca", volume: 0.91, dayHigh: 89400, dayLow: 88100, weekChangePct: -1.6, spark: [100, 99.9, 99.8, 99.7, 99.6, 99.5, 99.4, 99.3, 99.2, 99.1, 99.0, 98.9, 98.85, 98.8, 98.75, 98.73, 98.73, 98.73, 98.73, 98.73] },
+  { ticker: "AERO-PY", name: "Líneas Aéreas Paraguayas", price: 12800, changePct: -1.04, currency: "PYG", domain: "lap.com.py", sector: "Aviación", volume: 0.18, dayHigh: 13050, dayLow: 12750, weekChangePct: -1.4, spark: [100, 99.9, 99.8, 99.7, 99.6, 99.5, 99.45, 99.4, 99.35, 99.3, 99.2, 99.1, 99.0, 98.97, 98.96, 98.96, 98.96, 98.96, 98.96, 98.96] },
+];
+
+// Índices Paraguay (BVA + economía)
+export const pyIndices: IndexQuote[] = [
+  { symbol: "BVA-IDX", name: "Índice General BVA", value: 1842.31, changePct: 1.18, region: "PY" },
+  { symbol: "BVA-BNK", name: "Subíndice Bancario BVA", value: 2104.78, changePct: 1.42, region: "PY" },
+  { symbol: "BVA-CORP", name: "Bonos Corporativos PY", value: 987.45, changePct: 0.84, region: "PY" },
+  { symbol: "TPM-PY", name: "Tasa Política Monetaria BCP", value: 6.0, changePct: 0.0, region: "PY" },
+  { symbol: "USDPYG", name: "Dólar / Guaraní", value: 7480.0, changePct: -0.24, region: "FX" },
+  { symbol: "BRLPYG", name: "Real / Guaraní", value: 1294.5, changePct: 0.18, region: "FX" },
+  { symbol: "ARSPYG", name: "Peso Argentino / Guaraní", value: 7.42, changePct: -0.62, region: "FX" },
+  { symbol: "SOJA", name: "Soja CBOT (USD/bushel)", value: 1042.5, changePct: 1.84, region: "FX" },
+  { symbol: "BTCUSD", name: "Bitcoin / Dólar", value: 94287.41, changePct: 2.84, region: "FX" },
+];
+
+export const pyNews: NewsItem[] = [
+  {
+    id: "py1",
+    title: "BCP mantiene la Tasa de Política Monetaria en 6,00%",
+    source: "ABC Color",
+    publishedAt: new Date(Date.now() - 1000 * 60 * 28).toISOString(),
+    url: "#",
+    region: "PY",
+    summary:
+      "El Comité de Política Monetaria del Banco Central del Paraguay decidió mantener la TPM y reforzó la vigilancia sobre la inflación de servicios.",
+  },
+  {
+    id: "py2",
+    title: "BVA registra récord histórico de operaciones en bonos corporativos",
+    source: "La Nación PY",
+    publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(),
+    url: "#",
+    region: "PY",
+    summary:
+      "El volumen negociado en la Bolsa de Valores y Productos de Asunción superó los Gs. 1,2 billones en el trimestre.",
+  },
+  {
+    id: "py3",
+    title: "Exportación de soja crece 12% impulsada por demanda china",
+    source: "Última Hora",
+    publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 4).toISOString(),
+    url: "#",
+    region: "PY",
+    summary:
+      "El complejo sojero paraguayo cierra el primer cuatrimestre con cifras récord, fortaleciendo las reservas internacionales.",
+  },
+  {
+    id: "py4",
+    title: "Itaipú: nuevos ingresos para Paraguay tras revisión del Anexo C",
+    source: "5Días",
+    publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 7).toISOString(),
+    url: "#",
+    region: "PY",
+    summary:
+      "El gobierno paraguayo anuncia mayor recaudación por la binacional, con impacto positivo en cuentas fiscales.",
+  },
+  {
+    id: "py5",
+    title: "Guaraní se aprecia frente al dólar tras flujo de exportaciones",
+    source: "Diario HOY",
+    publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 9).toISOString(),
+    url: "#",
+    region: "PY",
+    summary:
+      "El tipo de cambio cierra la semana en Gs. 7.480 por dólar, con caída de 0,24% en la jornada.",
+  },
+  {
+    id: "py6",
+    title: "Standard & Poor's mantiene calificación de Paraguay en BB+",
+    source: "MarketData PY",
+    publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 12).toISOString(),
+    url: "#",
+    region: "PY",
+    summary:
+      "La agencia destaca la disciplina fiscal y el crecimiento sostenido, manteniendo perspectiva estable.",
+  },
 ];
 
 // ---------- NOTÍCIAS ----------

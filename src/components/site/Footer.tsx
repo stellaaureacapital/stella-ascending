@@ -1,6 +1,8 @@
 import logo from "@/assets/logo.png";
+import { useLang } from "@/i18n/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLang();
   return (
     <footer className="bg-secondary/40 text-foreground py-20 border-t border-border">
       <div className="container grid md:grid-cols-4 gap-12">
@@ -13,17 +15,16 @@ const Footer = () => {
             </div>
           </div>
           <p className="text-muted-foreground max-w-md leading-relaxed text-sm">
-            Educação financeira séria, estratégica e acessível. Um ponto de referência,
-            orientação e valor no universo dos investimentos.
+            {t.footer.desc}
           </p>
         </div>
 
         <div>
-          <p className="text-[10px] tracking-luxury uppercase text-gold mb-5">Navegação</p>
+          <p className="text-[10px] tracking-luxury uppercase text-gold mb-5">{t.footer.navTitle}</p>
           <ul className="space-y-3 text-sm text-foreground/70">
-            {["Sobre", "Produtos", "Serviços", "Blog", "Contato"].map((l) => (
+            {t.footer.nav.map((l, i) => (
               <li key={l}>
-                <a href={`#${l.toLowerCase()}`} className="hover:text-gold transition-colors">
+                <a href={t.footer.navHrefs[i]} className="hover:text-gold transition-colors">
                   {l}
                 </a>
               </li>
@@ -32,17 +33,17 @@ const Footer = () => {
         </div>
 
         <div>
-          <p className="text-[10px] tracking-luxury uppercase text-gold mb-5">Contato</p>
+          <p className="text-[10px] tracking-luxury uppercase text-gold mb-5">{t.footer.contactTitle}</p>
           <ul className="space-y-3 text-sm text-foreground/70">
-            <li>contato@stellaaureacapital.com.br</li>
-            <li>São Paulo · Brasil</li>
+            <li>{t.footer.email}</li>
+            <li>{t.footer.location}</li>
           </ul>
         </div>
       </div>
 
       <div className="container mt-16 pt-8 border-t border-border flex flex-col sm:flex-row justify-between gap-4 text-[10px] tracking-luxury uppercase text-muted-foreground">
-        <p>© {new Date().getFullYear()} Stella Aurea Capital. Todos os direitos reservados.</p>
-        <p>Feito com cuidado · Visão de longo prazo</p>
+        <p>© {new Date().getFullYear()} Stella Aurea Capital. {t.footer.rights}</p>
+        <p>{t.footer.motto}</p>
       </div>
     </footer>
   );

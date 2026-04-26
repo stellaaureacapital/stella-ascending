@@ -1,9 +1,12 @@
-export const fmtPrice = (v: number, currency: "BRL" | "USD") =>
-  new Intl.NumberFormat(currency === "BRL" ? "pt-BR" : "en-US", {
+export const fmtPrice = (v: number, currency: "BRL" | "USD" | "PYG") => {
+  const locale =
+    currency === "BRL" ? "pt-BR" : currency === "PYG" ? "es-PY" : "en-US";
+  return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
-    maximumFractionDigits: 2,
+    maximumFractionDigits: currency === "PYG" ? 0 : 2,
   }).format(v);
+};
 
 export const fmtPct = (v: number) => `${v > 0 ? "+" : ""}${v.toFixed(2)}%`;
 
@@ -15,11 +18,12 @@ export const fmtVolume = (v: number) => {
   return `${v.toFixed(2)}M`;
 };
 
-export const fmtTime = (iso: string) => {
+export const fmtTime = (iso: string, lang: "pt" | "es" = "pt") => {
   const diffMs = Date.now() - new Date(iso).getTime();
   const mins = Math.round(diffMs / 60000);
-  if (mins < 60) return `há ${mins} min`;
+  const prefix = lang === "es" ? "hace" : "há";
+  if (mins < 60) return `${prefix} ${mins} min`;
   const hrs = Math.round(mins / 60);
-  if (hrs < 24) return `há ${hrs} h`;
-  return new Date(iso).toLocaleDateString("pt-BR");
+  if (hrs < 24) return `${prefix} ${hrs} h`;
+  return new Date(iso).toLocaleDateString(lang === "es" ? "es-PY" : "pt-BR");
 };
