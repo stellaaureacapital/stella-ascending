@@ -1,42 +1,22 @@
 import { BookOpen, LineChart, Newspaper, Mail } from "lucide-react";
+import { useLang } from "@/i18n/LanguageContext";
 
-const items = [
-  {
-    icon: Newspaper,
-    title: "Blog Stella Aurea",
-    desc: "Análises semanais sobre macroeconomia, mercado de ações, renda fixa e tendências globais — escritas em linguagem clara.",
-    tag: "Conteúdo",
-  },
-  {
-    icon: BookOpen,
-    title: "Guias & E-books",
-    desc: "Materiais aprofundados para construir uma base sólida de educação financeira, do iniciante ao investidor avançado.",
-    tag: "Educação",
-  },
-  {
-    icon: LineChart,
-    title: "Relatórios Estratégicos",
-    desc: "Visão de longo prazo sobre setores, ativos e oportunidades de investimento, com base em dados e análise fundamentalista.",
-    tag: "Análise",
-  },
-  {
-    icon: Mail,
-    title: "Newsletter Aurea",
-    desc: "Curadoria semanal direto no seu e-mail: o essencial do mercado, leituras recomendadas e insights estratégicos.",
-    tag: "Inteligência",
-  },
-];
+const ICONS = [Newspaper, BookOpen, LineChart, Mail];
 
 const Products = () => {
+  const { t } = useLang();
+  const items = t.products.items.map((it, i) => ({ ...it, icon: ICONS[i] }));
   return (
     <section id="produtos" className="py-32 bg-secondary/40 relative overflow-hidden">
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <p className="text-[11px] tracking-luxury uppercase text-gold mb-6">
-            Produtos
+            {t.products.eyebrow}
           </p>
           <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-tight">
-            Conhecimento como <em className="text-gradient-gold not-italic">patrimônio</em>.
+            {t.products.titleA}{" "}
+            <em className="text-gradient-gold not-italic">{t.products.titleEm}</em>
+            {t.products.titleB}
           </h2>
           <div className="hairline w-24 mx-auto mt-8" />
         </div>

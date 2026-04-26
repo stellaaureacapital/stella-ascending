@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { useLang } from "@/i18n/LanguageContext";
 
 const Contact = () => {
+  const { t } = useLang();
   const [loading, setLoading] = useState(false);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -10,8 +12,8 @@ const Contact = () => {
     setTimeout(() => {
       setLoading(false);
       (e.target as HTMLFormElement).reset();
-      toast.success("Mensagem enviada", {
-        description: "Em breve entraremos em contato.",
+      toast.success(t.contact.successTitle, {
+        description: t.contact.successDesc,
       });
     }, 800);
   };
@@ -21,14 +23,16 @@ const Contact = () => {
       <div className="container max-w-5xl">
         <div className="text-center mb-16">
           <p className="text-[11px] tracking-luxury uppercase text-gold mb-6">
-            Contato
+            {t.contact.eyebrow}
           </p>
           <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-tight">
-            Vamos conversar sobre o seu <em className="text-gradient-gold not-italic">próximo passo</em>.
+            {t.contact.titleA}{" "}
+            <em className="text-gradient-gold not-italic">{t.contact.titleEm}</em>
+            {t.contact.titleB}
           </h2>
           <div className="hairline w-24 mx-auto mt-8" />
           <p className="mt-6 text-muted-foreground max-w-xl mx-auto">
-            Dúvidas, parcerias ou apenas para receber nosso conteúdo — escreva para nós.
+            {t.contact.desc}
           </p>
         </div>
 
@@ -36,12 +40,12 @@ const Contact = () => {
           onSubmit={onSubmit}
           className="bg-background border border-border p-8 lg:p-12 shadow-elegant grid sm:grid-cols-2 gap-6"
         >
-          <Field label="Nome" name="nome" required />
-          <Field label="E-mail" name="email" type="email" required />
-          <Field label="Assunto" name="assunto" className="sm:col-span-2" />
+          <Field label={t.contact.name} name="nome" required />
+          <Field label={t.contact.email} name="email" type="email" required />
+          <Field label={t.contact.subject} name="assunto" className="sm:col-span-2" />
           <div className="sm:col-span-2 flex flex-col gap-2">
             <label className="text-[10px] tracking-luxury uppercase text-muted-foreground">
-              Mensagem
+              {t.contact.message}
             </label>
             <textarea
               name="mensagem"
@@ -55,7 +59,7 @@ const Contact = () => {
             disabled={loading}
             className="sm:col-span-2 mt-4 inline-flex items-center justify-center px-10 py-4 bg-foreground text-background text-xs uppercase tracking-luxury hover:bg-gradient-gold hover:text-accent-foreground transition-all duration-500 disabled:opacity-60"
           >
-            {loading ? "Enviando…" : "Enviar mensagem"}
+            {loading ? t.contact.sending : t.contact.submit}
           </button>
         </form>
       </div>

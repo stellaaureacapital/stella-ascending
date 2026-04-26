@@ -8,14 +8,15 @@ import Services from "@/components/site/Services";
 import Blog from "@/components/site/Blog";
 import Contact from "@/components/site/Contact";
 import Footer from "@/components/site/Footer";
+import { useLang } from "@/i18n/LanguageContext";
 
 const Index = () => {
+  const { t } = useLang();
   const location = useLocation();
 
   useEffect(() => {
-    document.title = "Stella Aurea Capital · Educação Financeira Estratégica";
-    const desc =
-      "Stella Aurea Capital — educação financeira séria, estratégica e acessível. Análises, guias e visão de longo prazo para investidores.";
+    document.title = t.meta.homeTitle;
+    const desc = t.meta.homeDesc;
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
       meta = document.createElement("meta");
@@ -31,7 +32,7 @@ const Index = () => {
       document.head.appendChild(canonical);
     }
     canonical.setAttribute("href", window.location.origin + "/");
-  }, []);
+  }, [t]);
 
   // Scroll to hash anchor when navigating to /#anchor (e.g. from a service page)
   useEffect(() => {

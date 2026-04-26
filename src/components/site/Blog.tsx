@@ -1,44 +1,28 @@
 import { ArrowUpRight } from "lucide-react";
-
-const posts = [
-  {
-    cat: "Macroeconomia",
-    date: "Abril, 2026",
-    title: "Juros, inflação e a paciência do investidor de longo prazo",
-    excerpt: "Como ler o ciclo econômico sem ceder ao ruído do curto prazo.",
-  },
-  {
-    cat: "Renda Variável",
-    date: "Abril, 2026",
-    title: "Análise fundamentalista: o método por trás das grandes decisões",
-    excerpt: "Os princípios que separam o investidor do especulador.",
-  },
-  {
-    cat: "Estratégia",
-    date: "Março, 2026",
-    title: "Diversificação real: além da pulverização de ativos",
-    excerpt: "Construindo um portfólio que resiste — e prospera — em qualquer cenário.",
-  },
-];
+import { useLang } from "@/i18n/LanguageContext";
 
 const Blog = () => {
+  const { t } = useLang();
+  const posts = t.blog.posts;
   return (
     <section id="blog" className="py-32 bg-background">
       <div className="container">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div>
             <p className="text-[11px] tracking-luxury uppercase text-gold mb-6">
-              Diário Aurea
+              {t.blog.eyebrow}
             </p>
             <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-tight max-w-2xl">
-              Leituras recentes do nosso <em className="text-gradient-gold not-italic">blog</em>.
+              {t.blog.titleA}{" "}
+              <em className="text-gradient-gold not-italic">{t.blog.titleEm}</em>
+              {t.blog.titleB}
             </h2>
           </div>
           <a
             href="#"
             className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury hover:text-gold transition-colors group"
           >
-            Ver todas as publicações
+            {t.blog.seeAll}
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
           </a>
         </div>
@@ -61,7 +45,7 @@ const Blog = () => {
                 {p.excerpt}
               </p>
               <div className="flex items-center gap-2 mt-10 text-xs uppercase tracking-luxury">
-                Ler artigo
+                {t.blog.readArticle}
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </div>
             </article>
