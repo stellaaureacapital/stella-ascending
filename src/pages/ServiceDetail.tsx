@@ -5,10 +5,17 @@ import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import InterestForm from "@/components/site/InterestForm";
 import { getServiceBySlug, services } from "@/data/services";
+import { getServiceEsBySlug, servicesEs } from "@/i18n/servicesEs";
+import { useLang } from "@/i18n/LanguageContext";
 
 const ServiceDetail = () => {
+  const { lang, t } = useLang();
   const { slug } = useParams<{ slug: string }>();
-  const service = slug ? getServiceBySlug(slug) : undefined;
+  const service = slug
+    ? lang === "es"
+      ? getServiceEsBySlug(slug)
+      : getServiceBySlug(slug)
+    : undefined;
 
   useEffect(() => {
     if (!service) return;
@@ -41,7 +48,8 @@ const ServiceDetail = () => {
   }
 
   const Icon = service.icon;
-  const otherServices = services.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const allServices = lang === "es" ? servicesEs : services;
+  const otherServices = allServices.filter((s) => s.slug !== service.slug).slice(0, 3);
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -55,7 +63,7 @@ const ServiceDetail = () => {
             className="inline-flex items-center gap-2 text-[11px] tracking-luxury uppercase text-muted-foreground hover:text-gold transition-colors mb-12"
           >
             <ArrowLeft className="h-3 w-3" />
-            Todos os serviços
+              {t.serviceDetail.backAll}
           </Link>
 
           <div className="grid lg:grid-cols-12 gap-12 items-end">
@@ -63,7 +71,7 @@ const ServiceDetail = () => {
               <div className="flex items-center gap-4 mb-8">
                 <Icon className="h-8 w-8 text-gold" strokeWidth={1.25} />
                 <p className="text-[11px] tracking-luxury uppercase text-gold">
-                  Serviço Stella Aurea
+                    {t.serviceDetail.serviceTag}
                 </p>
               </div>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl leading-[1.05] mb-8">
@@ -89,10 +97,10 @@ const ServiceDetail = () => {
           <div className="grid lg:grid-cols-12 gap-12">
             <div className="lg:col-span-4">
               <p className="text-[11px] tracking-luxury uppercase text-gold mb-6">
-                Para quem é
+                {t.serviceDetail.forWhoEyebrow}
               </p>
               <h2 className="font-serif text-3xl lg:text-4xl leading-tight">
-                Pensado para investidores em diferentes momentos.
+                {t.serviceDetail.forWhoTitle}
               </h2>
             </div>
             <ul className="lg:col-span-8 space-y-6">
@@ -118,10 +126,11 @@ const ServiceDetail = () => {
         <div className="container">
           <div className="max-w-3xl mb-16">
             <p className="text-[11px] tracking-luxury uppercase text-gold mb-6">
-              O que você verá
+              {t.serviceDetail.topicsEyebrow}
             </p>
             <h2 className="font-serif text-3xl lg:text-5xl leading-tight">
-              Tópicos abordados em <em className="text-gradient-gold not-italic">profundidade</em>.
+              {t.serviceDetail.topicsTitleA}{" "}
+              <em className="text-gradient-gold not-italic">{t.serviceDetail.topicsTitleEm}</em>.
             </h2>
           </div>
 
@@ -151,10 +160,10 @@ const ServiceDetail = () => {
         <div className="container grid lg:grid-cols-12 gap-16">
           <div className="lg:col-span-7">
             <p className="text-[11px] tracking-luxury uppercase text-gold mb-6">
-              Metodologia
+              {t.serviceDetail.methodEyebrow}
             </p>
             <h2 className="font-serif text-3xl lg:text-4xl leading-tight mb-12">
-              Três etapas, um caminho claro.
+              {t.serviceDetail.methodTitle}
             </h2>
             <ol className="space-y-10">
               {service.methodology.map((m) => (
@@ -175,10 +184,10 @@ const ServiceDetail = () => {
 
           <div className="lg:col-span-5 lg:border-l lg:border-border lg:pl-12">
             <p className="text-[11px] tracking-luxury uppercase text-gold mb-6">
-              O que você recebe
+              {t.serviceDetail.deliveryEyebrow}
             </p>
             <h2 className="font-serif text-3xl lg:text-4xl leading-tight mb-12">
-              Materiais e entregas.
+              {t.serviceDetail.deliveryTitle}
             </h2>
             <ul className="space-y-4">
               {service.deliverables.map((d) => (
@@ -199,10 +208,10 @@ const ServiceDetail = () => {
       <section className="py-20 lg:py-28 bg-secondary/40">
         <div className="container max-w-4xl">
           <p className="text-[11px] tracking-luxury uppercase text-gold mb-6 text-center">
-            Perguntas frequentes
+            {t.serviceDetail.faqEyebrow}
           </p>
           <h2 className="font-serif text-3xl lg:text-5xl leading-tight text-center mb-16">
-            Antes de começar.
+            {t.serviceDetail.faqTitle}
           </h2>
 
           <div className="space-y-6">
@@ -231,15 +240,15 @@ const ServiceDetail = () => {
         <div className="container max-w-4xl">
           <div className="text-center mb-12">
             <p className="text-[11px] tracking-luxury uppercase text-gold mb-6">
-              Formulário de interesse
+              {t.serviceDetail.formEyebrow}
             </p>
             <h2 className="font-serif text-3xl lg:text-5xl leading-tight">
-              Quero saber mais sobre{" "}
+              {t.serviceDetail.formTitleA}{" "}
               <em className="text-gradient-gold not-italic">{service.title}</em>.
             </h2>
             <div className="hairline w-24 mx-auto mt-8" />
             <p className="mt-6 text-muted-foreground max-w-xl mx-auto">
-              Preencha abaixo e nossa equipe entrará em contato com materiais e próximos passos.
+              {t.serviceDetail.formDesc}
             </p>
           </div>
 
@@ -253,17 +262,17 @@ const ServiceDetail = () => {
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-16">
             <div>
               <p className="text-[11px] tracking-luxury uppercase text-gold mb-6">
-                Continue explorando
+                {t.serviceDetail.otherEyebrow}
               </p>
               <h2 className="font-serif text-3xl lg:text-4xl leading-tight">
-                Outros serviços.
+                {t.serviceDetail.otherTitle}
               </h2>
             </div>
             <Link
               to="/#servicos"
               className="inline-flex items-center gap-2 text-[11px] tracking-luxury uppercase text-gold hover:text-gold-soft transition-colors"
             >
-              Ver todos
+              {t.serviceDetail.otherCta}
               <ArrowRight className="h-3 w-3" />
             </Link>
           </div>
@@ -288,7 +297,7 @@ const ServiceDetail = () => {
                     {s.shortDesc}
                   </p>
                   <span className="mt-auto inline-flex items-center gap-2 text-[11px] tracking-luxury uppercase text-gold">
-                    Saber mais
+                    {t.serviceDetail.otherCard}
                     <ArrowRight className="h-3 w-3" />
                   </span>
                 </Link>

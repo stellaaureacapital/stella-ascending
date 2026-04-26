@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { services } from "@/data/services";
+import { servicesEs } from "@/i18n/servicesEs";
+import { useLang } from "@/i18n/LanguageContext";
 
 const Services = () => {
+  const { lang, t } = useLang();
+  const list = lang === "es" ? servicesEs : services;
   return (
     <section
       id="servicos"
@@ -21,23 +25,21 @@ const Services = () => {
         <div className="grid lg:grid-cols-12 gap-16 items-end mb-20">
           <div className="lg:col-span-7">
             <p className="text-[11px] tracking-luxury uppercase text-gold mb-6">
-              Serviços
+              {t.services.eyebrow}
             </p>
             <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-tight">
-              Oito frentes para{" "}
-              <em className="text-gradient-gold not-italic">orientar</em> sua jornada
-              financeira.
+              {t.services.titleA}{" "}
+              <em className="text-gradient-gold not-italic">{t.services.titleEm}</em>{" "}
+              {t.services.titleB}
             </h2>
           </div>
           <p className="lg:col-span-5 text-muted-foreground leading-relaxed">
-            Cada serviço é construído sobre os mesmos pilares: método, transparência,
-            dados confiáveis e visão de longo prazo. Sem atalhos — apenas a estrela
-            certa para se orientar.
+            {t.services.desc}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
-          {services.map(({ icon: Icon, title, shortDesc, slug, topics }, i) => (
+          {list.map(({ icon: Icon, title, shortDesc, slug, topics }, i) => (
             <Link
               key={slug}
               to={`/servicos/${slug}`}
@@ -70,7 +72,7 @@ const Services = () => {
               </ul>
 
               <span className="mt-8 inline-flex items-center gap-2 text-[11px] tracking-luxury uppercase text-gold opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                Conhecer
+                {t.services.ctaCard}
                 <ArrowRight className="h-3 w-3" />
               </span>
             </Link>
@@ -80,15 +82,10 @@ const Services = () => {
         {/* Pillars strip */}
         <div className="mt-24 pt-16 border-t border-border">
           <p className="text-[11px] tracking-luxury uppercase text-gold mb-10 text-center">
-            Nossos quatro pilares
+            {t.services.pillarsEyebrow}
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
-            {[
-              { n: "01", t: "Educação séria", d: "Aprender a investir começa por aprender a pensar." },
-              { n: "02", t: "Análise estratégica", d: "Decisões guiadas por dados e leitura de cenários." },
-              { n: "03", t: "Acessibilidade", d: "Conteúdo gratuito, claro e de alto nível." },
-              { n: "04", t: "Longo prazo", d: "Disciplina, método e a estrela certa para se orientar." },
-            ].map((p) => (
+            {t.services.pillars.map((p) => (
               <div key={p.n} className="flex flex-col gap-3">
                 <span className="font-serif text-3xl text-gold">{p.n}</span>
                 <h4 className="font-serif text-xl">{p.t}</h4>
