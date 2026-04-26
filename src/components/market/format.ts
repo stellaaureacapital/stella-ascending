@@ -1,9 +1,12 @@
-export const fmtPrice = (v: number, currency: "BRL" | "USD") =>
-  new Intl.NumberFormat(currency === "BRL" ? "pt-BR" : "en-US", {
+export const fmtPrice = (v: number, currency: "BRL" | "USD" | "PYG") => {
+  const locale =
+    currency === "BRL" ? "pt-BR" : currency === "PYG" ? "es-PY" : "en-US";
+  return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
-    maximumFractionDigits: 2,
+    maximumFractionDigits: currency === "PYG" ? 0 : 2,
   }).format(v);
+};
 
 export const fmtPct = (v: number) => `${v > 0 ? "+" : ""}${v.toFixed(2)}%`;
 
