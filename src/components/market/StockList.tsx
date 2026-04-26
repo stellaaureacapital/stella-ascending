@@ -5,6 +5,7 @@ import { type Stock } from "@/data/market";
 import StockLogo from "./StockLogo";
 import Sparkline from "./Sparkline";
 import { fmtPct, fmtPrice, fmtVolume } from "./format";
+import { useLang } from "@/i18n/LanguageContext";
 
 type SortKey = "rank" | "price" | "changePct" | "volume" | "weekChangePct";
 
@@ -31,6 +32,7 @@ const Trend = ({ value }: { value: number }) => {
 };
 
 const StockList = ({ rows, kind }: { rows: Stock[]; kind: "up" | "down" }) => {
+  const { t } = useLang();
   const [query, setQuery] = useState("");
   const [sortKey, setSortKey] = useState<SortKey>("rank");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
@@ -79,7 +81,7 @@ const StockList = ({ rows, kind }: { rows: Stock[]; kind: "up" | "down" }) => {
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Buscar por ticker, empresa ou setor"
+          placeholder={t.market.searchPlaceholder}
           className="pl-9 h-10 text-sm rounded-none border-border/60 bg-transparent focus-visible:ring-0 focus-visible:border-gold/60"
         />
       </div>
@@ -94,27 +96,27 @@ const StockList = ({ rows, kind }: { rows: Stock[]; kind: "up" | "down" }) => {
                   # <SortIcon k="rank" />
                 </button>
               </th>
-              <th className="text-left font-normal py-3 px-4">Ativo</th>
+              <th className="text-left font-normal py-3 px-4">{t.market.colAsset}</th>
               <th className="text-left font-normal py-3 px-4 hidden lg:table-cell">7d</th>
               <th className="text-right font-normal py-3 px-4">
                 <button onClick={() => toggleSort("price")} className="inline-flex items-center gap-1 hover:text-foreground transition-colors">
-                  Preço <SortIcon k="price" />
+                  {t.market.colPrice} <SortIcon k="price" />
                 </button>
               </th>
               <th className="text-right font-normal py-3 px-4">
                 <button onClick={() => toggleSort("changePct")} className="inline-flex items-center gap-1 hover:text-foreground transition-colors">
-                  Dia <SortIcon k="changePct" />
+                  {t.market.colDay} <SortIcon k="changePct" />
                 </button>
               </th>
               <th className="text-right font-normal py-3 px-4 hidden lg:table-cell">
                 <button onClick={() => toggleSort("weekChangePct")} className="inline-flex items-center gap-1 hover:text-foreground transition-colors">
-                  Semana <SortIcon k="weekChangePct" />
+                  {t.market.colWeek} <SortIcon k="weekChangePct" />
                 </button>
               </th>
-              <th className="text-right font-normal py-3 px-4 hidden xl:table-cell">Mín · Máx</th>
+              <th className="text-right font-normal py-3 px-4 hidden xl:table-cell">{t.market.colRange}</th>
               <th className="text-right font-normal py-3 px-4 hidden lg:table-cell">
                 <button onClick={() => toggleSort("volume")} className="inline-flex items-center gap-1 hover:text-foreground transition-colors ml-auto">
-                  Volume <SortIcon k="volume" />
+                  {t.market.colVolume} <SortIcon k="volume" />
                 </button>
               </th>
             </tr>
@@ -163,7 +165,7 @@ const StockList = ({ rows, kind }: { rows: Stock[]; kind: "up" | "down" }) => {
             {filtered.length === 0 && (
               <tr>
                 <td colSpan={8} className="py-12 text-center text-sm text-muted-foreground">
-                  Nenhum ativo encontrado.
+                  {t.market.empty}
                 </td>
               </tr>
             )}
@@ -198,11 +200,11 @@ const StockList = ({ rows, kind }: { rows: Stock[]; kind: "up" | "down" }) => {
             </div>
             <div className="mt-3 flex items-end justify-between gap-3 pt-3 border-t border-border/40">
               <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-[10px] uppercase tracking-luxury text-muted-foreground">
-                <span>7d</span>
+                <span>{t.market.week}</span>
                 <span className="text-right text-foreground font-mono normal-case tracking-normal text-xs">
                   {s.weekChangePct !== undefined ? fmtPct(s.weekChangePct) : "—"}
                 </span>
-                <span>Volume</span>
+                <span>{t.market.colVolume}</span>
                 <span className="text-right text-foreground font-mono normal-case tracking-normal text-xs">
                   {s.volume !== undefined ? fmtVolume(s.volume) : "—"}
                 </span>
@@ -213,7 +215,7 @@ const StockList = ({ rows, kind }: { rows: Stock[]; kind: "up" | "down" }) => {
         ))}
         {filtered.length === 0 && (
           <div className="border border-border/60 py-12 text-center text-sm text-muted-foreground">
-            Nenhum ativo encontrado.
+            {t.market.empty}
           </div>
         )}
       </div>
