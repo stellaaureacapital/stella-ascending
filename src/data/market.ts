@@ -3,7 +3,7 @@ export type Stock = {
   name: string;
   price: number;
   changePct: number;
-  currency: "BRL" | "USD";
+  currency: "BRL" | "USD" | "PYG";
   domain?: string;
   sector?: string;
   volume?: number; // shares traded (in millions)
