@@ -228,6 +228,7 @@ const ptDict = {
   langSwitch: {
     pt: "PT",
     es: "ES",
+    en: "EN",
     aria: "Idioma",
   },
 };
