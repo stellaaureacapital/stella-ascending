@@ -3,7 +3,7 @@ export type Stock = {
   name: string;
   price: number;
   changePct: number;
-  currency: "BRL" | "USD" | "PYG";
+  currency: "BRL" | "USD" | "PYG" | "EUR" | "GBP";
   domain?: string;
   sector?: string;
   volume?: number; // shares traded (in millions)
@@ -18,7 +18,7 @@ export type IndexQuote = {
   name: string;
   value: number;
   changePct: number;
-  region: "BR" | "US" | "FX" | "PY";
+  region: "BR" | "US" | "FX" | "PY" | "EU" | "UK" | "GLOBAL";
 };
 
 export type NewsItem = {
@@ -27,7 +27,7 @@ export type NewsItem = {
   source: string;
   publishedAt: string; // ISO
   url: string;
-  region: "BR" | "US" | "PY";
+  region: "BR" | "US" | "PY" | "EU" | "UK" | "GLOBAL";
   summary: string;
 };
 
