@@ -6,6 +6,7 @@ import Footer from "@/components/site/Footer";
 import InterestForm from "@/components/site/InterestForm";
 import { getServiceBySlug, services } from "@/data/services";
 import { getServiceEsBySlug, servicesEs } from "@/i18n/servicesEs";
+import { getServiceEnBySlug, servicesEn } from "@/i18n/servicesEn";
 import { useLang } from "@/i18n/LanguageContext";
 
 const ServiceDetail = () => {
@@ -14,7 +15,9 @@ const ServiceDetail = () => {
   const service = slug
     ? lang === "es"
       ? getServiceEsBySlug(slug)
-      : getServiceBySlug(slug)
+      : lang === "en"
+        ? getServiceEnBySlug(slug)
+        : getServiceBySlug(slug)
     : undefined;
 
   useEffect(() => {
@@ -48,7 +51,7 @@ const ServiceDetail = () => {
   }
 
   const Icon = service.icon;
-  const allServices = lang === "es" ? servicesEs : services;
+  const allServices = lang === "es" ? servicesEs : lang === "en" ? servicesEn : services;
   const otherServices = allServices.filter((s) => s.slug !== service.slug).slice(0, 3);
 
   return (
