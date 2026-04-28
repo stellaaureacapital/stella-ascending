@@ -193,6 +193,28 @@ const ptDict = {
     successTitle: "Interesse registrado",
     successDescA: "Em breve entraremos em contato sobre",
   },
+  vision: {
+    eyebrow: "Visão · Missão · Valores",
+    titleA: "O que nos move e o",
+    titleEm: "porquê",
+    titleB: "de cada decisão.",
+    visionLabel: "Visão",
+    visionText:
+      "Ser uma referência no mercado financeiro pela excelência, independência e inovação, utilizando tecnologias avançadas e inteligência artificial para transformar a forma como investidores constroem e preservam patrimônio, com foco em resultados consistentes e legado de longo prazo.",
+    missionLabel: "Missão",
+    missionText:
+      "Oferecer soluções financeiras estratégicas e personalizadas, com total independência e alinhamento aos interesses do cliente, combinando análise rigorosa, inovação tecnológica e inteligência de dados para proteger, crescer e perpetuar o patrimônio de nossos clientes ao longo das gerações.",
+    valuesLabel: "Valores",
+    values: [
+      { t: "Independência", d: "Atuamos sem conflitos de interesse, garantindo decisões 100% alinhadas aos objetivos do cliente." },
+      { t: "Foco no Cliente", d: "O cliente está no centro de tudo. Priorizamos seus interesses, objetivos e segurança em cada recomendação." },
+      { t: "Inovação e Tecnologia", d: "Utilizamos inteligência artificial, dados e novas tecnologias para gerar vantagem competitiva e melhores decisões de investimento." },
+      { t: "Seriedade e Disciplina", d: "Compromisso com análise fundamentada, gestão de risco e execução consistente." },
+      { t: "Visão de Longo Prazo", d: "Construção de patrimônio sustentável, com foco em perpetuidade e legado." },
+      { t: "Transparência", d: "Relações claras, comunicação objetiva e total visibilidade sobre estratégias e resultados." },
+      { t: "Excelência", d: "Busca contínua por performance, eficiência e aprimoramento técnico." },
+    ],
+  },
   market: {
     backHome: "Voltar ao início",
     eyebrow: "Mercado",
@@ -424,6 +446,28 @@ const esDict: Dict = {
     successTitle: "Interés registrado",
     successDescA: "Pronto te contactamos sobre",
   },
+  vision: {
+    eyebrow: "Visión · Misión · Valores",
+    titleA: "Lo que nos mueve y el",
+    titleEm: "porqué",
+    titleB: "de cada decisión.",
+    visionLabel: "Visión",
+    visionText:
+      "Ser referencia en el mercado financiero por excelencia, independencia e innovación, utilizando tecnologías avanzadas e inteligencia artificial para transformar la forma en que los inversores construyen y preservan patrimonio, con foco en resultados consistentes y legado de largo plazo.",
+    missionLabel: "Misión",
+    missionText:
+      "Ofrecer soluciones financieras estratégicas y personalizadas, con total independencia y alineación a los intereses del cliente, combinando análisis riguroso, innovación tecnológica e inteligencia de datos para proteger, hacer crecer y perpetuar el patrimonio de nuestros clientes a lo largo de las generaciones.",
+    valuesLabel: "Valores",
+    values: [
+      { t: "Independencia", d: "Actuamos sin conflictos de interés, garantizando decisiones 100% alineadas a los objetivos del cliente." },
+      { t: "Foco en el Cliente", d: "El cliente está en el centro de todo. Priorizamos sus intereses, objetivos y seguridad en cada recomendación." },
+      { t: "Innovación y Tecnología", d: "Usamos inteligencia artificial, datos y nuevas tecnologías para generar ventaja competitiva y mejores decisiones de inversión." },
+      { t: "Seriedad y Disciplina", d: "Compromiso con análisis fundamentado, gestión de riesgo y ejecución consistente." },
+      { t: "Visión de Largo Plazo", d: "Construcción de patrimonio sostenible, con foco en perpetuidad y legado." },
+      { t: "Transparencia", d: "Relaciones claras, comunicación objetiva y total visibilidad sobre estrategias y resultados." },
+      { t: "Excelencia", d: "Búsqueda continua de performance, eficiencia y mejora técnica." },
+    ],
+  },
   market: {
     backHome: "Volver al inicio",
     eyebrow: "Mercado",
@@ -654,6 +698,28 @@ const enDict: Dict = {
     sending: "Sending…",
     successTitle: "Interest registered",
     successDescA: "We'll be in touch soon about",
+  },
+  vision: {
+    eyebrow: "Vision · Mission · Values",
+    titleA: "What drives us and the",
+    titleEm: "why",
+    titleB: "behind every decision.",
+    visionLabel: "Vision",
+    visionText:
+      "To be a reference in the financial market through excellence, independence and innovation — leveraging advanced technologies and artificial intelligence to transform how investors build and preserve wealth, with a focus on consistent results and long-term legacy.",
+    missionLabel: "Mission",
+    missionText:
+      "To deliver strategic, personalized financial solutions with full independence and alignment to client interests — combining rigorous analysis, technological innovation and data intelligence to protect, grow and perpetuate our clients' wealth across generations.",
+    valuesLabel: "Values",
+    values: [
+      { t: "Independence", d: "We operate without conflicts of interest, ensuring decisions 100% aligned with client goals." },
+      { t: "Client Focus", d: "The client is at the center of everything. We prioritize their interests, goals and safety in every recommendation." },
+      { t: "Innovation & Technology", d: "We use artificial intelligence, data and new technologies to generate competitive advantage and better investment decisions." },
+      { t: "Seriousness & Discipline", d: "Commitment to grounded analysis, risk management and consistent execution." },
+      { t: "Long-term Vision", d: "Building sustainable wealth, with a focus on perpetuity and legacy." },
+      { t: "Transparency", d: "Clear relationships, objective communication and full visibility into strategies and results." },
+      { t: "Excellence", d: "Continuous pursuit of performance, efficiency and technical improvement." },
+    ],
   },
   market: {
     backHome: "Back to home",
