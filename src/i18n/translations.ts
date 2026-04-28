@@ -458,6 +458,7 @@ const esDict: Dict = {
   langSwitch: {
     pt: "PT",
     es: "ES",
+    en: "EN",
     aria: "Idioma",
   },
 };
