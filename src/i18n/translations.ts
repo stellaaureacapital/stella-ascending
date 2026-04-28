@@ -1,9 +1,9 @@
-export type Lang = "pt" | "es";
+export type Lang = "pt" | "es" | "en";
 
 export type Dict = typeof ptDict;
 
 const ptDict = {
-  region: "BR" as "BR" | "PY",
+  region: "BR" as "BR" | "PY" | "EU",
   meta: {
     homeTitle: "Stella Aurea Capital · Educação Financeira Estratégica",
     homeDesc:
