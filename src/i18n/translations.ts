@@ -465,4 +465,5 @@ const esDict: Dict = {
 export const translations: Record<Lang, Dict> = {
   pt: ptDict,
   es: esDict,
+  en: enDict,
 };
