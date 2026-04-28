@@ -8,7 +8,7 @@ const LangSwitch = ({ className = "" }: { className?: string }) => {
       role="group"
       aria-label={t.langSwitch.aria}
     >
-      {(["pt", "es"] as const).map((l) => (
+      {(["pt", "es", "en"] as const).map((l) => (
         <button
           key={l}
           onClick={() => setLang(l)}
@@ -20,7 +20,7 @@ const LangSwitch = ({ className = "" }: { className?: string }) => {
           }`}
         >
           <span aria-hidden className="mr-1">
-            {l === "pt" ? "🇧🇷" : "🇵🇾"}
+            {l === "pt" ? "🇧🇷" : l === "es" ? "🇵🇾" : "🌍"}
           </span>
           {t.langSwitch[l]}
         </button>

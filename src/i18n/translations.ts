@@ -1,9 +1,9 @@
-export type Lang = "pt" | "es";
+export type Lang = "pt" | "es" | "en";
 
 export type Dict = typeof ptDict;
 
 const ptDict = {
-  region: "BR" as "BR" | "PY",
+  region: "BR" as "BR" | "PY" | "EU",
   meta: {
     homeTitle: "Stella Aurea Capital · Educação Financeira Estratégica",
     homeDesc:
@@ -228,6 +228,7 @@ const ptDict = {
   langSwitch: {
     pt: "PT",
     es: "ES",
+    en: "EN",
     aria: "Idioma",
   },
 };
@@ -458,11 +459,244 @@ const esDict: Dict = {
   langSwitch: {
     pt: "PT",
     es: "ES",
+    en: "EN",
     aria: "Idioma",
+  },
+};
+
+const enDict: Dict = {
+  region: "EU",
+  meta: {
+    homeTitle: "Stella Aurea Capital · Global Financial Education",
+    homeDesc:
+      "Stella Aurea Capital — serious, strategic and accessible financial education with a global lens. Analysis, guides and long-term thinking for investors across the US, UK, Europe and beyond.",
+    marketTitle: "Markets · Stella Aurea Capital",
+    marketDesc:
+      "Track global markets: top movers, key indices and headlines from the US, UK and Europe — all in one place.",
+  },
+  nav: {
+    home: "Home",
+    about: "About",
+    products: "Products",
+    services: "Services",
+    market: "Markets",
+    blog: "Journal",
+    contact: "Contact",
+    cta: "Get in touch",
+    menu: "Menu",
+  },
+  hero: {
+    eyebrow: "Stella Aurea Capital · Global",
+    titleA: "The star that guides your",
+    titleEm: "financial",
+    titleB: "decisions.",
+    desc: "Serious, strategic and accessible financial education for global investors. Built on data, analysis and long-term thinking — for those who want clarity across US, UK and European markets.",
+    ctaProducts: "Explore our products",
+    ctaPhilosophy: "Our philosophy →",
+    stat1k: "100%",
+    stat1v: "Free access",
+    stat2k: "LT",
+    stat2v: "Long-term",
+    stat3k: "+5k",
+    stat3v: "Readers",
+    estTag: "Golden Star · Est. 2024",
+    marquee: ["Education", "Analysis", "Strategy", "Long-term"],
+  },
+  about: {
+    eyebrow: "About — Stella Aurea",
+    titleA: "A",
+    titleEm: "golden star",
+    titleB: "in the global investment universe.",
+    p1: "We live in an era of abundant information — but quality rarely keeps pace. In global markets, where investors juggle dollars, pounds and euros across multiple jurisdictions, this becomes even more delicate. Financial decisions demand reliable data, sound analysis and strategic vision.",
+    p2: "Stella Aurea Capital was created to transform the way people relate to their investments. Our name — Stella Aurea, golden star — reflects what we aim to be for our readers: a point of reference, orientation and value across Wall Street, the City of London, Frankfurt and beyond.",
+    stats: [
+      { k: "+5k", v: "Active readers" },
+      { k: "100%", v: "Free content" },
+      { k: "LT", v: "Long-term focus" },
+    ],
+    imgAlt: "Premium desk with notebook, gold pen and financial chart",
+  },
+  products: {
+    eyebrow: "Products",
+    titleA: "Knowledge as",
+    titleEm: "wealth",
+    titleB: ".",
+    items: [
+      {
+        title: "Stella Aurea Journal",
+        desc: "Weekly analysis on global macro, equities (US/UK/EU), fixed income and worldwide trends — written in clear language.",
+        tag: "Content",
+      },
+      {
+        title: "Guides & E-books",
+        desc: "In-depth materials to build a solid foundation: from S&P 500 and FTSE to STOXX 600, ETFs, Treasuries and Gilts.",
+        tag: "Education",
+      },
+      {
+        title: "Strategic Reports",
+        desc: "Long-term outlook on global sectors, asset classes and cross-border opportunities, grounded in data and fundamentals.",
+        tag: "Analysis",
+      },
+      {
+        title: "Aurea Newsletter",
+        desc: "Weekly curation in your inbox: the essentials of global markets, recommended reads and strategic insights.",
+        tag: "Intelligence",
+      },
+    ],
+  },
+  services: {
+    eyebrow: "Services",
+    titleA: "Eight pillars to",
+    titleEm: "guide",
+    titleB: "your financial journey.",
+    desc: "Each service is built on the same principles: method, transparency, reliable data and long-term vision. From Wall Street to the City of London — no shortcuts, just the right star to follow.",
+    ctaCard: "Explore",
+    pillarsEyebrow: "Our four pillars",
+    pillars: [
+      { n: "01", t: "Serious education", d: "Learning to invest starts with learning to think." },
+      { n: "02", t: "Strategic analysis", d: "Decisions guided by data and scenario reading." },
+      { n: "03", t: "Accessibility", d: "Free, clear, high-quality content." },
+      { n: "04", t: "Long-term", d: "Discipline, method, and the right star to follow." },
+    ],
+  },
+  serviceDetail: {
+    backAll: "All services",
+    serviceTag: "Stella Aurea Service",
+    forWhoEyebrow: "Who it's for",
+    forWhoTitle: "Designed for investors at different stages.",
+    topicsEyebrow: "What you'll see",
+    topicsTitleA: "Topics covered in",
+    topicsTitleEm: "depth",
+    methodEyebrow: "Methodology",
+    methodTitle: "Three steps, one clear path.",
+    deliveryEyebrow: "What you receive",
+    deliveryTitle: "Materials and deliverables.",
+    faqEyebrow: "Frequently asked",
+    faqTitle: "Before you start.",
+    formEyebrow: "Interest form",
+    formTitleA: "I want to learn more about",
+    formDesc: "Fill in the form below and our team will reach out with materials and next steps.",
+    otherEyebrow: "Keep exploring",
+    otherTitle: "Other services.",
+    otherCta: "View all",
+    otherCard: "Learn more",
+  },
+  blog: {
+    eyebrow: "Aurea Journal",
+    titleA: "Recent reads from our",
+    titleEm: "journal",
+    titleB: ".",
+    seeAll: "See all posts",
+    readArticle: "Read article",
+    posts: [
+      {
+        cat: "Global Macro",
+        date: "April, 2026",
+        title: "Fed, ECB, BoE: how to read the global rate cycle without noise",
+        excerpt: "Central bank divergence and what it means for portfolios across regions.",
+      },
+      {
+        cat: "Equities",
+        date: "April, 2026",
+        title: "Fundamental analysis: the method behind great long-term decisions",
+        excerpt: "The principles that separate the investor from the speculator — applied across US, UK and EU markets.",
+      },
+      {
+        cat: "Strategy",
+        date: "March, 2026",
+        title: "Real diversification: beyond just spreading assets",
+        excerpt: "Building a portfolio that resists — and thrives — in any global scenario.",
+      },
+    ],
+  },
+  contact: {
+    eyebrow: "Contact",
+    titleA: "Let's talk about your",
+    titleEm: "next step",
+    titleB: ".",
+    desc: "Questions, partnerships or just to receive our content — get in touch.",
+    name: "Name",
+    email: "Email",
+    subject: "Subject",
+    message: "Message",
+    submit: "Send message",
+    sending: "Sending…",
+    successTitle: "Message sent",
+    successDesc: "We'll be in touch soon.",
+  },
+  footer: {
+    desc: "Serious, strategic and accessible financial education with a global perspective. A point of reference, orientation and value in the world of investing.",
+    navTitle: "Navigation",
+    contactTitle: "Contact",
+    email: "contact@stellaaureacapital.com",
+    location: "Global · London · New York",
+    rights: "All rights reserved.",
+    motto: "Crafted with care · Long-term vision",
+    nav: ["About", "Products", "Services", "Journal", "Contact"],
+    navHrefs: ["#sobre", "#produtos", "#servicos", "#blog", "#contato"],
+  },
+  interestForm: {
+    name: "Full name",
+    email: "Email",
+    phone: "Phone (optional)",
+    profile: "Profile",
+    selectPlaceholder: "Select",
+    profiles: {
+      iniciante: "Beginner",
+      intermediario: "Intermediate",
+      avancado: "Advanced",
+      profissional: "Market professional",
+    },
+    goal: "Tell us a bit about your goal",
+    consentA: "By submitting, you agree to receive communications about",
+    consentB: "and other Stella Aurea Capital content. Your data is not shared with third parties.",
+    submit: "I'm interested",
+    sending: "Sending…",
+    successTitle: "Interest registered",
+    successDescA: "We'll be in touch soon about",
+  },
+  market: {
+    backHome: "Back to home",
+    eyebrow: "Markets",
+    title: "Real-time global market view",
+    desc: "Top gainers, top losers, key indices and the news moving global markets — all in one place. US, UK, Europe and beyond.",
+    regionLocal: "Europe",
+    regionUS: "USA",
+    summaryTopUp: "Top gainer",
+    summaryTopDown: "Top loser",
+    summaryBreadth: "Up · Down",
+    tabGainers: "Top gainers",
+    tabLosers: "Top losers",
+    tabIndices: "Indices",
+    tabNews: "News",
+    disclaimer: "Illustrative data · Real-time quotes coming soon",
+    searchPlaceholder: "Search by ticker, company or sector",
+    colAsset: "Asset",
+    colPrice: "Price",
+    colDay: "Day",
+    colWeek: "Week",
+    colVolume: "Volume",
+    colRange: "Low · High",
+    week: "7d",
+    empty: "No assets found.",
+    readNews: "Read article",
+    timeAgo: (mins: number) => {
+      if (mins < 60) return `${mins} min ago`;
+      const hrs = Math.round(mins / 60);
+      if (hrs < 24) return `${hrs} h ago`;
+      return "";
+    },
+  },
+  langSwitch: {
+    pt: "PT",
+    es: "ES",
+    en: "EN",
+    aria: "Language",
   },
 };
 
 export const translations: Record<Lang, Dict> = {
   pt: ptDict,
   es: esDict,
+  en: enDict,
 };

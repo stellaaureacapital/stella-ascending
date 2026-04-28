@@ -18,6 +18,10 @@ import {
   pyLosers,
   pyIndices,
   pyNews,
+  euGainers,
+  euLosers,
+  globalIndices,
+  globalNews,
   type IndexQuote,
   type NewsItem,
 } from "@/data/market";
@@ -50,7 +54,7 @@ const IndexCard = ({ q }: { q: IndexQuote }) => {
   );
 };
 
-const NewsCard = ({ n, lang, label }: { n: NewsItem; lang: "pt" | "es"; label: string }) => (
+const NewsCard = ({ n, lang, label }: { n: NewsItem; lang: "pt" | "es" | "en"; label: string }) => (
   <a
     href={n.url}
     target="_blank"
@@ -103,10 +107,13 @@ const Market = () => {
   const { lang, t } = useLang();
   const [region, setRegion] = useState<Region>("LOCAL");
   const isPY = lang === "es";
+  const isEN = lang === "en";
 
-  const tickerIndices = isPY
-    ? [...pyIndices, ...indices.filter((i) => i.region === "US")]
-    : indices;
+  const tickerIndices = isEN
+    ? globalIndices
+    : isPY
+      ? [...pyIndices, ...indices.filter((i) => i.region === "US")]
+      : indices;
 
   useEffect(() => {
     document.title = t.meta.marketTitle;
@@ -120,25 +127,40 @@ const Market = () => {
     meta.setAttribute("content", desc);
   }, [t]);
 
-  const localGainers = isPY ? pyGainers : brGainers;
-  const localLosers = isPY ? pyLosers : brLosers;
+  const localGainers = isEN ? euGainers : isPY ? pyGainers : brGainers;
+  const localLosers = isEN ? euLosers : isPY ? pyLosers : brLosers;
   const gainers = region === "LOCAL" ? localGainers : usGainers;
   const losers = region === "LOCAL" ? localLosers : usLosers;
 
-  const allNews = isPY ? [...pyNews, ...news.filter((n) => n.region === "US")] : news;
+  const allNews = isEN
+    ? [...globalNews, ...news.filter((n) => n.region === "US")]
+    : isPY
+      ? [...pyNews, ...news.filter((n) => n.region === "US")]
+      : news;
   const filteredNews = useMemo(
     () =>
       allNews.filter((n) =>
-        region === "LOCAL" ? (isPY ? n.region === "PY" : n.region === "BR") : n.region === "US",
+        region === "LOCAL"
+          ? isEN
+            ? n.region === "EU" || n.region === "UK" || n.region === "GLOBAL"
+            : isPY
+              ? n.region === "PY"
+              : n.region === "BR"
+          : n.region === "US",
       ),
-    [region, isPY, allNews],
+    [region, isPY, isEN, allNews],
   );
   const regionalIndices = useMemo(() => {
     if (region === "LOCAL") {
+      if (isEN)
+        return globalIndices.filter(
+          (i) => i.region === "EU" || i.region === "UK" || i.region === "GLOBAL" || i.region === "FX",
+        );
       return isPY ? pyIndices : indices.filter((i) => i.region === "BR" || i.region === "FX");
     }
+    if (isEN) return globalIndices.filter((i) => i.region === "US" || i.region === "FX");
     return indices.filter((i) => i.region === "US" || i.region === "FX");
-  }, [region, isPY]);
+  }, [region, isPY, isEN]);
 
   const summary = useMemo(() => {
     const topUp = gainers[0];
