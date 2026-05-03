@@ -49,19 +49,19 @@ const Hero = () => {
             </p>
 
             <div className="reveal reveal-delay-3 mt-12 flex flex-col sm:flex-row gap-4">
-              <a
-                href="#produtos"
+              <button
+                onClick={() => document.getElementById("produtos")?.scrollIntoView({ behavior: "smooth" })}
                 className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-foreground text-background text-xs uppercase tracking-luxury hover:bg-gradient-gold hover:text-accent-foreground transition-all duration-500"
               >
                 {t.hero.ctaProducts}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
-                href="#sobre"
+              </button>
+              <button
+                onClick={() => document.getElementById("sobre")?.scrollIntoView({ behavior: "smooth" })}
                 className="inline-flex items-center justify-center px-8 py-4 text-xs uppercase tracking-luxury text-foreground/80 hover:text-gold transition-colors"
               >
                 {t.hero.ctaPhilosophy}
-              </a>
+              </button>
             </div>
 
             <div className="reveal reveal-delay-4 mt-16 sm:mt-20 grid grid-cols-3 gap-4 sm:gap-8 max-w-lg">
