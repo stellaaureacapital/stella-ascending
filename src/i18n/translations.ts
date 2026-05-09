@@ -927,6 +927,36 @@ const enDict: Dict = {
     en: "EN",
     aria: "Language",
   },
+  homePillars: {
+    eyebrow: "Where to start",
+    titleA: "Three paths.",
+    titleEm: "One purpose",
+    titleB: ".",
+    desc: "Discover who we are, explore our solutions and follow global markets in real time.",
+    cards: [
+      {
+        kicker: "01",
+        title: "Who we are",
+        desc: "The vision, mission and values that guide every analysis and recommendation.",
+        cta: "Meet Stella Aurea",
+        to: "/sobre",
+      },
+      {
+        kicker: "02",
+        title: "Solutions",
+        desc: "E-books, courses and independent advisory for investors seeking clarity.",
+        cta: "See products & services",
+        to: "/solucoes",
+      },
+      {
+        kicker: "03",
+        title: "Markets",
+        desc: "Top movers, key indices and the headlines moving Wall Street, the City and beyond.",
+        cta: "Open market view",
+        to: "/mercado",
+      },
+    ],
+  },
 };
 
 export const translations: Record<Lang, Dict> = {
