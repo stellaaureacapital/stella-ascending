@@ -62,7 +62,7 @@ const ServiceDetail = () => {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 border-b border-border">
         <div className="container">
           <Link
-            to="/#servicos"
+            to="/solucoes"
             className="inline-flex items-center gap-2 text-[11px] tracking-luxury uppercase text-muted-foreground hover:text-gold transition-colors mb-12"
           >
             <ArrowLeft className="h-3 w-3" />
@@ -272,7 +272,7 @@ const ServiceDetail = () => {
               </h2>
             </div>
             <Link
-              to="/#servicos"
+              to="/solucoes"
               className="inline-flex items-center gap-2 text-[11px] tracking-luxury uppercase text-gold hover:text-gold-soft transition-colors"
             >
               {t.serviceDetail.otherCta}
