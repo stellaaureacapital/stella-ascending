@@ -289,6 +289,36 @@ const ptDict = {
     en: "EN",
     aria: "Idioma",
   },
+  homePillars: {
+    eyebrow: "Por onde começar",
+    titleA: "Três caminhos.",
+    titleEm: "Um propósito",
+    titleB: ".",
+    desc: "Conheça quem somos, descubra nossas soluções e acompanhe o mercado em tempo real.",
+    cards: [
+      {
+        kicker: "01",
+        title: "Quem somos",
+        desc: "Visão, missão e valores que orientam cada análise e recomendação.",
+        cta: "Conheça a Stella Aurea",
+        to: "/sobre",
+      },
+      {
+        kicker: "02",
+        title: "Soluções",
+        desc: "E-books, cursos e consultoria independente para investidores que buscam clareza.",
+        cta: "Ver produtos e serviços",
+        to: "/solucoes",
+      },
+      {
+        kicker: "03",
+        title: "Mercado",
+        desc: "Maiores altas, baixas, índices e notícias do Brasil e dos EUA em um só lugar.",
+        cta: "Acessar mercado",
+        to: "/mercado",
+      },
+    ],
+  },
 };
 
 const esDict: Dict = {
