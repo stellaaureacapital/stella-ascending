@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { useLang } from "@/i18n/LanguageContext";
 import LangSwitch from "./LangSwitch";
@@ -9,7 +9,6 @@ const Navbar = () => {
   const { t } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const location = useLocation();
   const navigate = useNavigate();
 
   const links = [
