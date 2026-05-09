@@ -1,4 +1,5 @@
 import { BookOpen, GraduationCap, Sparkles, ArrowRight, Check } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 
 type Item = { title: string; desc: string; meta: string; badge: string };
@@ -46,9 +47,8 @@ const ItemCard = ({
 const Products = () => {
   const { t } = useLang();
   const p = t.products;
-
-  const goContact = () =>
-    document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" });
+  const navigate = useNavigate();
+  const goContact = () => navigate("/contato");
 
   const Group = ({
     label,
