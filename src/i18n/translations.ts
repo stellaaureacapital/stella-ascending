@@ -608,6 +608,36 @@ const esDict: Dict = {
     en: "EN",
     aria: "Idioma",
   },
+  homePillars: {
+    eyebrow: "Por dónde empezar",
+    titleA: "Tres caminos.",
+    titleEm: "Un propósito",
+    titleB: ".",
+    desc: "Conocé quiénes somos, descubrí nuestras soluciones y seguí el mercado en tiempo real.",
+    cards: [
+      {
+        kicker: "01",
+        title: "Quiénes somos",
+        desc: "Visión, misión y valores que orientan cada análisis y recomendación.",
+        cta: "Conocé Stella Aurea",
+        to: "/sobre",
+      },
+      {
+        kicker: "02",
+        title: "Soluciones",
+        desc: "E-books, cursos y consultoría independiente para inversores que buscan claridad.",
+        cta: "Ver productos y servicios",
+        to: "/solucoes",
+      },
+      {
+        kicker: "03",
+        title: "Mercado",
+        desc: "Principales subas, bajas, índices y noticias de Paraguay y EE.UU. en un solo lugar.",
+        cta: "Acceder al mercado",
+        to: "/mercado",
+      },
+    ],
+  },
 };
 
 const enDict: Dict = {
