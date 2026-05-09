@@ -1,8 +1,11 @@
 import logo from "@/assets/logo.png";
+import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 
 const Footer = () => {
   const { t } = useLang();
+  const routes = ["/sobre", "/solucoes", "/mercado", "/contato"];
+  const labels = [t.nav.about, `${t.nav.products} & ${t.nav.services}`, t.nav.market, t.nav.contact];
   return (
     <footer className="bg-secondary/40 text-foreground py-20 border-t border-border">
       <div className="container grid md:grid-cols-4 gap-12">
@@ -22,11 +25,11 @@ const Footer = () => {
         <div>
           <p className="text-[10px] tracking-luxury uppercase text-gold mb-5">{t.footer.navTitle}</p>
           <ul className="space-y-3 text-sm text-foreground/70">
-            {t.footer.nav.map((l, i) => (
-              <li key={l}>
-                <a href={t.footer.navHrefs[i]} className="hover:text-gold transition-colors">
-                  {l}
-                </a>
+            {routes.map((to, i) => (
+              <li key={to}>
+                <Link to={to} className="hover:text-gold transition-colors">
+                  {labels[i]}
+                </Link>
               </li>
             ))}
           </ul>

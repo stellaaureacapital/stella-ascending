@@ -1,9 +1,11 @@
 import logo from "@/assets/logo.png";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 
 const Hero = () => {
   const { t } = useLang();
+  const navigate = useNavigate();
   const stats = [
     { k: t.hero.stat1k, v: t.hero.stat1v },
     { k: t.hero.stat2k, v: t.hero.stat2v },
@@ -50,14 +52,14 @@ const Hero = () => {
 
             <div className="reveal reveal-delay-3 mt-12 flex flex-col sm:flex-row gap-4">
               <button
-                onClick={() => document.getElementById("produtos")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => navigate("/solucoes")}
                 className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-foreground text-background text-xs uppercase tracking-luxury hover:bg-gradient-gold hover:text-accent-foreground transition-all duration-500"
               >
                 {t.hero.ctaProducts}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </button>
               <button
-                onClick={() => document.getElementById("sobre")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => navigate("/sobre")}
                 className="inline-flex items-center justify-center px-8 py-4 text-xs uppercase tracking-luxury text-foreground/80 hover:text-gold transition-colors"
               >
                 {t.hero.ctaPhilosophy}

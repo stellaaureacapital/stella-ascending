@@ -186,7 +186,7 @@ const Market = () => {
 
       <section className="container pt-16 pb-10">
         <Link
-          to="/#inicio"
+          to="/"
           className="inline-flex items-center gap-2 text-[11px] uppercase tracking-luxury text-muted-foreground hover:text-gold transition-colors"
         >
           <ArrowLeft className="h-3.5 w-3.5" /> {t.market.backHome}

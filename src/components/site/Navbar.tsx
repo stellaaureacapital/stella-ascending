@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { useLang } from "@/i18n/LanguageContext";
 import LangSwitch from "./LangSwitch";
@@ -9,17 +9,14 @@ const Navbar = () => {
   const { t } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const location = useLocation();
   const navigate = useNavigate();
 
   const links = [
-    { label: t.nav.home, href: "inicio" },
-    { label: t.nav.about, href: "sobre" },
-    { label: t.nav.products, href: "produtos" },
-    { label: t.nav.services, href: "servicos" },
-    { label: t.nav.market, href: "/mercado", route: true },
-    { label: t.nav.blog, href: "blog" },
-    { label: t.nav.contact, href: "contato" },
+    { label: t.nav.home, to: "/" },
+    { label: t.nav.about, to: "/sobre" },
+    { label: `${t.nav.products} & ${t.nav.services}`, to: "/solucoes" },
+    { label: t.nav.market, to: "/mercado" },
+    { label: t.nav.contact, to: "/contato" },
   ];
 
   useEffect(() => {
@@ -29,14 +26,13 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const goAnchor = (id: string) => {
+  const goContact = () => {
     setOpen(false);
-    if (location.pathname !== "/") {
-      navigate("/#" + id);
-      return;
-    }
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    navigate("/contato");
+  };
+  const goHome = () => {
+    setOpen(false);
+    navigate("/");
   };
 
   return (
@@ -48,10 +44,7 @@ const Navbar = () => {
       }`}
     >
       <nav className="container flex items-center justify-between h-20">
-        <button
-          onClick={() => goAnchor("inicio")}
-          className="flex items-center gap-3 group"
-        >
+        <button onClick={goHome} className="flex items-center gap-3 group">
           <img src={logo} alt="Stella Aurea Capital" className="h-10 w-10 object-contain" />
           <span className="hidden sm:flex flex-col leading-none">
             <span className="font-serif text-lg tracking-wide">Stella Aurea</span>
@@ -62,21 +55,17 @@ const Navbar = () => {
         <ul className="hidden lg:flex items-center gap-8">
           {links.map((l) => (
             <li key={l.label}>
-              {l.route ? (
-                <Link
-                  to={l.href}
-                  className="text-xs uppercase tracking-luxury text-foreground/80 hover:text-gold transition-colors duration-300 relative after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-px after:w-0 after:bg-gold after:transition-all after:duration-500 hover:after:w-full"
-                >
-                  {l.label}
-                </Link>
-              ) : (
-                <button
-                  onClick={() => goAnchor(l.href)}
-                  className="text-xs uppercase tracking-luxury text-foreground/80 hover:text-gold transition-colors duration-300 relative after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-px after:w-0 after:bg-gold after:transition-all after:duration-500 hover:after:w-full"
-                >
-                  {l.label}
-                </button>
-              )}
+              <NavLink
+                to={l.to}
+                end={l.to === "/"}
+                className={({ isActive }) =>
+                  `text-xs uppercase tracking-luxury transition-colors duration-300 relative after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-px after:bg-gold after:transition-all after:duration-500 hover:after:w-full hover:text-gold ${
+                    isActive ? "text-gold after:w-full" : "text-foreground/80 after:w-0"
+                  }`
+                }
+              >
+                {l.label}
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -84,7 +73,7 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-4">
           <LangSwitch />
           <button
-            onClick={() => goAnchor("contato")}
+            onClick={goContact}
             className="inline-flex items-center justify-center px-5 py-3 text-[11px] uppercase tracking-luxury border border-foreground/80 hover:bg-foreground hover:text-background transition-all duration-500"
           >
             {t.nav.cta}
@@ -108,22 +97,13 @@ const Navbar = () => {
           <ul className="container py-6 flex flex-col gap-5">
             {links.map((l) => (
               <li key={l.label}>
-                {l.route ? (
-                  <Link
-                    to={l.href}
-                    onClick={() => setOpen(false)}
-                    className="block text-sm uppercase tracking-luxury py-1"
-                  >
-                    {l.label}
-                  </Link>
-                ) : (
-                  <button
-                    onClick={() => goAnchor(l.href)}
-                    className="block w-full text-left text-sm uppercase tracking-luxury py-1"
-                  >
-                    {l.label}
-                  </button>
-                )}
+                <Link
+                  to={l.to}
+                  onClick={() => setOpen(false)}
+                  className="block text-sm uppercase tracking-luxury py-1"
+                >
+                  {l.label}
+                </Link>
               </li>
             ))}
           </ul>

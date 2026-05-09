@@ -7,6 +7,9 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ServiceDetail from "./pages/ServiceDetail.tsx";
 import Market from "./pages/Market.tsx";
+import Sobre from "./pages/Sobre.tsx";
+import Solucoes from "./pages/Solucoes.tsx";
+import Contato from "./pages/Contato.tsx";
 import { LanguageProvider } from "./i18n/LanguageContext";
 
 const queryClient = new QueryClient();
@@ -20,6 +23,9 @@ const App = () => (
         <HashRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/sobre" element={<Sobre />} />
+            <Route path="/solucoes" element={<Solucoes />} />
+            <Route path="/contato" element={<Contato />} />
             <Route path="/servicos/:slug" element={<ServiceDetail />} />
             <Route path="/mercado" element={<Market />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
