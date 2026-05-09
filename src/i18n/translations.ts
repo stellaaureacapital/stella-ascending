@@ -289,6 +289,36 @@ const ptDict = {
     en: "EN",
     aria: "Idioma",
   },
+  homePillars: {
+    eyebrow: "Por onde começar",
+    titleA: "Três caminhos.",
+    titleEm: "Um propósito",
+    titleB: ".",
+    desc: "Conheça quem somos, descubra nossas soluções e acompanhe o mercado em tempo real.",
+    cards: [
+      {
+        kicker: "01",
+        title: "Quem somos",
+        desc: "Visão, missão e valores que orientam cada análise e recomendação.",
+        cta: "Conheça a Stella Aurea",
+        to: "/sobre",
+      },
+      {
+        kicker: "02",
+        title: "Soluções",
+        desc: "E-books, cursos e consultoria independente para investidores que buscam clareza.",
+        cta: "Ver produtos e serviços",
+        to: "/solucoes",
+      },
+      {
+        kicker: "03",
+        title: "Mercado",
+        desc: "Maiores altas, baixas, índices e notícias do Brasil e dos EUA em um só lugar.",
+        cta: "Acessar mercado",
+        to: "/mercado",
+      },
+    ],
+  },
 };
 
 const esDict: Dict = {
@@ -578,6 +608,36 @@ const esDict: Dict = {
     en: "EN",
     aria: "Idioma",
   },
+  homePillars: {
+    eyebrow: "Por dónde empezar",
+    titleA: "Tres caminos.",
+    titleEm: "Un propósito",
+    titleB: ".",
+    desc: "Conocé quiénes somos, descubrí nuestras soluciones y seguí el mercado en tiempo real.",
+    cards: [
+      {
+        kicker: "01",
+        title: "Quiénes somos",
+        desc: "Visión, misión y valores que orientan cada análisis y recomendación.",
+        cta: "Conocé Stella Aurea",
+        to: "/sobre",
+      },
+      {
+        kicker: "02",
+        title: "Soluciones",
+        desc: "E-books, cursos y consultoría independiente para inversores que buscan claridad.",
+        cta: "Ver productos y servicios",
+        to: "/solucoes",
+      },
+      {
+        kicker: "03",
+        title: "Mercado",
+        desc: "Principales subas, bajas, índices y noticias de Paraguay y EE.UU. en un solo lugar.",
+        cta: "Acceder al mercado",
+        to: "/mercado",
+      },
+    ],
+  },
 };
 
 const enDict: Dict = {
@@ -866,6 +926,36 @@ const enDict: Dict = {
     es: "ES",
     en: "EN",
     aria: "Language",
+  },
+  homePillars: {
+    eyebrow: "Where to start",
+    titleA: "Three paths.",
+    titleEm: "One purpose",
+    titleB: ".",
+    desc: "Discover who we are, explore our solutions and follow global markets in real time.",
+    cards: [
+      {
+        kicker: "01",
+        title: "Who we are",
+        desc: "The vision, mission and values that guide every analysis and recommendation.",
+        cta: "Meet Stella Aurea",
+        to: "/sobre",
+      },
+      {
+        kicker: "02",
+        title: "Solutions",
+        desc: "E-books, courses and independent advisory for investors seeking clarity.",
+        cta: "See products & services",
+        to: "/solucoes",
+      },
+      {
+        kicker: "03",
+        title: "Markets",
+        desc: "Top movers, key indices and the headlines moving Wall Street, the City and beyond.",
+        cta: "Open market view",
+        to: "/mercado",
+      },
+    ],
   },
 };
 

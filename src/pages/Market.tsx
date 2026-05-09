@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowDownRight, ArrowLeft, ArrowUpRight, ExternalLink, TrendingDown, TrendingUp } from "lucide-react";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import Blog from "@/components/site/Blog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import StockList from "@/components/market/StockList";
 import IndexTicker from "@/components/market/IndexTicker";
@@ -293,6 +294,8 @@ const Market = () => {
           {t.market.disclaimer}
         </p>
       </section>
+
+      <Blog />
 
       <Footer />
     </main>
