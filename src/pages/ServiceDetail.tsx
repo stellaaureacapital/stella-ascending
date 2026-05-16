@@ -8,6 +8,7 @@ import { getServiceBySlug, services } from "@/data/services";
 import { getServiceEsBySlug, servicesEs } from "@/i18n/servicesEs";
 import { getServiceEnBySlug, servicesEn } from "@/i18n/servicesEn";
 import { useLang } from "@/i18n/LanguageContext";
+import { useSeo } from "@/hooks/use-seo";
 
 const ServiceDetail = () => {
   const { lang, t } = useLang();
@@ -22,28 +23,54 @@ const ServiceDetail = () => {
 
   useEffect(() => {
     if (!service) return;
-    document.title = `${service.title} · Stella Aurea Capital`;
-    const desc = service.shortDesc;
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.setAttribute("name", "description");
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute("content", desc);
-
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.setAttribute("rel", "canonical");
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute(
-      "href",
-      `${window.location.origin}/servicos/${service.slug}`,
-    );
-
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }, [service]);
+
+  useSeo(
+    service
+      ? {
+          title: `${service.title} · Stella Aurea Capital`,
+          description: service.shortDesc,
+          path: `/servicos/${service.slug}`,
+        }
+      : { title: "Stella Aurea Capital", description: "", path: "/" },
+  );
+
+  useEffect(() => {
+    if (!service) return;
+    const ldId = "ld-service-detail";
+    const existing = document.getElementById(ldId);
+    if (existing) existing.remove();
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = ldId;
+    script.text = JSON.stringify([
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: service.title,
+        description: service.shortDesc,
+        provider: {
+          "@type": "Organization",
+          name: "Stella Aurea Capital",
+          url: "https://stellaaureacapital.lovable.app",
+        },
+        url: `https://stellaaureacapital.lovable.app/#/servicos/${service.slug}`,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: service.faq.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+    ]);
+    document.head.appendChild(script);
+    return () => {
+      script.remove();
+    };
   }, [service]);
 
   if (!service) {

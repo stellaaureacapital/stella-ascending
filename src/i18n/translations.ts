@@ -11,6 +11,15 @@ const ptDict = {
     marketTitle: "Mercado · Stella Aurea Capital",
     marketDesc:
       "Acompanhe o mercado: top altas e baixas do dia, principais índices e últimas notícias do Brasil e dos EUA.",
+    aboutTitle: "Sobre · Stella Aurea Capital",
+    aboutDesc:
+      "Conheça a Stella Aurea Capital: visão, missão e valores que guiam nossa atuação independente em educação financeira e gestão estratégica de patrimônio.",
+    solutionsTitle: "Produtos e Serviços · Stella Aurea Capital",
+    solutionsDesc:
+      "E-books, cursos e consultoria estratégica da Stella Aurea Capital para investidores que buscam construir patrimônio sólido e perene.",
+    contactTitle: "Contato · Stella Aurea Capital",
+    contactDesc:
+      "Fale com a Stella Aurea Capital. Atendimento personalizado para investidores que valorizam independência, análise rigorosa e visão de longo prazo.",
   },
   nav: {
     home: "Início",
@@ -330,6 +339,15 @@ const esDict: Dict = {
     marketTitle: "Mercado · Stella Aurea Capital",
     marketDesc:
       "Seguí el mercado: principales subas y bajas del día, índices clave y últimas noticias de Paraguay y EE.UU.",
+    aboutTitle: "Nosotros · Stella Aurea Capital",
+    aboutDesc:
+      "Conocé a Stella Aurea Capital: visión, misión y valores que guían nuestra educación financiera independiente y la gestión estratégica de patrimonio.",
+    solutionsTitle: "Productos y Servicios · Stella Aurea Capital",
+    solutionsDesc:
+      "E-books, cursos y consultoría estratégica de Stella Aurea Capital para inversores que buscan construir patrimonio sólido y duradero.",
+    contactTitle: "Contacto · Stella Aurea Capital",
+    contactDesc:
+      "Hablá con Stella Aurea Capital. Atención personalizada para inversores que valoran independencia, análisis riguroso y visión de largo plazo.",
   },
   nav: {
     home: "Inicio",
@@ -649,6 +667,15 @@ const enDict: Dict = {
     marketTitle: "Markets · Stella Aurea Capital",
     marketDesc:
       "Track global markets: top movers, key indices and headlines from the US, UK and Europe — all in one place.",
+    aboutTitle: "About · Stella Aurea Capital",
+    aboutDesc:
+      "Meet Stella Aurea Capital: the vision, mission and values guiding our independent financial education and strategic wealth approach.",
+    solutionsTitle: "Products & Services · Stella Aurea Capital",
+    solutionsDesc:
+      "E-books, courses and strategic consulting from Stella Aurea Capital for investors building durable, long-term wealth.",
+    contactTitle: "Contact · Stella Aurea Capital",
+    contactDesc:
+      "Get in touch with Stella Aurea Capital. Personalised support for investors who value independence, rigorous analysis and long-term thinking.",
   },
   nav: {
     home: "Home",
