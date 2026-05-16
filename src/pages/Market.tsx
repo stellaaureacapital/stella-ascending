@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowDownRight, ArrowLeft, ArrowUpRight, ExternalLink, TrendingDown, TrendingUp } from "lucide-react";
 import Navbar from "@/components/site/Navbar";
