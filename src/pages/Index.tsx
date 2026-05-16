@@ -6,30 +6,13 @@ import HomePillars from "@/components/site/HomePillars";
 import Blog from "@/components/site/Blog";
 import Footer from "@/components/site/Footer";
 import { useLang } from "@/i18n/LanguageContext";
+import { useSeo } from "@/hooks/use-seo";
 
 const Index = () => {
   const { t } = useLang();
   const location = useLocation();
 
-  useEffect(() => {
-    document.title = t.meta.homeTitle;
-    const desc = t.meta.homeDesc;
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.setAttribute("name", "description");
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute("content", desc);
-
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.setAttribute("rel", "canonical");
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute("href", window.location.origin + "/");
-  }, [t]);
+  useSeo({ title: t.meta.homeTitle, description: t.meta.homeDesc, path: "/" });
 
   // Scroll to hash anchor when navigating to /#anchor (e.g. from a service page)
   useEffect(() => {

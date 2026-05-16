@@ -27,6 +27,7 @@ import {
   type NewsItem,
 } from "@/data/market";
 import { useLang } from "@/i18n/LanguageContext";
+import { useSeo } from "@/hooks/use-seo";
 
 type Region = "LOCAL" | "US";
 
@@ -106,6 +107,7 @@ const SummaryStat = ({
 
 const Market = () => {
   const { lang, t } = useLang();
+  useSeo({ title: t.meta.marketTitle, description: t.meta.marketDesc, path: "/mercado" });
   const [region, setRegion] = useState<Region>("LOCAL");
   const isPY = lang === "es";
   const isEN = lang === "en";
@@ -115,18 +117,6 @@ const Market = () => {
     : isPY
       ? [...pyIndices, ...indices.filter((i) => i.region === "US")]
       : indices;
-
-  useEffect(() => {
-    document.title = t.meta.marketTitle;
-    const desc = t.meta.marketDesc;
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.setAttribute("name", "description");
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute("content", desc);
-  }, [t]);
 
   const localGainers = isEN ? euGainers : isPY ? pyGainers : brGainers;
   const localLosers = isEN ? euLosers : isPY ? pyLosers : brLosers;
