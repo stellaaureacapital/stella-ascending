@@ -11,6 +11,15 @@ const ptDict = {
     marketTitle: "Mercado · Stella Aurea Capital",
     marketDesc:
       "Acompanhe o mercado: top altas e baixas do dia, principais índices e últimas notícias do Brasil e dos EUA.",
+    aboutTitle: "Sobre · Stella Aurea Capital",
+    aboutDesc:
+      "Conheça a Stella Aurea Capital: visão, missão e valores que guiam nossa atuação independente em educação financeira e gestão estratégica de patrimônio.",
+    solutionsTitle: "Produtos e Serviços · Stella Aurea Capital",
+    solutionsDesc:
+      "E-books, cursos e consultoria estratégica da Stella Aurea Capital para investidores que buscam construir patrimônio sólido e perene.",
+    contactTitle: "Contato · Stella Aurea Capital",
+    contactDesc:
+      "Fale com a Stella Aurea Capital. Atendimento personalizado para investidores que valorizam independência, análise rigorosa e visão de longo prazo.",
   },
   nav: {
     home: "Início",
