@@ -125,7 +125,7 @@ export const services: ServiceDetail[] = [
     faq: [
       {
         q: "Os relatórios são pagos?",
-        a: "Há conteúdos gratuitos e materiais aprofundados via assinatura premium.",
+        a: "Materiais introdutórios estão disponíveis; análises aprofundadas via assinatura premium.",
       },
       {
         q: "Com que frequência são publicados?",
@@ -361,7 +361,7 @@ export const services: ServiceDetail[] = [
     forWho: [
       "Leitores exigentes que buscam profundidade",
       "Profissionais que precisam de fontes confiáveis",
-      "Investidores que querem ir além do conteúdo gratuito",
+      "Investidores que buscam análises aprofundadas e independentes",
     ],
     topics: [
       {
@@ -399,7 +399,7 @@ export const services: ServiceDetail[] = [
       },
       {
         q: "Posso testar antes?",
-        a: "Sim, há materiais gratuitos para você conhecer nosso padrão editorial.",
+        a: "Sim, oferecemos amostras editoriais para você conhecer nosso padrão.",
       },
     ],
   },
