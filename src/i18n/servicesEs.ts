@@ -111,7 +111,7 @@ export const servicesEs: ServiceDetail[] = [
     faq: [
       {
         q: "¿Los reportes son pagos?",
-        a: "Hay contenidos gratuitos y materiales en profundidad por suscripción premium.",
+        a: "Materiales introductorios disponibles; análisis en profundidad por suscripción premium.",
       },
       {
         q: "¿Con qué frecuencia se publican?",
@@ -347,7 +347,7 @@ export const servicesEs: ServiceDetail[] = [
     forWho: [
       "Lectores exigentes que buscan profundidad",
       "Profesionales que necesitan fuentes confiables sobre el mercado paraguayo",
-      "Inversores que quieren ir más allá del contenido gratuito",
+      "Inversores que buscan análisis en profundidad e independientes",
     ],
     topics: [
       {
@@ -385,7 +385,7 @@ export const servicesEs: ServiceDetail[] = [
       },
       {
         q: "¿Puedo probar antes?",
-        a: "Sí, hay materiales gratuitos para que conozcas nuestro estándar editorial.",
+        a: "Sí, ofrecemos muestras editoriales para que conozcas nuestro estándar.",
       },
     ],
   },

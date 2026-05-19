@@ -5,15 +5,15 @@ export type Dict = typeof ptDict;
 const ptDict = {
   region: "BR" as "BR" | "PY" | "EU",
   meta: {
-    homeTitle: "Stella Aurea Capital · Educação Financeira Estratégica",
+    homeTitle: "Stella Aurea Capital · Consultoria Financeira Estratégica",
     homeDesc:
-      "Stella Aurea Capital — educação financeira séria, estratégica e acessível. Análises, guias e visão de longo prazo para investidores.",
+      "Stella Aurea Capital — consultoria financeira independente, estratégica e personalizada. Análises, planejamento e visão de longo prazo para investidores.",
     marketTitle: "Mercado · Stella Aurea Capital",
     marketDesc:
       "Acompanhe o mercado: top altas e baixas do dia, principais índices e últimas notícias do Brasil e dos EUA.",
     aboutTitle: "Sobre · Stella Aurea Capital",
     aboutDesc:
-      "Conheça a Stella Aurea Capital: visão, missão e valores que guiam nossa atuação independente em educação financeira e gestão estratégica de patrimônio.",
+      "Conheça a Stella Aurea Capital: visão, missão e valores que guiam nossa consultoria financeira independente e a gestão estratégica de patrimônio.",
     solutionsTitle: "Produtos e Serviços · Stella Aurea Capital",
     solutionsDesc:
       "E-books, cursos e consultoria estratégica da Stella Aurea Capital para investidores que buscam construir patrimônio sólido e perene.",
@@ -37,17 +37,17 @@ const ptDict = {
     titleA: "A estrela que orienta suas",
     titleEm: "decisões",
     titleB: "financeiras.",
-    desc: "Educação financeira séria, estratégica e acessível. Conteúdo construído sobre dados, análise e visão de longo prazo — para investidores que buscam clareza.",
+    desc: "Consultoria financeira independente, estratégica e personalizada. Decisões construídas sobre dados, análise e visão de longo prazo — para investidores que buscam clareza.",
     ctaProducts: "Conheça nossos produtos",
     ctaPhilosophy: "Nossa filosofia →",
-    stat1k: "100%",
-    stat1v: "Gratuito",
+    stat1k: "1:1",
+    stat1v: "Sob medida",
     stat2k: "LP",
     stat2v: "Longo prazo",
     stat3k: "+5k",
     stat3v: "Leitores",
     estTag: "Estrela Dourada · Est. 2024",
-    marquee: ["Educação", "Análise", "Estratégia", "Longo prazo"],
+    marquee: ["Consultoria", "Análise", "Estratégia", "Longo prazo"],
   },
   about: {
     eyebrow: "Sobre — Stella Aurea",
@@ -58,7 +58,7 @@ const ptDict = {
     p2: "A Stella Aurea Capital nasceu para transformar a forma como as pessoas se relacionam com seus investimentos. Nosso nome — Stella Aurea, estrela dourada — representa o que queremos ser para nossos leitores: um ponto de referência, orientação e valor.",
     stats: [
       { k: "+5k", v: "Leitores ativos" },
-      { k: "100%", v: "Conteúdo gratuito" },
+      { k: "1:1", v: "Atendimento personalizado" },
       { k: "LP", v: "Visão de longo prazo" },
     ],
     imgAlt: "Mesa de trabalho premium com caderno, caneta dourada e gráfico financeiro",
@@ -136,9 +136,9 @@ const ptDict = {
     ctaCard: "Conhecer",
     pillarsEyebrow: "Nossos quatro pilares",
     pillars: [
-      { n: "01", t: "Educação séria", d: "Aprender a investir começa por aprender a pensar." },
+      { n: "01", t: "Consultoria séria", d: "Decisões construídas com método, não com palpite." },
       { n: "02", t: "Análise estratégica", d: "Decisões guiadas por dados e leitura de cenários." },
-      { n: "03", t: "Acessibilidade", d: "Conteúdo gratuito, claro e de alto nível." },
+      { n: "03", t: "Independência", d: "Sem conflito de interesse, sem comissões ocultas." },
       { n: "04", t: "Longo prazo", d: "Disciplina, método e a estrela certa para se orientar." },
     ],
   },
@@ -208,7 +208,7 @@ const ptDict = {
     successDesc: "Em breve entraremos em contato.",
   },
   footer: {
-    desc: "Educação financeira séria, estratégica e acessível. Um ponto de referência, orientação e valor no universo dos investimentos.",
+    desc: "Consultoria financeira independente, estratégica e personalizada. Um ponto de referência, orientação e valor no universo dos investimentos.",
     navTitle: "Navegação",
     contactTitle: "Contato",
     email: "contato@stellaaureacapital.com.br",
@@ -333,15 +333,15 @@ const ptDict = {
 const esDict: Dict = {
   region: "PY",
   meta: {
-    homeTitle: "Stella Aurea Capital · Educación Financiera Estratégica",
+    homeTitle: "Stella Aurea Capital · Consultoría Financiera Estratégica",
     homeDesc:
-      "Stella Aurea Capital — educación financiera seria, estratégica y accesible para Paraguay. Análisis, guías y visión de largo plazo para inversores.",
+      "Stella Aurea Capital — consultoría financiera independiente, estratégica y personalizada para Paraguay. Análisis, planificación y visión de largo plazo para inversores.",
     marketTitle: "Mercado · Stella Aurea Capital",
     marketDesc:
       "Seguí el mercado: principales subas y bajas del día, índices clave y últimas noticias de Paraguay y EE.UU.",
     aboutTitle: "Nosotros · Stella Aurea Capital",
     aboutDesc:
-      "Conocé a Stella Aurea Capital: visión, misión y valores que guían nuestra educación financiera independiente y la gestión estratégica de patrimonio.",
+      "Conocé a Stella Aurea Capital: visión, misión y valores que guían nuestra consultoría financiera independiente y la gestión estratégica de patrimonio.",
     solutionsTitle: "Productos y Servicios · Stella Aurea Capital",
     solutionsDesc:
       "E-books, cursos y consultoría estratégica de Stella Aurea Capital para inversores que buscan construir patrimonio sólido y duradero.",
@@ -365,17 +365,17 @@ const esDict: Dict = {
     titleA: "La estrella que guía tus",
     titleEm: "decisiones",
     titleB: "financieras.",
-    desc: "Educación financiera seria, estratégica y accesible para el inversor paraguayo. Contenido construido sobre datos, análisis y visión de largo plazo — para quienes buscan claridad en guaraníes y dólares.",
+    desc: "Consultoría financiera independiente, estratégica y personalizada para el inversor paraguayo. Decisiones construidas sobre datos, análisis y visión de largo plazo — para quienes buscan claridad en guaraníes y dólares.",
     ctaProducts: "Conocé nuestros productos",
     ctaPhilosophy: "Nuestra filosofía →",
-    stat1k: "100%",
-    stat1v: "Gratuito",
+    stat1k: "1:1",
+    stat1v: "A medida",
     stat2k: "LP",
     stat2v: "Largo plazo",
     stat3k: "+5k",
     stat3v: "Lectores",
     estTag: "Estrella Dorada · Est. 2024",
-    marquee: ["Educación", "Análisis", "Estrategia", "Largo plazo"],
+    marquee: ["Consultoría", "Análisis", "Estrategia", "Largo plazo"],
   },
   about: {
     eyebrow: "Nosotros — Stella Aurea",
@@ -386,7 +386,7 @@ const esDict: Dict = {
     p2: "Stella Aurea Capital nació para transformar la forma en que las personas se relacionan con sus inversiones en Paraguay. Nuestro nombre — Stella Aurea, estrella dorada — representa lo que queremos ser para nuestros lectores: un punto de referencia, orientación y valor en la BVA, en bonos soberanos y más allá.",
     stats: [
       { k: "+5k", v: "Lectores activos" },
-      { k: "100%", v: "Contenido gratuito" },
+      { k: "1:1", v: "Atención personalizada" },
       { k: "LP", v: "Visión de largo plazo" },
     ],
     imgAlt: "Escritorio premium con cuaderno, lapicera dorada y gráfico financiero",
@@ -464,9 +464,9 @@ const esDict: Dict = {
     ctaCard: "Conocer",
     pillarsEyebrow: "Nuestros cuatro pilares",
     pillars: [
-      { n: "01", t: "Educación seria", d: "Aprender a invertir empieza por aprender a pensar." },
+      { n: "01", t: "Consultoría seria", d: "Decisiones con método, no con corazonadas." },
       { n: "02", t: "Análisis estratégico", d: "Decisiones guiadas por datos y lectura de escenarios." },
-      { n: "03", t: "Accesibilidad", d: "Contenido gratuito, claro y de alto nivel." },
+      { n: "03", t: "Independencia", d: "Sin conflicto de interés, sin comisiones ocultas." },
       { n: "04", t: "Largo plazo", d: "Disciplina, método y la estrella correcta para orientarte." },
     ],
   },
@@ -536,7 +536,7 @@ const esDict: Dict = {
     successDesc: "Pronto te contactamos.",
   },
   footer: {
-    desc: "Educación financiera seria, estratégica y accesible para Paraguay. Un punto de referencia, orientación y valor en el universo de las inversiones.",
+    desc: "Consultoría financiera independiente, estratégica y personalizada para Paraguay. Un punto de referencia, orientación y valor en el universo de las inversiones.",
     navTitle: "Navegación",
     contactTitle: "Contacto",
     email: "contacto@stellaaureacapital.com",
@@ -661,15 +661,15 @@ const esDict: Dict = {
 const enDict: Dict = {
   region: "EU",
   meta: {
-    homeTitle: "Stella Aurea Capital · Global Financial Education",
+    homeTitle: "Stella Aurea Capital · Global Financial Advisory",
     homeDesc:
-      "Stella Aurea Capital — serious, strategic and accessible financial education with a global lens. Analysis, guides and long-term thinking for investors across the US, UK, Europe and beyond.",
+      "Stella Aurea Capital — independent, strategic and personalised financial advisory with a global lens. Analysis, planning and long-term thinking for investors across the US, UK, Europe and beyond.",
     marketTitle: "Markets · Stella Aurea Capital",
     marketDesc:
       "Track global markets: top movers, key indices and headlines from the US, UK and Europe — all in one place.",
     aboutTitle: "About · Stella Aurea Capital",
     aboutDesc:
-      "Meet Stella Aurea Capital: the vision, mission and values guiding our independent financial education and strategic wealth approach.",
+      "Meet Stella Aurea Capital: the vision, mission and values guiding our independent financial advisory and strategic wealth approach.",
     solutionsTitle: "Products & Services · Stella Aurea Capital",
     solutionsDesc:
       "E-books, courses and strategic consulting from Stella Aurea Capital for investors building durable, long-term wealth.",
@@ -693,17 +693,17 @@ const enDict: Dict = {
     titleA: "The star that guides your",
     titleEm: "financial",
     titleB: "decisions.",
-    desc: "Serious, strategic and accessible financial education for global investors. Built on data, analysis and long-term thinking — for those who want clarity across US, UK and European markets.",
+    desc: "Independent, strategic and personalised financial advisory for global investors. Built on data, analysis and long-term thinking — for those who want clarity across US, UK and European markets.",
     ctaProducts: "Explore our products",
     ctaPhilosophy: "Our philosophy →",
-    stat1k: "100%",
-    stat1v: "Free access",
+    stat1k: "1:1",
+    stat1v: "Tailored",
     stat2k: "LT",
     stat2v: "Long-term",
     stat3k: "+5k",
     stat3v: "Readers",
     estTag: "Golden Star · Est. 2024",
-    marquee: ["Education", "Analysis", "Strategy", "Long-term"],
+    marquee: ["Advisory", "Analysis", "Strategy", "Long-term"],
   },
   about: {
     eyebrow: "About — Stella Aurea",
@@ -714,7 +714,7 @@ const enDict: Dict = {
     p2: "Stella Aurea Capital was created to transform the way people relate to their investments. Our name — Stella Aurea, golden star — reflects what we aim to be for our readers: a point of reference, orientation and value across Wall Street, the City of London, Frankfurt and beyond.",
     stats: [
       { k: "+5k", v: "Active readers" },
-      { k: "100%", v: "Free content" },
+      { k: "1:1", v: "Personalised support" },
       { k: "LT", v: "Long-term focus" },
     ],
     imgAlt: "Premium desk with notebook, gold pen and financial chart",
@@ -792,9 +792,9 @@ const enDict: Dict = {
     ctaCard: "Explore",
     pillarsEyebrow: "Our four pillars",
     pillars: [
-      { n: "01", t: "Serious education", d: "Learning to invest starts with learning to think." },
+      { n: "01", t: "Serious advisory", d: "Decisions built on method, not guesswork." },
       { n: "02", t: "Strategic analysis", d: "Decisions guided by data and scenario reading." },
-      { n: "03", t: "Accessibility", d: "Free, clear, high-quality content." },
+      { n: "03", t: "Independence", d: "No conflicts of interest, no hidden fees." },
       { n: "04", t: "Long-term", d: "Discipline, method, and the right star to follow." },
     ],
   },
@@ -864,7 +864,7 @@ const enDict: Dict = {
     successDesc: "We'll be in touch soon.",
   },
   footer: {
-    desc: "Serious, strategic and accessible financial education with a global perspective. A point of reference, orientation and value in the world of investing.",
+    desc: "Independent, strategic and personalised financial advisory with a global perspective. A point of reference, orientation and value in the world of investing.",
     navTitle: "Navigation",
     contactTitle: "Contact",
     email: "contact@stellaaureacapital.com",

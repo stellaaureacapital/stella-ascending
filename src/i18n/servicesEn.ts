@@ -68,7 +68,7 @@ export const servicesEn: ServiceDetail[] = [
       { step: "03", title: "Synthesis", desc: "Clear communication, no unnecessary jargon." },
     ],
     faq: [
-      { q: "Are reports paid?", a: "Free content is available, with deeper materials via premium subscription." },
+      { q: "Are reports paid?", a: "Introductory materials are available; in-depth analyses via premium subscription." },
       { q: "How often are they published?", a: "Monthly macro, quarterly sector, alerts as relevant events unfold." },
     ],
   },
