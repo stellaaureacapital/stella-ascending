@@ -6,7 +6,6 @@ import Footer from "@/components/site/Footer";
 import Blog from "@/components/site/Blog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import StockList from "@/components/market/StockList";
-import IndexTicker from "@/components/market/IndexTicker";
 import { fmtIndex, fmtPct, fmtTime } from "@/components/market/format";
 import {
   brGainers,
