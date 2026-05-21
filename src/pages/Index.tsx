@@ -4,6 +4,7 @@ import Navbar from "@/components/site/Navbar";
 import Hero from "@/components/site/Hero";
 import HomePillars from "@/components/site/HomePillars";
 import Blog from "@/components/site/Blog";
+import Contact from "@/components/site/Contact";
 import Footer from "@/components/site/Footer";
 import { useLang } from "@/i18n/LanguageContext";
 import { useSeo } from "@/hooks/use-seo";
@@ -31,6 +32,7 @@ const Index = () => {
       <Hero />
       <HomePillars />
       <Blog />
+      <Contact />
       <Footer />
     </main>
   );
