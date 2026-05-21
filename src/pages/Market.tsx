@@ -173,8 +173,6 @@ const Market = () => {
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <IndexTicker items={tickerIndices} />
-
       <section className="container pt-16 pb-10">
         <Link
           to="/"
