@@ -6,16 +6,41 @@ const Contact = () => {
   const { t } = useLang();
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const data = new FormData(form);
+    const nome = String(data.get("nome") || "");
+    const email = String(data.get("email") || "");
+    const assunto = String(data.get("assunto") || "");
+    const mensagem = String(data.get("mensagem") || "");
+
+    const payload = new URLSearchParams();
+    payload.append("entry.2003835089", nome);
+    payload.append("entry.1053861533", email);
+    payload.append(
+      "entry.679199944",
+      assunto ? `[${assunto}]\n\n${mensagem}` : mensagem,
+    );
+
     setLoading(true);
-    setTimeout(() => {
+    try {
+      await fetch(
+        "https://docs.google.com/forms/d/e/1FAIpQLSe0WQ9ACSY2shGlIHQjR-usWheXlKJyZ14dPeiSV9czTYtKyg/formResponse",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: payload.toString(),
+        },
+      );
+      form.reset();
+      toast.success(t.contact.successTitle, { description: t.contact.successDesc });
+    } catch {
+      toast.error(t.contact.successTitle, { description: "Erro ao enviar. Tente novamente." });
+    } finally {
       setLoading(false);
-      (e.target as HTMLFormElement).reset();
-      toast.success(t.contact.successTitle, {
-        description: t.contact.successDesc,
-      });
-    }, 800);
+    }
   };
 
   return (
