@@ -32,6 +32,7 @@ const Index = () => {
       <Hero />
       <HomePillars />
       <Blog />
+      <Contact />
       <Footer />
     </main>
   );
