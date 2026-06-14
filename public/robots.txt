@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://stellaaureacapital.lovable.app/sitemap.xml
