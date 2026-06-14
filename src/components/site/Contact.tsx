@@ -1,19 +1,55 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { z } from "zod";
 import { toast } from "sonner";
 import { useLang } from "@/i18n/LanguageContext";
+
+const schema = z.object({
+  nome: z.string().trim().min(2, "Informe seu nome").max(100, "Nome muito longo"),
+  email: z.string().trim().email("E-mail inválido").max(254),
+  assunto: z.string().trim().max(150).optional().or(z.literal("")),
+  mensagem: z.string().trim().min(10, "Mensagem muito curta").max(2000, "Mensagem muito longa"),
+  consent: z.literal(true, { errorMap: () => ({ message: "É necessário aceitar a Política de Privacidade." }) }),
+  website: z.string().max(0, "Spam detectado").optional().or(z.literal("")), // honeypot
+});
 
 const Contact = () => {
   const { t } = useLang();
   const [loading, setLoading] = useState(false);
+  const mountedAt = useRef<number>(Date.now());
+  const lastSubmitAt = useRef<number>(0);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     const data = new FormData(form);
-    const nome = String(data.get("nome") || "");
-    const email = String(data.get("email") || "");
-    const assunto = String(data.get("assunto") || "");
-    const mensagem = String(data.get("mensagem") || "");
+
+    // Anti-bot: minimum dwell time (3s) and per-submission cooldown (15s)
+    if (Date.now() - mountedAt.current < 3000) {
+      toast.error("Aguarde um instante antes de enviar.");
+      return;
+    }
+    if (Date.now() - lastSubmitAt.current < 15000) {
+      toast.error("Aguarde alguns segundos antes de reenviar.");
+      return;
+    }
+
+    const parsed = schema.safeParse({
+      nome: data.get("nome"),
+      email: data.get("email"),
+      assunto: data.get("assunto") || "",
+      mensagem: data.get("mensagem"),
+      consent: data.get("consent") === "on",
+      website: data.get("website") || "",
+    });
+
+    if (!parsed.success) {
+      const first = parsed.error.issues[0];
+      toast.error(first?.message || "Verifique os campos do formulário.");
+      return;
+    }
+
+    const { nome, email, assunto, mensagem } = parsed.data;
 
     const payload = new URLSearchParams();
     payload.append("entry.2003835089", nome);
@@ -24,6 +60,7 @@ const Contact = () => {
     );
 
     setLoading(true);
+    lastSubmitAt.current = Date.now();
     try {
       await fetch(
         "https://docs.google.com/forms/d/e/1FAIpQLSe0WQ9ACSY2shGlIHQjR-usWheXlKJyZ14dPeiSV9czTYtKyg/formResponse",
@@ -79,6 +116,30 @@ const Contact = () => {
               className="bg-transparent border-b border-border focus:border-gold py-2 outline-none transition-colors resize-none"
             />
           </div>
+          {/* Honeypot field — hidden from real users */}
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="hidden"
+          />
+          <label className="sm:col-span-2 flex items-start gap-3 text-xs text-muted-foreground cursor-pointer">
+            <input
+              type="checkbox"
+              name="consent"
+              required
+              className="mt-1 h-4 w-4 accent-[hsl(var(--gold))]"
+            />
+            <span>
+              Li e concordo com a{" "}
+              <Link to="/privacidade" className="text-gold hover:underline">
+                Política de Privacidade
+              </Link>{" "}
+              e autorizo o tratamento dos meus dados conforme a LGPD.
+            </span>
+          </label>
           <button
             type="submit"
             disabled={loading}
