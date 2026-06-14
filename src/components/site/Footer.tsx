@@ -50,9 +50,17 @@ const Footer = () => {
   const { t } = useLang();
   const routes = ["/sobre", "/solucoes", "/mercado", "/contato"];
   const labels = [t.nav.about, `${t.nav.products} & ${t.nav.services}`, t.nav.market, t.nav.contact];
+  const legalLinks: { to: string; label: string }[] = [
+    { to: "/privacidade", label: "Política de Privacidade" },
+    { to: "/cookies", label: "Política de Cookies" },
+    { to: "/termos", label: "Termos de Uso" },
+    { to: "/disclaimer", label: "Disclaimer Financeiro" },
+    { to: "/lgpd", label: "Canal LGPD" },
+    { to: "/seguranca", label: "Segurança e Privacidade" },
+  ];
   return (
     <footer className="bg-secondary/40 text-foreground py-20 border-t border-border">
-      <div className="container grid md:grid-cols-4 gap-12">
+      <div className="container grid md:grid-cols-5 gap-12">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3 mb-6">
             <img src={logo} alt="Stella Aurea Capital" className="h-10 w-10 object-contain" />
@@ -94,6 +102,19 @@ const Footer = () => {
         </div>
 
         <div>
+          <p className="text-[10px] tracking-luxury uppercase text-gold mb-5">Legal</p>
+          <ul className="space-y-3 text-sm text-foreground/70">
+            {legalLinks.map((l) => (
+              <li key={l.to}>
+                <Link to={l.to} className="hover:text-gold transition-colors">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
           <p className="text-[10px] tracking-luxury uppercase text-gold mb-5">{t.footer.contactTitle}</p>
           <ul className="space-y-3 text-sm text-foreground/70">
             <li>{t.footer.email}</li>
@@ -102,9 +123,17 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="container mt-16 pt-8 border-t border-border flex flex-col sm:flex-row justify-between gap-4 text-[10px] tracking-luxury uppercase text-muted-foreground">
-        <p>© {new Date().getFullYear()} Stella Aurea Capital. {t.footer.rights}</p>
-        <p>{t.footer.motto}</p>
+      <div className="container mt-16 pt-8 border-t border-border">
+        <p className="text-[11px] text-muted-foreground leading-relaxed max-w-4xl">
+          As informações disponibilizadas neste site possuem caráter exclusivamente
+          educacional e informativo e não constituem recomendação de investimento,
+          oferta de valores mobiliários ou consultoria financeira individualizada.
+          Leia o <Link to="/disclaimer" className="text-gold hover:underline">Disclaimer Financeiro</Link>.
+        </p>
+        <div className="mt-6 flex flex-col sm:flex-row justify-between gap-4 text-[10px] tracking-luxury uppercase text-muted-foreground">
+          <p>© {new Date().getFullYear()} Stella Aurea Capital. {t.footer.rights}</p>
+          <p>{t.footer.motto}</p>
+        </div>
       </div>
     </footer>
   );
