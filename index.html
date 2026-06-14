@@ -3,6 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Security meta tags (CSP, Referrer-Policy, content-type sniffing).
+         Note: HSTS and X-Frame-Options must be set as HTTP headers at the
+         hosting layer (Lovable / CDN / reverse-proxy). These meta tags
+         provide the additional protection that is enforceable from HTML. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://www.gstatic.com https://www.clarity.ms https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https: wss:; frame-src https://www.google.com https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self' https://docs.google.com;" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), interest-cohort=()" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#0a0a0a" />
     <title>Stella Aurea Capital · Consultoria Financeira Estratégica</title>
     <meta name="description" content="Stella Aurea Capital — consultoria financeira independente, estratégica e personalizada. Análises, planejamento e visão de longo prazo para investidores.">
     <meta name="author" content="Stella Aurea Capital" />
@@ -37,6 +47,29 @@
       "url": "https://stellaaureacapital.lovable.app"
     }
   </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "name": "Stella Aurea Capital",
+      "url": "https://stellaaureacapital.lovable.app",
+      "logo": "https://storage.googleapis.com/gpt-engineer-file-uploads/35JooiKuU2MNUjVMMBXpcnUbHJ72/social-images/social-1776651813468-Stella_Aurea_-_LOGO.webp",
+      "description": "Consultoria financeira estratégica, análise de mercado e planejamento patrimonial de longo prazo.",
+      "areaServed": ["BR", "PY"],
+      "serviceType": ["Consultoria Financeira", "Planejamento Patrimonial", "Análise de Mercado"],
+      "sameAs": [
+        "https://www.instagram.com/stellaaureacapital/",
+        "https://www.facebook.com/profile.php?id=61575679150055",
+        "https://www.tiktok.com/@stellaaureacapital",
+        "https://x.com/StellaAureaCap",
+        "https://www.youtube.com/@stellaaureacapital",
+        "https://www.linkedin.com/in/stellaaureacapital/"
+      ]
+    }
+  </script>
+  <!-- Google Analytics / Tag Manager / Clarity placeholders.
+       Carregados condicionalmente após consentimento de cookies em src/lib/consent.ts.
+       Para ativar, defina os IDs em src/lib/consent.ts (GA_ID, GTM_ID, CLARITY_ID). -->
 </head>
 
   <body>
