@@ -8,8 +8,11 @@ import {
   type ConsentCategories,
   defaultConsent,
 } from "@/lib/consent";
+import { useLang } from "@/i18n/LanguageContext";
 
 const CookieBanner = () => {
+  const { t } = useLang();
+  const c = t.cookies;
   const [open, setOpen] = useState(false);
   const [customize, setCustomize] = useState(false);
   const [prefs, setPrefs] = useState<ConsentCategories>(defaultConsent);
@@ -25,26 +28,24 @@ const CookieBanner = () => {
   return (
     <div
       role="dialog"
-      aria-label="Aviso de cookies"
+      aria-label={c.ariaLabel}
       className="fixed inset-x-0 bottom-0 z-[60] p-4 sm:p-6"
     >
       <div className="mx-auto max-w-4xl bg-background border border-border shadow-elegant p-6 sm:p-8">
         {!customize ? (
           <>
             <p className="text-[10px] tracking-luxury uppercase text-gold mb-3">
-              Privacidade · LGPD
+              {c.eyebrow}
             </p>
-            <h2 className="font-serif text-2xl mb-3">Usamos cookies</h2>
+            <h2 className="font-serif text-2xl mb-3">{c.title}</h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Utilizamos cookies necessários para o funcionamento do site e, com seu
-              consentimento, cookies analíticos e de marketing para entender o uso e
-              melhorar sua experiência. Saiba mais em nossa{" "}
+              {c.bodyA}{" "}
               <Link to="/cookies" className="text-gold underline underline-offset-4">
-                Política de Cookies
+                {c.cookiesLink}
               </Link>{" "}
-              e{" "}
+              {c.and}{" "}
               <Link to="/privacidade" className="text-gold underline underline-offset-4">
-                Política de Privacidade
+                {c.privacyLink}
               </Link>
               .
             </p>
@@ -56,7 +57,7 @@ const CookieBanner = () => {
                 }}
                 className="px-6 py-3 bg-foreground text-background text-[11px] uppercase tracking-luxury hover:bg-gradient-gold hover:text-accent-foreground transition-all"
               >
-                Aceitar todos
+                {c.acceptAll}
               </button>
               <button
                 onClick={() => {
@@ -65,44 +66,44 @@ const CookieBanner = () => {
                 }}
                 className="px-6 py-3 border border-border text-[11px] uppercase tracking-luxury hover:border-gold transition-all"
               >
-                Recusar
+                {c.reject}
               </button>
               <button
                 onClick={() => setCustomize(true)}
                 className="px-6 py-3 text-[11px] uppercase tracking-luxury text-foreground/70 hover:text-gold transition-all"
               >
-                Personalizar
+                {c.customize}
               </button>
             </div>
           </>
         ) : (
           <>
             <p className="text-[10px] tracking-luxury uppercase text-gold mb-3">
-              Preferências de cookies
+              {c.prefsEyebrow}
             </p>
-            <h2 className="font-serif text-2xl mb-4">Personalize suas preferências</h2>
+            <h2 className="font-serif text-2xl mb-4">{c.prefsTitle}</h2>
             <div className="space-y-3">
               <Row
-                title="Necessários"
-                desc="Essenciais para a navegação e funcionalidades básicas. Não podem ser desativados."
+                title={c.rows.necessaryTitle}
+                desc={c.rows.necessaryDesc}
                 checked
                 disabled
               />
               <Row
-                title="Analíticos"
-                desc="Ajudam a entender como o site é usado (ex.: Google Analytics, Clarity)."
+                title={c.rows.analyticsTitle}
+                desc={c.rows.analyticsDesc}
                 checked={prefs.analytics}
                 onChange={(v) => setPrefs({ ...prefs, analytics: v })}
               />
               <Row
-                title="Marketing"
-                desc="Usados para mensurar campanhas e personalizar comunicações."
+                title={c.rows.marketingTitle}
+                desc={c.rows.marketingDesc}
                 checked={prefs.marketing}
                 onChange={(v) => setPrefs({ ...prefs, marketing: v })}
               />
               <Row
-                title="Funcionais"
-                desc="Permitem recursos adicionais como preferências de idioma e vídeos incorporados."
+                title={c.rows.functionalTitle}
+                desc={c.rows.functionalDesc}
                 checked={prefs.functional}
                 onChange={(v) => setPrefs({ ...prefs, functional: v })}
               />
@@ -115,7 +116,7 @@ const CookieBanner = () => {
                 }}
                 className="px-6 py-3 bg-foreground text-background text-[11px] uppercase tracking-luxury hover:bg-gradient-gold hover:text-accent-foreground transition-all"
               >
-                Salvar preferências
+                {c.save}
               </button>
               <button
                 onClick={() => {
@@ -124,13 +125,13 @@ const CookieBanner = () => {
                 }}
                 className="px-6 py-3 border border-border text-[11px] uppercase tracking-luxury hover:border-gold transition-all"
               >
-                Aceitar todos
+                {c.acceptAll}
               </button>
               <button
                 onClick={() => setCustomize(false)}
                 className="px-6 py-3 text-[11px] uppercase tracking-luxury text-foreground/70 hover:text-gold transition-all"
               >
-                Voltar
+                {c.back}
               </button>
             </div>
           </>
