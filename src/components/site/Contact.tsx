@@ -4,33 +4,33 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { useLang } from "@/i18n/LanguageContext";
 
-const schema = z.object({
-  nome: z.string().trim().min(2, "Informe seu nome").max(100, "Nome muito longo"),
-  email: z.string().trim().email("E-mail inválido").max(254),
-  assunto: z.string().trim().max(150).optional().or(z.literal("")),
-  mensagem: z.string().trim().min(10, "Mensagem muito curta").max(2000, "Mensagem muito longa"),
-  consent: z.literal(true, { errorMap: () => ({ message: "É necessário aceitar a Política de Privacidade." }) }),
-  website: z.string().max(0, "Spam detectado").optional().or(z.literal("")), // honeypot
-});
-
 const Contact = () => {
   const { t } = useLang();
   const [loading, setLoading] = useState(false);
   const mountedAt = useRef<number>(Date.now());
   const lastSubmitAt = useRef<number>(0);
+  const e = t.contact.errors;
+  const schema = z.object({
+    nome: z.string().trim().min(2, e.name).max(100, e.nameLong),
+    email: z.string().trim().email(e.email).max(254),
+    assunto: z.string().trim().max(150).optional().or(z.literal("")),
+    mensagem: z.string().trim().min(10, e.messageShort).max(2000, e.messageLong),
+    consent: z.literal(true, { errorMap: () => ({ message: e.consent }) }),
+    website: z.string().max(0, e.spam).optional().or(z.literal("")), // honeypot
+  });
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
+  const onSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
+    const form = ev.target as HTMLFormElement;
     const data = new FormData(form);
 
     // Anti-bot: minimum dwell time (3s) and per-submission cooldown (15s)
     if (Date.now() - mountedAt.current < 3000) {
-      toast.error("Aguarde um instante antes de enviar.");
+      toast.error(e.tooFast);
       return;
     }
     if (Date.now() - lastSubmitAt.current < 15000) {
-      toast.error("Aguarde alguns segundos antes de reenviar.");
+      toast.error(e.cooldown);
       return;
     }
 
@@ -45,7 +45,7 @@ const Contact = () => {
 
     if (!parsed.success) {
       const first = parsed.error.issues[0];
-      toast.error(first?.message || "Verifique os campos do formulário.");
+      toast.error(first?.message || e.generic);
       return;
     }
 
@@ -74,7 +74,7 @@ const Contact = () => {
       form.reset();
       toast.success(t.contact.successTitle, { description: t.contact.successDesc });
     } catch {
-      toast.error(t.contact.successTitle, { description: "Erro ao enviar. Tente novamente." });
+      toast.error(t.contact.errorTitle, { description: t.contact.errorDesc });
     } finally {
       setLoading(false);
     }
@@ -133,11 +133,11 @@ const Contact = () => {
               className="mt-1 h-4 w-4 accent-[hsl(var(--gold))]"
             />
             <span>
-              Li e concordo com a{" "}
+              {t.contact.consentA}{" "}
               <Link to="/privacidade" className="text-gold hover:underline">
-                Política de Privacidade
+                {t.contact.consentLink}
               </Link>{" "}
-              e autorizo o tratamento dos meus dados conforme a LGPD.
+              {t.contact.consentB}
             </span>
           </label>
           <button
