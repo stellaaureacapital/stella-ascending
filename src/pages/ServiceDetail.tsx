@@ -74,7 +74,7 @@ const ServiceDetail = () => {
   }, [service]);
 
   if (!service) {
-    return <Navigate to="/404" replace />;
+    return <Navigate to="/" replace />;
   }
 
   const Icon = service.icon;
