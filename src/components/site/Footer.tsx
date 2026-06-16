@@ -50,13 +50,14 @@ const Footer = () => {
   const { t } = useLang();
   const routes = ["/sobre", "/solucoes", "/mercado", "/contato"];
   const labels = [t.nav.about, `${t.nav.products} & ${t.nav.services}`, t.nav.market, t.nav.contact];
+  const L = t.footer.legal;
   const legalLinks: { to: string; label: string }[] = [
-    { to: "/privacidade", label: "Política de Privacidade" },
-    { to: "/cookies", label: "Política de Cookies" },
-    { to: "/termos", label: "Termos de Uso" },
-    { to: "/disclaimer", label: "Disclaimer Financeiro" },
-    { to: "/lgpd", label: "Canal LGPD" },
-    { to: "/seguranca", label: "Segurança e Privacidade" },
+    { to: "/privacidade", label: L.privacy },
+    { to: "/cookies", label: L.cookies },
+    { to: "/termos", label: L.terms },
+    { to: "/disclaimer", label: L.disclaimer },
+    { to: "/lgpd", label: L.lgpd },
+    { to: "/seguranca", label: L.security },
   ];
   return (
     <footer className="bg-secondary/40 text-foreground py-20 border-t border-border">
@@ -102,7 +103,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <p className="text-[10px] tracking-luxury uppercase text-gold mb-5">Legal</p>
+          <p className="text-[10px] tracking-luxury uppercase text-gold mb-5">{t.footer.legalTitle}</p>
           <ul className="space-y-3 text-sm text-foreground/70">
             {legalLinks.map((l) => (
               <li key={l.to}>
@@ -125,10 +126,8 @@ const Footer = () => {
 
       <div className="container mt-16 pt-8 border-t border-border">
         <p className="text-[11px] text-muted-foreground leading-relaxed max-w-4xl">
-          As informações disponibilizadas neste site possuem caráter exclusivamente
-          educacional e informativo e não constituem recomendação de investimento,
-          oferta de valores mobiliários ou consultoria financeira individualizada.
-          Leia o <Link to="/disclaimer" className="text-gold hover:underline">Disclaimer Financeiro</Link>.
+          {t.footer.disclaimerA}{" "}
+          <Link to="/disclaimer" className="text-gold hover:underline">{t.footer.disclaimerLink}</Link>.
         </p>
         <div className="mt-6 flex flex-col sm:flex-row justify-between gap-4 text-[10px] tracking-luxury uppercase text-muted-foreground">
           <p>© {new Date().getFullYear()} Stella Aurea Capital. {t.footer.rights}</p>
