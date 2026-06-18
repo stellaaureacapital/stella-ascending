@@ -1,4 +1,4 @@
-import aboutImg from "@/assets/about-image.jpg";
+import aboutImg from "@/assets/about-portrait.png.asset.json";
 import { useLang } from "@/i18n/LanguageContext";
 
 const About = () => {
@@ -9,7 +9,7 @@ const About = () => {
         <div className="relative order-2 lg:order-1">
           <div className="absolute -inset-4 border border-gold/30 -z-10 translate-x-6 translate-y-6" />
           <img
-            src={aboutImg}
+            src={aboutImg.url}
             alt={t.about.imgAlt}
             width={1200}
             height={1400}
