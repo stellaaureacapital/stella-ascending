@@ -5,17 +5,16 @@ import { useSeo } from "@/hooks/use-seo";
 import { useLang } from "@/i18n/LanguageContext";
 
 type Props = {
-  title: string;
-  description: string;
   path: string;
-  eyebrow: string;
-  heading: string;
-  updatedAt?: string;
-  children: ReactNode;
+  legalKey: import("@/i18n/legal").LegalKey;
 };
 
-const LegalLayout = ({ title, description, path, eyebrow, heading, updatedAt, children }: Props) => {
-  const { t } = useLang();
+const LegalLayout = ({ path, legalKey }: Props) => {
+  const { t, lang } = useLang();
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getLegal } = require("@/i18n/legal") as typeof import("@/i18n/legal");
+  const { meta, body } = getLegal(lang, legalKey);
+  const { title, description, eyebrow, heading, updatedAt } = meta;
   useSeo({ title, description, path });
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -32,7 +31,7 @@ const LegalLayout = ({ title, description, path, eyebrow, heading, updatedAt, ch
           )}
           <div className="hairline w-24 mb-12" />
           <div className="prose prose-sm sm:prose-base max-w-none prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground/80 prose-li:text-foreground/80 prose-strong:text-foreground prose-a:text-[hsl(var(--gold))] prose-a:no-underline hover:prose-a:underline">
-            {children}
+            {body}
           </div>
         </div>
       </article>
