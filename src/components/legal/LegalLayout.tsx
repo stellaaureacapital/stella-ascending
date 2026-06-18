@@ -1,18 +1,17 @@
-import { useEffect, type ReactNode } from "react";
+import { useEffect } from "react";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import { useSeo } from "@/hooks/use-seo";
 import { useLang } from "@/i18n/LanguageContext";
+import { getLegal, type LegalKey } from "@/i18n/legal";
 
 type Props = {
   path: string;
-  legalKey: import("@/i18n/legal").LegalKey;
+  legalKey: LegalKey;
 };
 
 const LegalLayout = ({ path, legalKey }: Props) => {
   const { t, lang } = useLang();
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { getLegal } = require("@/i18n/legal") as typeof import("@/i18n/legal");
   const { meta, body } = getLegal(lang, legalKey);
   const { title, description, eyebrow, heading, updatedAt } = meta;
   useSeo({ title, description, path });
