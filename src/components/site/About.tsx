@@ -14,7 +14,7 @@ const About = () => {
             width={1200}
             height={1400}
             loading="lazy"
-            className="w-full h-[420px] sm:h-[520px] md:h-[600px] object-cover object-top shadow-elegant"
+            className="w-full h-auto object-contain shadow-elegant"
           />
         </div>
 
