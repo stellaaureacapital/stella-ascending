@@ -4,6 +4,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { useLang } from "@/i18n/LanguageContext";
 import LangSwitch from "./LangSwitch";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const { t } = useLang();
@@ -71,6 +72,7 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden lg:flex items-center gap-4">
+          <ThemeToggle />
           <LangSwitch />
           <button
             onClick={goContact}
@@ -81,6 +83,7 @@ const Navbar = () => {
         </div>
 
         <div className="lg:hidden flex items-center gap-3">
+          <ThemeToggle />
           <LangSwitch />
           <button
             className="p-2 -mr-2"
