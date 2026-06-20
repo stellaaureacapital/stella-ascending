@@ -13,6 +13,15 @@
     <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), interest-cohort=()" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta name="theme-color" content="#0a0a0a" />
+    <script>
+      (function() {
+        try {
+          var t = localStorage.getItem('sac-theme');
+          if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          if (t === 'dark') document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
     <title>Stella Aurea Capital · Consultoria Financeira Estratégica</title>
     <meta name="description" content="Stella Aurea Capital — consultoria financeira independente, estratégica e personalizada. Análises, planejamento e visão de longo prazo para investidores.">
     <meta name="author" content="Stella Aurea Capital" />
