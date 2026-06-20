@@ -15,7 +15,7 @@ const ItemCard = ({
   cta: string;
   onClick: () => void;
 }) => (
-  <article className="group bg-background p-6 sm:p-8 lg:p-10 flex flex-col transition-all duration-700 hover:bg-obsidian hover:text-primary-foreground">
+  <article className="group bg-background p-6 sm:p-8 lg:p-10 flex flex-col transition-all duration-700 hover:bg-foreground hover:text-background">
     <div className="flex items-start justify-between mb-6 sm:mb-8 gap-3">
       <Icon
         className="h-6 w-6 sm:h-7 sm:w-7 text-gold shrink-0 transition-transform duration-700 group-hover:scale-110"
@@ -28,7 +28,7 @@ const ItemCard = ({
       )}
     </div>
     <h3 className="font-serif text-xl sm:text-2xl mb-3 leading-tight">{item.title}</h3>
-    <p className="text-xs sm:text-sm leading-relaxed text-foreground/70 group-hover:text-primary-foreground/70 flex-1">
+    <p className="text-xs sm:text-sm leading-relaxed text-foreground/70 group-hover:text-background/70 flex-1">
       {item.desc}
     </p>
     <p className="mt-5 sm:mt-6 text-[10px] tracking-luxury uppercase text-muted-foreground group-hover:text-gold/80">
@@ -100,12 +100,12 @@ const Products = () => {
             </p>
             <span className="flex-1 h-px bg-border" />
           </div>
-          <article className="bg-obsidian text-primary-foreground p-8 sm:p-12 lg:p-16 grid lg:grid-cols-5 gap-8 lg:gap-12 border border-border">
+          <article className="bg-foreground text-background p-8 sm:p-12 lg:p-16 grid lg:grid-cols-5 gap-8 lg:gap-12 border border-border">
             <div className="lg:col-span-3">
               <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl mb-5 leading-tight">
                 <span className="text-gradient-gold">{p.consulting.title}</span>
               </h3>
-              <p className="text-sm sm:text-base leading-relaxed text-primary-foreground/75 mb-6">
+              <p className="text-sm sm:text-base leading-relaxed text-background/75 mb-6">
                 {p.consulting.desc}
               </p>
               <p className="text-[10px] tracking-luxury uppercase text-gold/80">
@@ -115,7 +115,7 @@ const Products = () => {
             <div className="lg:col-span-2 flex flex-col">
               <ul className="space-y-3 sm:space-y-4 mb-8 flex-1">
                 {p.consulting.bullets.map((b) => (
-                  <li key={b} className="flex items-start gap-3 text-sm text-primary-foreground/85">
+                  <li key={b} className="flex items-start gap-3 text-sm text-background/85">
                     <Check className="h-4 w-4 text-gold shrink-0 mt-0.5" strokeWidth={1.5} />
                     <span>{b}</span>
                   </li>
