@@ -91,6 +91,15 @@ const Products = () => {
         <Group label={p.ebooksLabel} icon={BookOpen} items={p.ebooks} />
         <Group label={p.coursesLabel} icon={GraduationCap} items={p.courses} />
 
+        <div className="mb-16 sm:mb-20 overflow-hidden border border-border/60">
+          <img
+            src="/lobby-stella.jpg"
+            alt="Lobby Stella Aurea Capital com logotipo dourado"
+            loading="lazy"
+            className="w-full h-auto object-cover"
+          />
+        </div>
+
         {/* Consulting */}
         <div>
           <div className="flex items-center gap-4 mb-6 sm:mb-8">
