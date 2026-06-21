@@ -6,6 +6,7 @@ import Footer from "@/components/site/Footer";
 import Blog from "@/components/site/Blog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import StockList from "@/components/market/StockList";
+import { TVAdvancedChart, TVTicker, TVMarketOverview } from "@/components/market/TradingViewWidgets";
 import { fmtIndex, fmtPct, fmtTime } from "@/components/market/format";
 import {
   brGainers,
@@ -172,6 +173,10 @@ const Market = () => {
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
 
+      <div className="border-b border-border/60">
+        <TVTicker locale={lang === "es" ? "es" : lang === "en" ? "en" : "br"} />
+      </div>
+
       <section className="container pt-16 pb-10">
         <Link
           to="/"
@@ -235,6 +240,30 @@ const Market = () => {
             change={`${Math.round((summary.advancers / (summary.advancers + summary.decliners)) * 100)}%`}
             positive={summary.advancers >= summary.decliners}
           />
+        </div>
+      </section>
+
+      <section className="container pb-16">
+        <div className="flex items-end justify-between gap-6 mb-6">
+          <div>
+            <div className="text-[11px] uppercase tracking-luxury text-gold">Live</div>
+            <h2 className="font-serif text-2xl md:text-3xl mt-2">
+              {lang === "es"
+                ? "Mercados en tiempo real"
+                : lang === "en"
+                  ? "Live markets"
+                  : "Mercados em tempo real"}
+            </h2>
+          </div>
+        </div>
+        <div className="border border-border/60 p-2 bg-secondary/30">
+          <TVAdvancedChart
+            symbol={region === "US" ? "FOREXCOM:SPXUSD" : "BMFBOVESPA:IBOV"}
+            locale={lang === "es" ? "es" : lang === "en" ? "en" : "br"}
+          />
+        </div>
+        <div className="mt-6 border border-border/60 p-2 bg-secondary/30">
+          <TVMarketOverview locale={lang === "es" ? "es" : lang === "en" ? "en" : "br"} />
         </div>
       </section>
 
