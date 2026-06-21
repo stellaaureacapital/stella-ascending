@@ -6,7 +6,14 @@ import Footer from "@/components/site/Footer";
 import Blog from "@/components/site/Blog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import StockList from "@/components/market/StockList";
-import { TVAdvancedChart, TVTicker, TVMarketOverview } from "@/components/market/TradingViewWidgets";
+import {
+  TVAdvancedChart,
+  TVTicker,
+  TVMarketOverview,
+  TVEconomicCalendar,
+  TVHeatmap,
+} from "@/components/market/TradingViewWidgets";
+import BcbIndicators from "@/components/market/BcbIndicators";
 import { fmtIndex, fmtPct, fmtTime } from "@/components/market/format";
 import {
   brGainers,
@@ -264,6 +271,36 @@ const Market = () => {
         </div>
         <div className="mt-6 border border-border/60 p-2 bg-secondary/30">
           <TVMarketOverview locale={lang === "es" ? "es" : lang === "en" ? "en" : "br"} />
+        </div>
+
+        <div className="mt-10">
+          <BcbIndicators />
+        </div>
+
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div>
+            <div className="mb-4">
+              <div className="text-[11px] uppercase tracking-luxury text-gold">Heatmap</div>
+              <h2 className="font-serif text-2xl md:text-3xl mt-2">
+                {region === "US" ? "S&P 500 — Mapa de calor" : "Bovespa — Mapa de calor"}
+              </h2>
+            </div>
+            <div className="border border-border/60 p-2 bg-secondary/30">
+              <TVHeatmap
+                dataSource={region === "US" ? "SPX500" : "BVSP"}
+                locale={lang === "es" ? "es" : lang === "en" ? "en" : "br"}
+              />
+            </div>
+          </div>
+          <div>
+            <div className="mb-4">
+              <div className="text-[11px] uppercase tracking-luxury text-gold">Calendário</div>
+              <h2 className="font-serif text-2xl md:text-3xl mt-2">Agenda econômica</h2>
+            </div>
+            <div className="border border-border/60 p-2 bg-secondary/30">
+              <TVEconomicCalendar locale={lang === "es" ? "es" : lang === "en" ? "en" : "br"} />
+            </div>
+          </div>
         </div>
       </section>
 
