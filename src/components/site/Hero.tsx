@@ -16,15 +16,6 @@ const Hero = () => {
       id="inicio"
       className="relative min-h-screen flex items-center bg-background overflow-hidden"
     >
-      {/* Subtle decorative grid */}
-      <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-        }}
-      />
       {/* Soft gold glow */}
       <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-gold/10 blur-3xl pointer-events-none" />
       <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-gold/5 blur-3xl pointer-events-none" />
