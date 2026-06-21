@@ -47,6 +47,15 @@ const HomePillars = () => {
             </button>
           ))}
         </div>
+
+        <div className="mt-16 overflow-hidden border border-border/60">
+          <img
+            src="/lobby-stella.jpg"
+            alt="Lobby Stella Aurea Capital com logotipo dourado"
+            loading="lazy"
+            className="w-full h-auto object-cover"
+          />
+        </div>
       </div>
     </section>
   );
