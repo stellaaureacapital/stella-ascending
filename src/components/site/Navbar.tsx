@@ -5,12 +5,15 @@ import logo from "@/assets/logo.png";
 import { useLang } from "@/i18n/LanguageContext";
 import LangSwitch from "./LangSwitch";
 import ThemeToggle from "./ThemeToggle";
+import { useAuth } from "@/hooks/use-auth";
+import { UserRound } from "lucide-react";
 
 const Navbar = () => {
   const { t } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const { session } = useAuth();
 
   const links = [
     { label: t.nav.home, to: "/" },
@@ -75,6 +78,13 @@ const Navbar = () => {
           <ThemeToggle />
           <LangSwitch />
           <button
+            onClick={() => { setOpen(false); navigate(session ? "/area/minha-conta" : "/login"); }}
+            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-luxury text-foreground/80 hover:text-gold transition-colors"
+          >
+            <UserRound className="h-4 w-4" />
+            {session ? "Área do cliente" : "Entrar"}
+          </button>
+          <button
             onClick={goContact}
             className="inline-flex items-center justify-center px-5 py-3 text-[11px] uppercase tracking-luxury border border-foreground/80 hover:bg-foreground hover:text-background transition-all duration-500"
           >
@@ -109,6 +119,15 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                to={session ? "/area/minha-conta" : "/login"}
+                onClick={() => setOpen(false)}
+                className="block text-sm uppercase tracking-luxury py-1 text-gold"
+              >
+                {session ? "Área do cliente" : "Entrar"}
+              </Link>
+            </li>
           </ul>
         </div>
       )}
