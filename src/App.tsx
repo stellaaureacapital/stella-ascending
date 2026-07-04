@@ -20,6 +20,18 @@ import CookieBanner from "./components/site/CookieBanner";
 import { useEffect } from "react";
 import { initConsent } from "./lib/consent";
 import { LanguageProvider } from "./i18n/LanguageContext";
+import { AuthProvider } from "./hooks/use-auth";
+import Login from "./pages/auth/Login";
+import Cadastro from "./pages/auth/Cadastro";
+import EsqueciSenha from "./pages/auth/EsqueciSenha";
+import ResetPassword from "./pages/auth/ResetPassword";
+import ProtectedRoute from "./components/area/ProtectedRoute";
+import AreaLayout from "./components/area/AreaLayout";
+import MinhaConta from "./pages/area/MinhaConta";
+import MeusProdutos from "./pages/area/MeusProdutos";
+import MeusEbooks from "./pages/area/MeusEbooks";
+import MeusCursos from "./pages/area/MeusCursos";
+import RelatoriosPremium from "./pages/area/RelatoriosPremium";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +46,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <AuthProvider>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/sobre" element={<Sobre />} />
@@ -47,10 +60,30 @@ const App = () => {
             <Route path="/disclaimer" element={<Disclaimer />} />
             <Route path="/lgpd" element={<Lgpd />} />
             <Route path="/seguranca" element={<Seguranca />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/esqueci-senha" element={<EsqueciSenha />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route
+              path="/area"
+              element={
+                <ProtectedRoute>
+                  <AreaLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<MinhaConta />} />
+              <Route path="minha-conta" element={<MinhaConta />} />
+              <Route path="meus-produtos" element={<MeusProdutos />} />
+              <Route path="meus-ebooks" element={<MeusEbooks />} />
+              <Route path="meus-cursos" element={<MeusCursos />} />
+              <Route path="relatorios-premium" element={<RelatoriosPremium />} />
+            </Route>
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
           <CookieBanner />
+          </AuthProvider>
         </BrowserRouter>
       </TooltipProvider>
     </LanguageProvider>
