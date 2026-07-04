@@ -14,16 +14,223 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      product_modules: {
+        Row: {
+          content_type: Database["public"]["Enums"]["module_content_type"]
+          content_url: string | null
+          created_at: string
+          description: string | null
+          id: string
+          is_preview: boolean
+          order_index: number
+          product_id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content_type?: Database["public"]["Enums"]["module_content_type"]
+          content_url?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_preview?: boolean
+          order_index?: number
+          product_id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content_type?: Database["public"]["Enums"]["module_content_type"]
+          content_url?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_preview?: boolean
+          order_index?: number
+          product_id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_modules_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          content_url: string | null
+          cover_url: string | null
+          created_at: string
+          description: string | null
+          id: string
+          is_premium: boolean
+          product_type: Database["public"]["Enums"]["product_type"]
+          short_description: string | null
+          slug: string
+          status: Database["public"]["Enums"]["product_status"]
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content_url?: string | null
+          cover_url?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_premium?: boolean
+          product_type: Database["public"]["Enums"]["product_type"]
+          short_description?: string | null
+          slug: string
+          status?: Database["public"]["Enums"]["product_status"]
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content_url?: string | null
+          cover_url?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_premium?: boolean
+          product_type?: Database["public"]["Enums"]["product_type"]
+          short_description?: string | null
+          slug?: string
+          status?: Database["public"]["Enums"]["product_status"]
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_access: {
+        Row: {
+          access_status: Database["public"]["Enums"]["access_status"]
+          created_at: string
+          expires_at: string | null
+          granted_at: string
+          id: string
+          notes: string | null
+          product_id: string
+          source: Database["public"]["Enums"]["access_source"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          access_status?: Database["public"]["Enums"]["access_status"]
+          created_at?: string
+          expires_at?: string | null
+          granted_at?: string
+          id?: string
+          notes?: string | null
+          product_id: string
+          source?: Database["public"]["Enums"]["access_source"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          access_status?: Database["public"]["Enums"]["access_status"]
+          created_at?: string
+          expires_at?: string | null
+          granted_at?: string
+          id?: string
+          notes?: string | null
+          product_id?: string
+          source?: Database["public"]["Enums"]["access_source"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_access_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_product_access: {
+        Args: { _product_id: string; _user_id: string }
+        Returns: boolean
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      access_source: "manual" | "purchase" | "bonus" | "admin"
+      access_status: "active" | "expired" | "revoked"
+      app_role: "user" | "admin"
+      module_content_type: "video" | "pdf" | "texto" | "link"
+      product_status: "active" | "draft" | "archived"
+      product_type: "ebook" | "curso" | "relatorio"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +357,13 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      access_source: ["manual", "purchase", "bonus", "admin"],
+      access_status: ["active", "expired", "revoked"],
+      app_role: ["user", "admin"],
+      module_content_type: ["video", "pdf", "texto", "link"],
+      product_status: ["active", "draft", "archived"],
+      product_type: ["ebook", "curso", "relatorio"],
+    },
   },
 } as const
