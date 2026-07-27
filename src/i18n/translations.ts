@@ -997,7 +997,7 @@ const enDict: Dict = {
     email: "contact@stellaaureacapital.com",
     location: "Global · London · New York",
     rights: "All rights reserved.",
-    motto: "Crafted with care · Long-term vision",
+    motto: "\n",
     nav: ["About", "Products", "Services", "Journal", "Contact"],
     navHrefs: ["#sobre", "#produtos", "#servicos", "#blog", "#contato"],
     legalTitle: "Legal",
