@@ -46,7 +46,7 @@ const ptDict = {
     stat2v: "Longo prazo",
     stat3k: "+5k",
     stat3v: "Leitores",
-    estTag: "Estrela Dourada · Est. 2024",
+    estTag: "\n",
     marquee: ["Consultoria", "Análise", "Estratégia", "Longo prazo"],
   },
   about: {
@@ -429,7 +429,7 @@ const esDict: Dict = {
     stat2v: "Largo plazo",
     stat3k: "+5k",
     stat3v: "Lectores",
-    estTag: "Estrella Dorada · Est. 2024",
+    estTag: "\n",
     marquee: ["Consultoría", "Análisis", "Estrategia", "Largo plazo"],
   },
   about: {
@@ -812,7 +812,7 @@ const enDict: Dict = {
     stat2v: "Long-term",
     stat3k: "+5k",
     stat3v: "Readers",
-    estTag: "Golden Star · Est. 2024",
+    estTag: "\n",
     marquee: ["Advisory", "Analysis", "Strategy", "Long-term"],
   },
   about: {
