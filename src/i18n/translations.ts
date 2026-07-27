@@ -229,7 +229,7 @@ const ptDict = {
     navTitle: "Navegação",
     contactTitle: "Contato",
     email: "contato@stellaaureacapital.com.br",
-    location: "São Paulo · Brasil  ·  Paraguay",
+    location: "Brasil · Paraguay",
     rights: "Todos os direitos reservados.",
     motto: "\n",
     nav: ["Sobre", "Produtos", "Serviços", "Blog", "Contato"],
