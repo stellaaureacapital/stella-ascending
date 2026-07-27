@@ -7,6 +7,8 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ServiceDetail from "./pages/ServiceDetail.tsx";
 import Market from "./pages/Market.tsx";
+import Artigos from "./pages/Artigos.tsx";
+import Artigo from "./pages/Artigo.tsx";
 import Sobre from "./pages/Sobre.tsx";
 import Solucoes from "./pages/Solucoes.tsx";
 import Contato from "./pages/Contato.tsx";
@@ -54,6 +56,8 @@ const App = () => {
             <Route path="/contato" element={<Contato />} />
             <Route path="/servicos/:slug" element={<ServiceDetail />} />
             <Route path="/mercado" element={<Market />} />
+            <Route path="/artigos" element={<Artigos />} />
+            <Route path="/artigos/:slug" element={<Artigo />} />
             <Route path="/privacidade" element={<Privacidade />} />
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/termos" element={<Termos />} />

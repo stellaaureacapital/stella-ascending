@@ -1,9 +1,11 @@
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
+import { getArticles } from "@/i18n/articles";
 
 const Blog = () => {
-  const { t } = useLang();
-  const posts = t.blog.posts;
+  const { t, lang } = useLang();
+  const posts = getArticles(lang);
   return (
     <section id="blog" className="py-32 bg-background">
       <div className="container">
@@ -18,19 +20,20 @@ const Blog = () => {
               {t.blog.titleB}
             </h2>
           </div>
-          <a
-            href="#"
+          <Link
+            to="/artigos"
             className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury hover:text-gold transition-colors group"
           >
             {t.blog.seeAll}
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </a>
+          </Link>
         </div>
 
         <div className="grid md:grid-cols-3 gap-px bg-border">
           {posts.map((p) => (
-            <article
-              key={p.title}
+            <Link
+              to={`/artigos/${p.slug}`}
+              key={p.slug}
               className="bg-background p-10 group cursor-pointer hover:bg-secondary/50 transition-colors duration-500 flex flex-col min-h-[360px]"
             >
               <div className="flex items-center gap-3 text-[10px] tracking-luxury uppercase text-muted-foreground mb-8">
@@ -44,11 +47,11 @@ const Blog = () => {
               <p className="text-sm text-muted-foreground leading-relaxed mb-auto">
                 {p.excerpt}
               </p>
-              <div className="flex items-center gap-2 mt-10 text-xs uppercase tracking-luxury">
+              <span className="flex items-center gap-2 mt-10 text-xs uppercase tracking-luxury">
                 {t.blog.readArticle}
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </div>
-            </article>
+              </span>
+            </Link>
           ))}
         </div>
       </div>
