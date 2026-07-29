@@ -139,6 +139,48 @@ export type Database = {
         }
         Relationships: []
       }
+      subscriptions: {
+        Row: {
+          cancel_at_period_end: boolean
+          created_at: string
+          current_period_end: string | null
+          id: string
+          plan: Database["public"]["Enums"]["subscription_plan"]
+          provider: string
+          provider_customer_id: string | null
+          provider_subscription_id: string | null
+          status: Database["public"]["Enums"]["subscription_status"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          cancel_at_period_end?: boolean
+          created_at?: string
+          current_period_end?: string | null
+          id?: string
+          plan?: Database["public"]["Enums"]["subscription_plan"]
+          provider?: string
+          provider_customer_id?: string | null
+          provider_subscription_id?: string | null
+          status?: Database["public"]["Enums"]["subscription_status"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          cancel_at_period_end?: boolean
+          created_at?: string
+          current_period_end?: string | null
+          id?: string
+          plan?: Database["public"]["Enums"]["subscription_plan"]
+          provider?: string
+          provider_customer_id?: string | null
+          provider_subscription_id?: string | null
+          status?: Database["public"]["Enums"]["subscription_status"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_access: {
         Row: {
           access_status: Database["public"]["Enums"]["access_status"]
@@ -221,6 +263,13 @@ export type Database = {
       module_content_type: "video" | "pdf" | "texto" | "link"
       product_status: "active" | "draft" | "archived"
       product_type: "ebook" | "curso" | "relatorio"
+      subscription_plan: "monthly" | "yearly"
+      subscription_status:
+        | "trialing"
+        | "active"
+        | "past_due"
+        | "canceled"
+        | "expired"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -354,6 +403,14 @@ export const Constants = {
       module_content_type: ["video", "pdf", "texto", "link"],
       product_status: ["active", "draft", "archived"],
       product_type: ["ebook", "curso", "relatorio"],
+      subscription_plan: ["monthly", "yearly"],
+      subscription_status: [
+        "trialing",
+        "active",
+        "past_due",
+        "canceled",
+        "expired",
+      ],
     },
   },
 } as const

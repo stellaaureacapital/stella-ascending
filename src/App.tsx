@@ -34,6 +34,8 @@ import MeusProdutos from "./pages/area/MeusProdutos";
 import MeusEbooks from "./pages/area/MeusEbooks";
 import MeusCursos from "./pages/area/MeusCursos";
 import RelatoriosPremium from "./pages/area/RelatoriosPremium";
+import Assinatura from "./pages/Assinatura";
+import AreaAssinatura from "./pages/area/Assinatura";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +56,7 @@ const App = () => {
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/solucoes" element={<Solucoes />} />
             <Route path="/contato" element={<Contato />} />
+            <Route path="/assinatura" element={<Assinatura />} />
             <Route path="/servicos/:slug" element={<ServiceDetail />} />
             <Route path="/mercado" element={<Market />} />
             <Route path="/artigos" element={<Artigos />} />
@@ -79,6 +82,7 @@ const App = () => {
               <Route index element={<MinhaConta />} />
               <Route path="minha-conta" element={<MinhaConta />} />
               <Route path="meus-produtos" element={<MeusProdutos />} />
+              <Route path="assinatura" element={<AreaAssinatura />} />
               <Route path="meus-ebooks" element={<MeusEbooks />} />
               <Route path="meus-cursos" element={<MeusCursos />} />
               <Route path="relatorios-premium" element={<RelatoriosPremium />} />

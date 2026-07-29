@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { LogOut, LayoutDashboard, Library, BookOpen, GraduationCap, FileText } from "lucide-react";
+import { LogOut, LayoutDashboard, Library, BookOpen, GraduationCap, FileText, Crown } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { useAuth } from "@/hooks/use-auth";
 
@@ -9,6 +9,7 @@ const items = [
   { to: "/area/meus-ebooks", label: "Ebooks", icon: BookOpen },
   { to: "/area/meus-cursos", label: "Cursos", icon: GraduationCap },
   { to: "/area/relatorios-premium", label: "Relatórios premium", icon: FileText },
+  { to: "/area/assinatura", label: "Assinatura", icon: Crown },
 ];
 
 const AreaLayout = () => {

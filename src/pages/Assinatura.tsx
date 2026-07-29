@@ -1,15 +1,16 @@
 import { useEffect } from "react";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
-import Products from "@/components/site/Products";
 import Pricing from "@/components/site/Pricing";
-import Services from "@/components/site/Services";
-import { useLang } from "@/i18n/LanguageContext";
 import { useSeo } from "@/hooks/use-seo";
 
-const Solucoes = () => {
-  const { t } = useLang();
-  useSeo({ title: t.meta.solutionsTitle, description: t.meta.solutionsDesc, path: "/solucoes" });
+const Assinatura = () => {
+  useSeo({
+    title: "Assinatura mensal e anual | Stella Aurea Capital",
+    description:
+      "Assine e tenha acesso ilimitado a todos os ebooks e cursos da Stella Aurea Capital. Planos mensal e anual.",
+    path: "/assinatura",
+  });
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -17,13 +18,11 @@ const Solucoes = () => {
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
       <div className="pt-20">
-        <Products />
         <Pricing />
-        <Services />
       </div>
       <Footer />
     </main>
   );
 };
 
-export default Solucoes;
+export default Assinatura;
