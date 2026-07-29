@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import Products from "@/components/site/Products";
+import Pricing from "@/components/site/Pricing";
 import Services from "@/components/site/Services";
 import { useLang } from "@/i18n/LanguageContext";
 import { useSeo } from "@/hooks/use-seo";
@@ -17,6 +18,7 @@ const Solucoes = () => {
       <Navbar />
       <div className="pt-20">
         <Products />
+        <Pricing />
         <Services />
       </div>
       <Footer />
