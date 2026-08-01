@@ -56,7 +56,7 @@ const Navbar = () => {
           </span>
         </button>
 
-        <ul className="hidden lg:flex items-center gap-8">
+        <ul className="hidden lg:flex items-center gap-8 whitespace-nowrap">
           {links.map((l) => (
             <li key={l.label}>
               <NavLink
@@ -79,14 +79,15 @@ const Navbar = () => {
           <LangSwitch />
           <button
             onClick={() => { setOpen(false); navigate(session ? "/area/minha-conta" : "/login"); }}
-            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-luxury text-foreground/80 hover:text-gold transition-colors"
+            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-luxury text-foreground/80 hover:text-gold transition-colors whitespace-nowrap"
+            aria-label={session ? "Área do cliente" : "Entrar"}
           >
             <UserRound className="h-4 w-4" />
-            {session ? "Área do cliente" : "Entrar"}
+            <span className="hidden xl:inline">{session ? "Área do cliente" : "Entrar"}</span>
           </button>
           <button
             onClick={goContact}
-            className="inline-flex items-center justify-center px-5 py-3 text-[11px] uppercase tracking-luxury border border-foreground/80 hover:bg-foreground hover:text-background transition-all duration-500"
+            className="inline-flex items-center justify-center px-5 py-3 text-[11px] uppercase tracking-luxury border border-foreground/80 hover:bg-foreground hover:text-background transition-all duration-500 whitespace-nowrap"
           >
             {t.nav.cta}
           </button>
