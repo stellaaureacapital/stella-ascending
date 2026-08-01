@@ -43,7 +43,7 @@ const AreaLayout = () => {
             Voltar ao site
           </Link>
 
-          <nav className="p-4 flex lg:flex-col gap-1 overflow-x-auto">
+          <nav className="p-4 flex lg:flex-col gap-1 overflow-x-auto lg:overflow-x-visible lg:overflow-y-auto lg:flex-1">
             {items.map((item) => {
               const Icon = item.icon;
               return (
