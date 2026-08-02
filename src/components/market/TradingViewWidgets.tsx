@@ -339,8 +339,6 @@ export const TVHeatmap = ({
 /* -------------------------------------------------------------------------- */
 /* Economic Map (new TradingView web component)                               */
 /* -------------------------------------------------------------------------- */
-const ECONOMIC_MAP_ID = "tv-economic-map-loader";
-
 /** Maps app language to the locale segment used by TradingView widget modules. */
 const mapLocale = (lang: string) => {
   const l = lang.toLowerCase();
