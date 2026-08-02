@@ -335,3 +335,45 @@ export const TVHeatmap = ({
     </LazyMount>
   );
 };
+
+/* -------------------------------------------------------------------------- */
+/* Economic Map (new TradingView web component)                               */
+/* -------------------------------------------------------------------------- */
+const ECONOMIC_MAP_ID = "tv-economic-map-loader";
+
+export const TVEconomicMap = ({
+  locale = "pt",
+  height = 560,
+}: { locale?: string; height?: number }) => {
+  const Inner = () => {
+    const ref = useRef<HTMLDivElement>(null);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+      const el = ref.current;
+      if (!el) return;
+      el.innerHTML = "<tv-economic-map style=\"display:block;width:100%\"></tv-economic-map>";
+
+      const src = `https://widgets.tradingview-widget.com/w/${locale}/tv-economic-map.js`;
+      if (!document.getElementById(`${ECONOMIC_MAP_ID}-${locale}`)) {
+        const s = document.createElement("script");
+        s.id = `${ECONOMIC_MAP_ID}-${locale}`;
+        s.type = "module";
+        s.src = src;
+        s.onerror = () => setError(true);
+        document.head.appendChild(s);
+      }
+      return () => {
+        if (el) el.innerHTML = "";
+      };
+    }, []);
+
+    if (error) return <Unavailable height={height} />;
+    return <div ref={ref} className="w-full" style={{ minHeight: height }} />;
+  };
+  return (
+    <LazyMount minHeight={height}>
+      <Inner />
+    </LazyMount>
+  );
+};

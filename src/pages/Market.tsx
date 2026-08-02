@@ -12,6 +12,7 @@ import {
   TVMarketOverview,
   TVEconomicCalendar,
   TVHeatmap,
+  TVEconomicMap,
 } from "@/components/market/TradingViewWidgets";
 import BcbIndicators from "@/components/market/BcbIndicators";
 import { fmtIndex, fmtPct, fmtTime } from "@/components/market/format";
@@ -275,6 +276,31 @@ const Market = () => {
 
         <div className="mt-10">
           <BcbIndicators />
+        </div>
+
+        <div className="mt-10">
+          <div className="mb-4">
+            <div className="text-[11px] uppercase tracking-luxury text-gold">
+              {lang === "es" ? "Macro" : lang === "en" ? "Macro" : "Macro"}
+            </div>
+            <h2 className="font-serif text-2xl md:text-3xl mt-2">
+              {lang === "es"
+                ? "Mapa económico global"
+                : lang === "en"
+                  ? "Global economic map"
+                  : "Mapa econômico global"}
+            </h2>
+            <p className="text-sm text-muted-foreground mt-2 max-w-2xl">
+              {lang === "es"
+                ? "Indicadores macroeconómicos por país, actualizados en tiempo real."
+                : lang === "en"
+                  ? "Macroeconomic indicators by country, updated in real time."
+                  : "Indicadores macroeconômicos por país, atualizados em tempo real."}
+            </p>
+          </div>
+          <div className="border border-border/60 p-2 bg-secondary/30">
+            <TVEconomicMap locale={lang === "es" ? "es" : lang === "en" ? "en" : "pt"} />
+          </div>
         </div>
 
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
