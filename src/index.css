@@ -172,3 +172,47 @@
   }
   .float-star { animation: float-star 5s ease-in-out infinite; }
 }
+
+/* TradingView web-component widgets — Stella Aurea theming via CSS vars */
+tv-economic-map {
+  display: block;
+  width: 100%;
+  --tv-widget-font-family: 'Inter', sans-serif;
+  --tv-widget-background-color: transparent;
+  --tv-widget-border-color: hsl(var(--border) / 0.6);
+  --tv-widget-attribution-border-color: hsl(var(--border) / 0.6);
+  --tv-widget-selected-border-color: hsl(var(--gold));
+  --tv-widget-focus-outline-color: hsl(var(--gold));
+  --tv-widget-accent-color: hsl(var(--gold));
+  --tv-widget-link-color: hsl(var(--gold-deep));
+  --tv-widget-text-color: hsl(var(--foreground));
+  --tv-widget-text-secondary-color: hsl(var(--muted-foreground));
+  --tv-widget-text-tertiary-color: hsl(var(--muted-foreground) / 0.8);
+  --tv-widget-price-text-color: hsl(var(--foreground));
+  --tv-widget-legend-text-color: hsl(var(--muted-foreground));
+  --tv-widget-hover-background-color: hsl(var(--gold) / 0.1);
+  --tv-widget-popup-background-color: hsl(var(--card));
+  --tv-widget-tooltip-background-color: hsl(var(--card));
+  --tv-widget-tooltip-text-color: hsl(var(--foreground));
+  --tv-widget-scrollbar-color: hsl(var(--gold) / 0.4);
+  --tv-widget-button-quiet-color: transparent;
+  --tv-widget-button-quiet-color-hover: hsl(var(--gold) / 0.12);
+  --tv-widget-button-quiet-color-active: hsl(var(--gold) / 0.18);
+  --tv-widget-button-quiet-text-color: hsl(var(--foreground));
+  --tv-widget-button-neutral-color: hsl(var(--secondary));
+  --tv-widget-button-neutral-color-hover: hsl(var(--gold) / 0.12);
+  --tv-widget-button-neutral-color-active: hsl(var(--gold) / 0.18);
+  --tv-widget-button-neutral-text-color: hsl(var(--foreground));
+  --tv-widget-button-bold-color: hsl(var(--gold));
+  --tv-widget-button-bold-color-hover: hsl(var(--gold-soft));
+  --tv-widget-button-bold-color-active: hsl(var(--gold-deep));
+  --tv-widget-button-bold-text-color: hsl(var(--obsidian));
+  --tv-widget-map-empty-fill: hsl(var(--muted) / 0.5);
+  --tv-widget-map-hover-stroke-color: hsl(var(--gold));
+  --tv-widget-scale-fill-one: hsl(42 55% 52% / 0.14);
+  --tv-widget-scale-fill-two: hsl(42 55% 52% / 0.28);
+  --tv-widget-scale-fill-three: hsl(42 55% 52% / 0.44);
+  --tv-widget-scale-fill-four: hsl(42 55% 52% / 0.62);
+  --tv-widget-scale-fill-five: hsl(40 58% 46% / 0.82);
+  --tv-widget-scale-fill-six: hsl(38 65% 38%);
+}
