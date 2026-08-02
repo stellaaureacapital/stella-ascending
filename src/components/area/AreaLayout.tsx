@@ -26,12 +26,12 @@ const AreaLayout = () => {
       <div className="flex flex-col lg:flex-row">
         <aside className="lg:w-72 lg:min-h-screen lg:sticky lg:top-0 lg:h-screen flex flex-col border-b lg:border-b-0 lg:border-r border-border/60 bg-secondary/30">
           <div className="p-6 flex items-center justify-between gap-3 border-b border-border/50">
-            <Link to="/" className="flex items-center gap-3 min-w-0">
+            <Link to="/" className="flex items-center gap-3 min-w-0 group">
               <img src={logo} alt="Stella Aurea Capital" className="h-9 w-9 object-contain" />
-              <div className="leading-none min-w-0">
-                <div className="font-serif text-lg truncate">Stella Aurea</div>
-                <div className="text-[10px] uppercase tracking-luxury text-muted-foreground">Área do cliente</div>
-              </div>
+              <span className="flex flex-col leading-none">
+                <span className="font-serif text-lg tracking-wide">Stella Aurea</span>
+                <span className="text-[10px] tracking-luxury uppercase text-muted-foreground">Capital</span>
+              </span>
             </Link>
           </div>
 
