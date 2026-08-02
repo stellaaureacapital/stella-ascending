@@ -341,38 +341,104 @@ export const TVHeatmap = ({
 /* -------------------------------------------------------------------------- */
 const ECONOMIC_MAP_ID = "tv-economic-map-loader";
 
+/** Maps app language to the locale segment used by TradingView widget modules. */
+const mapLocale = (lang: string) => {
+  const l = lang.toLowerCase();
+  if (l.startsWith("pt")) return "br";
+  if (l.startsWith("es")) return "es";
+  return "en";
+};
+
+/** Theme variables injected inside the widget iframe. */
+const mapThemeCss = (dark: boolean) => `
+  html,body{margin:0;padding:0;background:transparent;}
+  tv-economic-map{
+    display:block;width:100%;
+    --tv-widget-font-family:'Inter',system-ui,sans-serif;
+    --tv-widget-background-color:transparent;
+    --tv-widget-border-color:${dark ? "hsl(30 5% 20% / 0.8)" : "hsl(40 18% 84%)"};
+    --tv-widget-attribution-border-color:${dark ? "hsl(30 5% 20% / 0.8)" : "hsl(40 18% 84%)"};
+    --tv-widget-selected-border-color:hsl(42 55% 52%);
+    --tv-widget-focus-outline-color:hsl(42 55% 52%);
+    --tv-widget-accent-color:hsl(42 55% 52%);
+    --tv-widget-link-color:${dark ? "hsl(42 60% 68%)" : "hsl(38 65% 38%)"};
+    --tv-widget-text-color:${dark ? "hsl(42 30% 94%)" : "hsl(30 20% 10%)"};
+    --tv-widget-text-secondary-color:${dark ? "hsl(42 10% 70%)" : "hsl(30 10% 38%)"};
+    --tv-widget-text-tertiary-color:${dark ? "hsl(42 10% 60%)" : "hsl(30 10% 48%)"};
+    --tv-widget-price-text-color:${dark ? "hsl(42 30% 94%)" : "hsl(30 20% 10%)"};
+    --tv-widget-legend-text-color:${dark ? "hsl(42 10% 70%)" : "hsl(30 10% 38%)"};
+    --tv-widget-hover-background-color:hsl(42 55% 52% / 0.12);
+    --tv-widget-popup-background-color:${dark ? "hsl(30 6% 12%)" : "hsl(42 38% 98%)"};
+    --tv-widget-tooltip-background-color:${dark ? "hsl(30 6% 12%)" : "hsl(42 38% 98%)"};
+    --tv-widget-tooltip-text-color:${dark ? "hsl(42 30% 94%)" : "hsl(30 20% 10%)"};
+    --tv-widget-scrollbar-color:hsl(42 55% 52% / 0.4);
+    --tv-widget-button-quiet-color:transparent;
+    --tv-widget-button-quiet-color-hover:hsl(42 55% 52% / 0.12);
+    --tv-widget-button-quiet-color-active:hsl(42 55% 52% / 0.18);
+    --tv-widget-button-quiet-text-color:${dark ? "hsl(42 30% 94%)" : "hsl(30 20% 10%)"};
+    --tv-widget-button-neutral-color:${dark ? "hsl(30 5% 15%)" : "hsl(40 25% 92%)"};
+    --tv-widget-button-neutral-color-hover:hsl(42 55% 52% / 0.12);
+    --tv-widget-button-neutral-color-active:hsl(42 55% 52% / 0.18);
+    --tv-widget-button-neutral-text-color:${dark ? "hsl(42 30% 94%)" : "hsl(30 20% 10%)"};
+    --tv-widget-button-bold-color:hsl(42 55% 52%);
+    --tv-widget-button-bold-color-hover:hsl(42 60% 68%);
+    --tv-widget-button-bold-color-active:hsl(38 65% 38%);
+    --tv-widget-button-bold-text-color:hsl(30 25% 8%);
+    --tv-widget-map-empty-fill:${dark ? "hsl(30 5% 18%)" : "hsl(40 22% 90%)"};
+    --tv-widget-map-hover-stroke-color:hsl(42 55% 52%);
+    --tv-widget-scale-fill-one:hsl(42 55% 52% / 0.14);
+    --tv-widget-scale-fill-two:hsl(42 55% 52% / 0.28);
+    --tv-widget-scale-fill-three:hsl(42 55% 52% / 0.44);
+    --tv-widget-scale-fill-four:hsl(42 55% 52% / 0.62);
+    --tv-widget-scale-fill-five:hsl(40 58% 46% / 0.82);
+    --tv-widget-scale-fill-six:hsl(38 65% 38%);
+  }
+`;
+
 export const TVEconomicMap = ({
   locale = "pt",
   height = 560,
 }: { locale?: string; height?: number }) => {
+  const tvLocale = mapLocale(locale);
   const Inner = () => {
-    const ref = useRef<HTMLDivElement>(null);
+    const ref = useRef<HTMLIFrameElement>(null);
     const [error, setError] = useState(false);
 
     useEffect(() => {
-      const el = ref.current;
-      if (!el) return;
-      el.innerHTML = "<tv-economic-map style=\"display:block;width:100%\"></tv-economic-map>";
+      const frame = ref.current;
+      if (!frame) return;
+      const dark = document.documentElement.classList.contains("dark");
+      const src = `https://widgets.tradingview-widget.com/w/${tvLocale}/tv-economic-map.js`;
+      // Rendered in an isolated iframe so the locale-specific module (which
+      // registers the <tv-economic-map> custom element) can be swapped when the
+      // site language changes.
+      frame.srcdoc = `<!doctype html><html lang="${tvLocale}"><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+<style>${mapThemeCss(dark)}</style>
+<script type="module" src="${src}" onerror="parent.postMessage('tv-economic-map-error','*')"><\/script>
+</head><body><tv-economic-map></tv-economic-map></body></html>`;
 
-      const src = `https://widgets.tradingview-widget.com/w/${locale}/tv-economic-map.js`;
-      if (!document.getElementById(`${ECONOMIC_MAP_ID}-${locale}`)) {
-        const s = document.createElement("script");
-        s.id = `${ECONOMIC_MAP_ID}-${locale}`;
-        s.type = "module";
-        s.src = src;
-        s.onerror = () => setError(true);
-        document.head.appendChild(s);
-      }
-      return () => {
-        if (el) el.innerHTML = "";
+      const onMsg = (e: MessageEvent) => {
+        if (e.data === "tv-economic-map-error") setError(true);
       };
-    }, []);
+      window.addEventListener("message", onMsg);
+      return () => window.removeEventListener("message", onMsg);
+    }, [ref]);
 
     if (error) return <Unavailable height={height} />;
-    return <div ref={ref} className="w-full" style={{ minHeight: height }} />;
+    return (
+      <iframe
+        ref={ref}
+        title="TradingView Economic Map"
+        className="w-full border-0 block"
+        style={{ height }}
+        loading="lazy"
+      />
+    );
   };
   return (
-    <LazyMount minHeight={height}>
+    <LazyMount key={tvLocale} minHeight={height}>
       <Inner />
     </LazyMount>
   );
