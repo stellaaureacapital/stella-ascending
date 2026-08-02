@@ -12,6 +12,7 @@ import {
   TVMarketOverview,
   TVEconomicCalendar,
   TVHeatmap,
+  TVEconomicMap,
 } from "@/components/market/TradingViewWidgets";
 import BcbIndicators from "@/components/market/BcbIndicators";
 import { fmtIndex, fmtPct, fmtTime } from "@/components/market/format";
