@@ -1,4 +1,6 @@
 import { Check, Crown } from "lucide-react";
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/use-auth";
 import { SUBSCRIPTION_PLANS } from "@/hooks/use-subscription";
@@ -15,16 +17,21 @@ const benefits = [
 const Pricing = () => {
   const navigate = useNavigate();
   const { session } = useAuth();
+  const [busy, setBusy] = useState<string | null>(null);
 
-  const onSubscribe = () => {
+  const onSubscribe = async (plan: "monthly" | "yearly") => {
     if (!session) {
       navigate("/cadastro");
       return;
     }
-    toast({
-      title: "Pagamentos em ativação",
-      description: "O checkout será liberado assim que a conta de pagamentos for ativada.",
-    });
+    setBusy(plan);
+    const { data, error } = await supabase.functions.invoke("create-checkout", { body: { plan } });
+    setBusy(null);
+    if (error || !data?.url) {
+      toast({ title: "Não foi possível abrir o pagamento", description: "Tente novamente em instantes." });
+      return;
+    }
+    window.location.href = data.url;
   };
 
   return (
@@ -79,14 +86,15 @@ const Pricing = () => {
                   {plan.note}
                 </p>
                 <button
-                  onClick={onSubscribe}
-                  className={`w-full inline-flex items-center justify-center px-5 py-4 text-[11px] uppercase tracking-luxury transition-all duration-500 ${
+                  onClick={() => onSubscribe(key)}
+                  disabled={busy !== null}
+                  className={`w-full inline-flex items-center justify-center px-5 py-4 text-[11px] uppercase tracking-luxury transition-all duration-500 disabled:opacity-60 ${
                     featured
                       ? "bg-gradient-gold text-accent-foreground hover:opacity-90"
                       : "border border-foreground/70 hover:bg-foreground hover:text-background"
                   }`}
                 >
-                  Assinar {plan.label.toLowerCase()}
+                  {busy === key ? "Abrindo pagamento…" : `Assinar ${plan.label.toLowerCase()}`}
                 </button>
               </article>
             );
