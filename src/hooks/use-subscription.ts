@@ -20,6 +20,9 @@ export const useSubscription = () => {
   const [subscription, setSubscription] = useState<Subscription | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const [tick, setTick] = useState(0);
+  const refresh = () => setTick((t) => t + 1);
+
   useEffect(() => {
     let active = true;
     const load = async () => {
@@ -29,6 +32,8 @@ export const useSubscription = () => {
         return;
       }
       setLoading(true);
+      // Sync with Stripe first (updates the subscriptions table server-side)
+      await supabase.functions.invoke("check-subscription").catch(() => null);
       const { data } = await supabase
         .from("subscriptions")
         .select("id, plan, status, current_period_end, cancel_at_period_end")
@@ -41,10 +46,12 @@ export const useSubscription = () => {
       setLoading(false);
     };
     load();
+    const id = setInterval(load, 60_000);
     return () => {
       active = false;
+      clearInterval(id);
     };
-  }, [user]);
+  }, [user, tick]);
 
   const isActive =
     isAdmin ||
@@ -52,5 +59,11 @@ export const useSubscription = () => {
       ["active", "trialing"].includes(subscription.status) &&
       (!subscription.current_period_end || new Date(subscription.current_period_end) > new Date()));
 
-  return { subscription, isActive, isAdmin, loading };
+  const openPortal = async () => {
+    const { data, error } = await supabase.functions.invoke("customer-portal");
+    if (!error && data?.url) window.location.href = data.url;
+    return !error && !!data?.url;
+  };
+
+  return { subscription, isActive, isAdmin, loading, refresh, openPortal };
 };

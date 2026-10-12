@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Crown, Check } from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
 import { useSubscription, SUBSCRIPTION_PLANS } from "@/hooks/use-subscription";
+import { toast } from "@/hooks/use-toast";
 
 const statusLabel: Record<string, string> = {
   active: "Ativa",
@@ -17,7 +18,7 @@ const AreaAssinatura = () => {
     description: "Gerencie sua assinatura Stella Aurea Capital.",
     path: "/area/assinatura",
   });
-  const { subscription, isActive, isAdmin, loading } = useSubscription();
+  const { subscription, isActive, isAdmin, loading, refresh, openPortal } = useSubscription();
 
   return (
     <div className="max-w-3xl">
@@ -72,6 +73,23 @@ const AreaAssinatura = () => {
               </li>
             ))}
           </ul>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <button
+              onClick={async () => {
+                const ok = await openPortal();
+                if (!ok) toast({ title: "Não foi possível abrir o gerenciamento", description: "Tente novamente em instantes." });
+              }}
+              className="inline-flex items-center justify-center px-5 py-3 text-[11px] uppercase tracking-luxury border border-foreground/70 hover:bg-foreground hover:text-background transition-all duration-500"
+            >
+              Gerenciar assinatura
+            </button>
+            <button
+              onClick={refresh}
+              className="inline-flex items-center justify-center px-5 py-3 text-[11px] uppercase tracking-luxury text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Atualizar status
+            </button>
+          </div>
         </div>
       ) : (
         <div className="border border-border/60 bg-secondary/30 p-8 sm:p-10 text-center">
