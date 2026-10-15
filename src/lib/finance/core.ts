@@ -239,7 +239,7 @@ export const simulateInvestment = (o: InvestOption, initial: number, monthly: nu
   }
   const invested = initial + monthly * months;
   const gainsAfterCosts = Math.max(0, bal - invested);
-  const taxRate = o.tax === "isento" ? 0 : o.tax === "regressivo" ? irRegressivo(months * 30) : o.taxRate;
+  const taxRate = o.tax === "isento" ? 0 : o.tax === "regressivo" ? irRegressivo(Math.round(months * 30.4375)) : o.taxRate;
   const tax = gainsAfterCosts * taxRate;
   const net = bal - tax;
   const inflFactor = Math.pow(1 + annualInflation, months / 12);
