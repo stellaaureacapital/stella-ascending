@@ -139,6 +139,36 @@ export type Database = {
         }
         Relationships: []
       }
+      saved_simulations: {
+        Row: {
+          calculator: string
+          category: string
+          created_at: string
+          id: string
+          inputs: Json
+          name: string
+          user_id: string
+        }
+        Insert: {
+          calculator: string
+          category: string
+          created_at?: string
+          id?: string
+          inputs: Json
+          name: string
+          user_id?: string
+        }
+        Update: {
+          calculator?: string
+          category?: string
+          created_at?: string
+          id?: string
+          inputs?: Json
+          name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       subscriptions: {
         Row: {
           cancel_at_period_end: boolean
