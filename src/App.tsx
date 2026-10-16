@@ -36,6 +36,7 @@ import MeusCursos from "./pages/area/MeusCursos";
 import RelatoriosPremium from "./pages/area/RelatoriosPremium";
 import Assinatura from "./pages/Assinatura";
 import AreaAssinatura from "./pages/area/Assinatura";
+import Calculadoras, { CalculadoraDetalhe } from "./pages/area/Calculadoras";
 
 const queryClient = new QueryClient();
 
@@ -86,6 +87,8 @@ const App = () => {
               <Route path="meus-ebooks" element={<MeusEbooks />} />
               <Route path="meus-cursos" element={<MeusCursos />} />
               <Route path="relatorios-premium" element={<RelatoriosPremium />} />
+              <Route path="calculadoras" element={<Calculadoras />} />
+              <Route path="calculadoras/:slug" element={<CalculadoraDetalhe />} />
             </Route>
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

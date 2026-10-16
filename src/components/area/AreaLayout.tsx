@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
-import { LogOut, LayoutDashboard, Library, BookOpen, GraduationCap, FileText, Crown, ArrowLeft } from "lucide-react";
+import { LogOut, LayoutDashboard, Library, BookOpen, GraduationCap, FileText, Crown, ArrowLeft, Calculator } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { useAuth } from "@/hooks/use-auth";
 
@@ -9,6 +9,7 @@ const items = [
   { to: "/area/meus-ebooks", label: "Ebooks", icon: BookOpen },
   { to: "/area/meus-cursos", label: "Cursos", icon: GraduationCap },
   { to: "/area/relatorios-premium", label: "Relatórios premium", icon: FileText },
+  { to: "/area/calculadoras", label: "Calculadoras Financeiras", icon: Calculator },
   { to: "/area/assinatura", label: "Assinatura", icon: Crown },
 ];
 
@@ -24,7 +25,7 @@ const AreaLayout = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="flex flex-col lg:flex-row">
-        <aside className="lg:w-72 lg:min-h-screen lg:sticky lg:top-0 lg:h-screen flex flex-col border-b lg:border-b-0 lg:border-r border-border/60 bg-secondary/30">
+        <aside className="no-print lg:w-72 lg:min-h-screen lg:sticky lg:top-0 lg:h-screen flex flex-col border-b lg:border-b-0 lg:border-r border-border/60 bg-secondary/30">
           <div className="p-6 flex items-center justify-between gap-3 border-b border-border/50">
             <Link to="/" className="flex items-center gap-3 min-w-0 group">
               <img src={logo} alt="Stella Aurea Capital" className="h-9 w-9 object-contain" />
@@ -79,7 +80,7 @@ const AreaLayout = () => {
         </aside>
 
         <main className="flex-1 min-w-0">
-          <div className="lg:hidden flex items-center justify-between gap-3 px-6 py-4 border-b border-border/50">
+          <div className="no-print lg:hidden flex items-center justify-between gap-3 px-6 py-4 border-b border-border/50">
             <Link
               to="/"
               className="inline-flex items-center gap-2 text-[11px] uppercase tracking-luxury text-foreground/80 hover:text-gold"

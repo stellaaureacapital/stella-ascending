@@ -216,3 +216,8 @@ tv-economic-map {
   --tv-widget-scale-fill-five: hsl(40 58% 46% / 0.82);
   --tv-widget-scale-fill-six: hsl(38 65% 38%);
 }
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; }
+}
