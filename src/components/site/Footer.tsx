@@ -60,8 +60,8 @@ const Footer = () => {
     { to: "/seguranca", label: L.security },
   ];
   return (
-    <footer className="bg-secondary/40 text-foreground py-20 border-t border-border">
-      <div className="container grid md:grid-cols-5 gap-12">
+    <footer className="bg-secondary/40 text-foreground py-12 sm:py-20 border-t border-border">
+      <div className="container grid md:grid-cols-5 gap-8 md:gap-8 xl:gap-12">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3 mb-6">
             <img src={logo} alt="Stella Aurea Capital" className="h-10 w-10 object-contain" />
@@ -73,7 +73,7 @@ const Footer = () => {
           <p className="text-muted-foreground max-w-md leading-relaxed text-sm">
             {t.footer.desc}
           </p>
-          <div className="flex flex-wrap items-center gap-4 mt-6">
+          <div className="flex flex-wrap items-center gap-1 mt-5 -ml-3">
             {socials.map((s) => (
               <a
                 key={s.label}
@@ -81,7 +81,8 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="text-foreground/60 hover:text-gold transition-colors"
+                title={s.label}
+                className="inline-flex h-11 w-11 items-center justify-center text-foreground/60 hover:text-gold hover:bg-secondary/60 transition-colors"
               >
                 <s.icon className="h-4 w-4" />
               </a>
@@ -118,7 +119,7 @@ const Footer = () => {
         <div>
           <p className="text-[10px] tracking-luxury uppercase text-gold mb-5">{t.footer.contactTitle}</p>
           <ul className="space-y-3 text-sm text-foreground/70">
-            <li>{t.footer.email}</li>
+            <li className="break-words">{t.footer.email}</li>
             <li>{t.footer.location}</li>
           </ul>
         </div>

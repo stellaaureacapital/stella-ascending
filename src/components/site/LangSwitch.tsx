@@ -1,4 +1,5 @@
 import { useLang } from "@/i18n/LanguageContext";
+import { Button } from "@/components/ui/button";
 
 const LangSwitch = ({ className = "" }: { className?: string }) => {
   const { lang, setLang, t } = useLang();
@@ -9,21 +10,21 @@ const LangSwitch = ({ className = "" }: { className?: string }) => {
       aria-label={t.langSwitch.aria}
     >
       {(["pt", "es", "en"] as const).map((l) => (
-        <button
+        <Button variant="ghost"
           key={l}
           onClick={() => setLang(l)}
           aria-pressed={lang === l}
-          className={`px-2.5 py-1 text-[10px] uppercase tracking-luxury transition-colors ${
+          className={`h-10 sm:h-11 rounded-none gap-0 px-2 sm:px-2.5 text-[10px] uppercase tracking-[0.12em] transition-colors ${
             lang === l
-              ? "bg-foreground text-background"
-              : "text-muted-foreground hover:text-foreground"
+              ? "bg-foreground text-background hover:bg-foreground hover:text-background"
+              : "text-muted-foreground hover:text-foreground hover:bg-secondary/60"
           }`}
         >
           <span aria-hidden className="mr-1">
             {l === "pt" ? "🇧🇷" : l === "es" ? "🇵🇾" : "🌍"}
           </span>
           {t.langSwitch[l]}
-        </button>
+        </Button>
       ))}
     </div>
   );

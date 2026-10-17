@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const STORAGE_KEY = "sac-theme";
 
@@ -22,15 +23,15 @@ const ThemeToggle = () => {
   const toggle = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
 
   return (
-    <button
+    <Button variant="ghost" size="icon"
       type="button"
       onClick={toggle}
       aria-label={theme === "dark" ? "Activate light mode" : "Activate dark mode"}
       title={theme === "dark" ? "Light mode" : "Dark mode"}
-      className="inline-flex items-center justify-center h-9 w-9 rounded-full border border-border/70 text-foreground/80 hover:text-gold hover:border-gold/60 transition-colors duration-300"
+      className="h-11 w-11 shrink-0 rounded-full border border-border/70 text-foreground/80 hover:bg-secondary/60 hover:text-gold hover:border-gold/60 transition-colors duration-300"
     >
       {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-    </button>
+    </Button>
   );
 };
 
