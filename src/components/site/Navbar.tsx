@@ -131,7 +131,7 @@ const Navbar = () => {
       </nav>
 
       {open && (
-        <div id="site-mobile-menu" className="xl:hidden max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain bg-background/95 backdrop-blur-xl border-t border-border">
+        <div id="site-mobile-menu" className="xl:hidden max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain bg-background border-t border-border">
           <ul className="container py-5 flex flex-col gap-1">
             {links.map((l) => (
               <li key={l.label}>
