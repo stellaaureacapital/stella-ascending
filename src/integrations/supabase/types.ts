@@ -14,6 +14,264 @@ export type Database = {
   }
   public: {
     Tables: {
+      academy_attempts: {
+        Row: {
+          answers: Json
+          created_at: string
+          id: string
+          lesson_id: string
+          score: number
+          user_id: string
+        }
+        Insert: {
+          answers: Json
+          created_at?: string
+          id?: string
+          lesson_id: string
+          score: number
+          user_id: string
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          id?: string
+          lesson_id?: string
+          score?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "academy_attempts_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "academy_lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      academy_certificates: {
+        Row: {
+          code: string
+          course_title: string
+          hours: number
+          id: string
+          invalidated_reason: string | null
+          issued_at: string
+          product_id: string
+          score: number
+          student_name: string
+          user_id: string
+          version: number
+        }
+        Insert: {
+          code?: string
+          course_title: string
+          hours: number
+          id?: string
+          invalidated_reason?: string | null
+          issued_at?: string
+          product_id: string
+          score: number
+          student_name: string
+          user_id: string
+          version?: number
+        }
+        Update: {
+          code?: string
+          course_title?: string
+          hours?: number
+          id?: string
+          invalidated_reason?: string | null
+          issued_at?: string
+          product_id?: string
+          score?: number
+          student_name?: string
+          user_id?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "academy_certificates_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      academy_lessons: {
+        Row: {
+          body: string
+          id: string
+          minutes: number
+          module_id: string
+          objectives: string
+          order_index: number
+          published: boolean
+          references_text: string
+          title: string
+          version: number
+        }
+        Insert: {
+          body?: string
+          id?: string
+          minutes?: number
+          module_id: string
+          objectives?: string
+          order_index?: number
+          published?: boolean
+          references_text?: string
+          title: string
+          version?: number
+        }
+        Update: {
+          body?: string
+          id?: string
+          minutes?: number
+          module_id?: string
+          objectives?: string
+          order_index?: number
+          published?: boolean
+          references_text?: string
+          title?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "academy_lessons_module_id_fkey"
+            columns: ["module_id"]
+            isOneToOne: false
+            referencedRelation: "product_modules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      academy_progress: {
+        Row: {
+          completed_at: string
+          lesson_id: string
+          score: number
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string
+          lesson_id: string
+          score: number
+          user_id: string
+        }
+        Update: {
+          completed_at?: string
+          lesson_id?: string
+          score?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "academy_progress_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "academy_lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      academy_questions: {
+        Row: {
+          answer_index: number
+          explanation: string
+          id: string
+          kind: string
+          lesson_id: string
+          options: Json
+          prompt: string
+          tolerance: number
+        }
+        Insert: {
+          answer_index: number
+          explanation: string
+          id?: string
+          kind?: string
+          lesson_id: string
+          options?: Json
+          prompt: string
+          tolerance?: number
+        }
+        Update: {
+          answer_index?: number
+          explanation?: string
+          id?: string
+          kind?: string
+          lesson_id?: string
+          options?: Json
+          prompt?: string
+          tolerance?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "academy_questions_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "academy_lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      academy_reading: {
+        Row: {
+          bookmarks: Json
+          page: number
+          product_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          bookmarks?: Json
+          page?: number
+          product_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          bookmarks?: Json
+          page?: number
+          product_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "academy_reading_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      academy_xp: {
+        Row: {
+          amount: number
+          created_at: string
+          event_key: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          event_key: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          event_key?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       product_modules: {
         Row: {
           content_type: Database["public"]["Enums"]["module_content_type"]
@@ -67,6 +325,7 @@ export type Database = {
           cover_url: string | null
           created_at: string
           description: string | null
+          education_meta: Json
           id: string
           is_premium: boolean
           product_type: Database["public"]["Enums"]["product_type"]
@@ -82,6 +341,7 @@ export type Database = {
           cover_url?: string | null
           created_at?: string
           description?: string | null
+          education_meta?: Json
           id?: string
           is_premium?: boolean
           product_type: Database["public"]["Enums"]["product_type"]
@@ -97,6 +357,7 @@ export type Database = {
           cover_url?: string | null
           created_at?: string
           description?: string | null
+          education_meta?: Json
           id?: string
           is_premium?: boolean
           product_type?: Database["public"]["Enums"]["product_type"]
@@ -284,7 +545,12 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      academy_get_questions: { Args: { _lesson: string }; Returns: Json }
+      academy_submit: {
+        Args: { _answers: Json; _lesson: string }
+        Returns: Json
+      }
+      academy_verify: { Args: { _code: string }; Returns: Json }
     }
     Enums: {
       access_source: "manual" | "purchase" | "bonus" | "admin"

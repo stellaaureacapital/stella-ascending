@@ -8,6 +8,13 @@
       "when": 1792028917618,
       "tag": "0000_saved_simulations",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793764136577,
+      "tag": "0001_academy_learning_foundation",
+      "breakpoints": true
     }
   ]
 }
