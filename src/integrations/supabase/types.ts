@@ -545,7 +545,9 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      academy_catalog: { Args: never; Returns: Json }
       academy_get_questions: { Args: { _lesson: string }; Returns: Json }
+      academy_lessons_for_course: { Args: { _product: string }; Returns: Json }
       academy_submit: {
         Args: { _answers: Json; _lesson: string }
         Returns: Json
