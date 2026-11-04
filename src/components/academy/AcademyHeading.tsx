@@ -1,0 +1,3 @@
+export default function AcademyHeading({ title, label = 'Academia Stella Aurea', children }: { title: string; label?: string; children?: React.ReactNode }) {
+  return <header className="mb-10"><p className="text-[10px] uppercase tracking-luxury text-gold mb-4">{label}</p><h1 className="font-serif text-4xl sm:text-5xl leading-tight mb-3 break-words">{title}</h1>{children && <div className="text-sm leading-relaxed text-muted-foreground max-w-2xl">{children}</div>}</header>;
+}
