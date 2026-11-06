@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { BookOpen, GraduationCap, FileText, ArrowRight } from "lucide-react";
+import { BookOpen, GraduationCap, FileText, ArrowRight, Calculator } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
 import { useMyProducts } from "@/hooks/use-my-products";
 import { useSeo } from "@/hooks/use-seo";
+import { CALCULATORS } from "@/pages/area/calc/calculators";
 
 const MinhaConta = () => {
   useSeo({ title: "Minha conta | Stella Aurea Capital", description: "Sua área privada.", path: "/area/minha-conta" });
@@ -34,6 +35,7 @@ const MinhaConta = () => {
     { to: "/area/meus-ebooks", label: "Ebooks", icon: BookOpen, count: counts.ebook },
     { to: "/area/meus-cursos", label: "Cursos", icon: GraduationCap, count: counts.curso },
     { to: "/area/relatorios-premium", label: "Relatórios premium", icon: FileText, count: counts.relatorio },
+    { to: "/area/calculadoras", label: "Calculadoras", icon: Calculator, count: CALCULATORS.length },
   ];
 
   return (
@@ -47,7 +49,7 @@ const MinhaConta = () => {
         relatórios premium liberados para sua conta.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-14">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-14">
         {shortcuts.map((s) => {
           const Icon = s.icon;
           return (
@@ -58,7 +60,7 @@ const MinhaConta = () => {
             >
               <div className="flex items-center justify-between mb-8">
                 <Icon className="h-5 w-5 text-gold" />
-                <span className="text-3xl font-serif">{loading ? "—" : s.count}</span>
+                <span className="text-3xl font-serif">{loading && s.to !== "/area/calculadoras" ? "—" : s.count}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-[11px] uppercase tracking-luxury">{s.label}</span>
