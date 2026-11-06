@@ -36,6 +36,9 @@ import MeusCursos from "./pages/area/MeusCursos";
 import RelatoriosPremium from "./pages/area/RelatoriosPremium";
 import Assinatura from "./pages/Assinatura";
 import AreaAssinatura from "./pages/area/Assinatura";
+import Jornada from "./pages/area/academy/Jornada";
+import AcademyCourse from "./pages/area/academy/Course";
+import Classroom from "./pages/area/academy/Classroom";
 import Calculadoras, { CalculadoraDetalhe } from "./pages/area/Calculadoras";
 
 const queryClient = new QueryClient();
@@ -89,6 +92,9 @@ const App = () => {
               <Route path="relatorios-premium" element={<RelatoriosPremium />} />
               <Route path="calculadoras" element={<Calculadoras />} />
               <Route path="calculadoras/:slug" element={<CalculadoraDetalhe />} />
+              <Route path="jornada" element={<Jornada />} />
+              <Route path="academia/:slug" element={<AcademyCourse />} />
+              <Route path="academia/:slug/aula/:lessonId" element={<Classroom />} />
             </Route>
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
