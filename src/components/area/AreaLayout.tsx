@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
-import { LogOut, LayoutDashboard, Library, BookOpen, GraduationCap, FileText, Crown, ArrowLeft, Calculator, Compass } from "lucide-react";
+import { LogOut, LayoutDashboard, Library, BookOpen, GraduationCap, FileText, Crown, ArrowLeft, Calculator, Compass, Award } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 const items = [
   { to: "/area/minha-conta", label: "Minha conta", icon: LayoutDashboard },
   { to: "/area/jornada", label: "Minha jornada", icon: Compass },
+  { to: "/area/certificados", label: "Certificados", icon: Award },
   { to: "/area/meus-produtos", label: "Meus produtos", icon: Library },
   { to: "/area/meus-ebooks", label: "Ebooks", icon: BookOpen },
   { to: "/area/meus-cursos", label: "Cursos", icon: GraduationCap },

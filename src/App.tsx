@@ -39,6 +39,7 @@ import AreaAssinatura from "./pages/area/Assinatura";
 import Jornada from "./pages/area/academy/Jornada";
 import AcademyCourse from "./pages/area/academy/Course";
 import Classroom from "./pages/area/academy/Classroom";
+import Certificados from "./pages/area/academy/Certificados";
 import Calculadoras, { CalculadoraDetalhe } from "./pages/area/Calculadoras";
 
 const queryClient = new QueryClient();
@@ -93,6 +94,7 @@ const App = () => {
               <Route path="calculadoras" element={<Calculadoras />} />
               <Route path="calculadoras/:slug" element={<CalculadoraDetalhe />} />
               <Route path="jornada" element={<Jornada />} />
+              <Route path="certificados" element={<Certificados />} />
               <Route path="academia/:slug" element={<AcademyCourse />} />
               <Route path="academia/:slug/aula/:lessonId" element={<Classroom />} />
             </Route>
